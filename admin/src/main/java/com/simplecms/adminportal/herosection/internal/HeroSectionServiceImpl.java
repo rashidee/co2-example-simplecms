@@ -54,7 +54,13 @@ class HeroSectionServiceImpl implements HeroSectionService {
     @Transactional(readOnly = true)
     public Page<HeroSectionDTO> list(HeroSectionStatus status, LocalDateTime effectiveDate,
                                      LocalDateTime expirationDate, Pageable pageable) {
-        return repository.findWithFilters(status, effectiveDate, expirationDate, pageable)
+        if (status == null && effectiveDate == null && expirationDate == null) {
+            return repository.findAllByOrderByEffectiveDateDesc(pageable)
+                .map(mapper::toDTO);
+        }
+        return repository.findWithFilters(
+                status != null ? status.name() : null,
+                effectiveDate, expirationDate, pageable)
             .map(mapper::toDTO);
     }
 

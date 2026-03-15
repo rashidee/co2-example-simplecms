@@ -69,6 +69,15 @@
 ### Bug
 [v1.0.1]
 - [BUG-001] Fixed 403 error after login by adding missing CSRF token to all POST forms and creating HomeController for post-login redirect
+[v1.0.2]
+- [BUG-002] Fixed sidebar menu text invisible against dark background by adding `unsafe-eval` to CSP so Alpine.js `:class` bindings evaluate correctly
+- [BUG-003] Fixed dark mode toggle by adding `@custom-variant dark` directive for class-based dark mode in Tailwind v4 and fixing CSP
+- [BUG-004] Fixed user avatar dropdown by fixing CSP to allow Alpine.js eval for `x-data` initialization
+- [BUG-005] Fixed footer positioning by adding `flex-1` to outer flex container in MainLayout
+- [BUG-006] Fixed editor login 500 error by fixing PostgreSQL null parameter type issue in HeroSectionRepository query
+- [BUG-007] Fixed logout 403 error by passing CSRF token from page templates through MainLayout to Header logout form
+- [BUG-008] Fixed sidebar navigation links to use actual controller paths instead of non-existent role-prefixed paths
+- [BUG-009] Fixed role selection in user create/edit forms to exclude USER role, only showing ADMIN and EDITOR
 
 ---
 

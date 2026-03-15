@@ -4,6 +4,8 @@ import com.simplecms.adminportal.user.UserDTO;
 import com.simplecms.adminportal.user.UserRole;
 import com.simplecms.adminportal.user.UserStatus;
 
+import java.util.Arrays;
+
 /**
  * View model for user create/edit forms.
  *
@@ -17,15 +19,19 @@ public record UserFormView(
     String errorMessage,
     boolean hasError
 ) {
+    private static final UserRole[] ASSIGNABLE_ROLES = Arrays.stream(UserRole.values())
+            .filter(r -> r != UserRole.USER)
+            .toArray(UserRole[]::new);
+
     public static UserFormView forCreate() {
-        return new UserFormView(null, false, UserRole.values(), UserStatus.values(), null, false);
+        return new UserFormView(null, false, ASSIGNABLE_ROLES, UserStatus.values(), null, false);
     }
 
     public static UserFormView forEdit(UserDTO user) {
-        return new UserFormView(user, true, UserRole.values(), UserStatus.values(), null, false);
+        return new UserFormView(user, true, ASSIGNABLE_ROLES, UserStatus.values(), null, false);
     }
 
     public static UserFormView withError(UserDTO user, boolean isEdit, String message) {
-        return new UserFormView(user, isEdit, UserRole.values(), UserStatus.values(), message, true);
+        return new UserFormView(user, isEdit, ASSIGNABLE_ROLES, UserStatus.values(), message, true);
     }
 }

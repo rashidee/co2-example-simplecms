@@ -20,16 +20,23 @@ import java.util.UUID;
 @Repository
 interface HeroSectionRepository extends JpaRepository<HeroSectionEntity, UUID> {
 
-    @Query("SELECT h FROM HeroSectionEntity h WHERE " +
-           "(:status IS NULL OR h.status = :status) AND " +
-           "(:effectiveDate IS NULL OR h.effectiveDate >= :effectiveDate) AND " +
-           "(:expirationDate IS NULL OR h.expirationDate <= :expirationDate) " +
-           "ORDER BY h.effectiveDate DESC")
+    @Query(value = "SELECT * FROM hrs_hero_section h WHERE " +
+           "(CAST(:status AS VARCHAR) IS NULL OR h.status = :status) AND " +
+           "(CAST(:effectiveDate AS TIMESTAMP) IS NULL OR h.effective_date >= :effectiveDate) AND " +
+           "(CAST(:expirationDate AS TIMESTAMP) IS NULL OR h.expiration_date <= :expirationDate) " +
+           "ORDER BY h.effective_date DESC",
+           countQuery = "SELECT COUNT(*) FROM hrs_hero_section h WHERE " +
+           "(CAST(:status AS VARCHAR) IS NULL OR h.status = :status) AND " +
+           "(CAST(:effectiveDate AS TIMESTAMP) IS NULL OR h.effective_date >= :effectiveDate) AND " +
+           "(CAST(:expirationDate AS TIMESTAMP) IS NULL OR h.expiration_date <= :expirationDate)",
+           nativeQuery = true)
     Page<HeroSectionEntity> findWithFilters(
-        @Param("status") HeroSectionStatus status,
+        @Param("status") String status,
         @Param("effectiveDate") LocalDateTime effectiveDate,
         @Param("expirationDate") LocalDateTime expirationDate,
         Pageable pageable);
+
+    Page<HeroSectionEntity> findAllByOrderByEffectiveDateDesc(Pageable pageable);
 
     List<HeroSectionEntity> findByStatusAndExpirationDateBefore(
         HeroSectionStatus status, LocalDateTime date);

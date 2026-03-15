@@ -48,7 +48,7 @@
             <div x-show="open" @click.outside="open = false" x-transition
                  class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-slate-800 border border-border dark:border-slate-700 rounded-card shadow-xl py-1 z-50"
                  style="display: none;">
-                <a href="/${roleLower}/profile"
+                <a href="/profile"
                    class="flex items-center gap-2 px-4 py-2 text-sm text-text-primary dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -56,7 +56,7 @@
                     </svg>
                     Profile
                 </a>
-                <a href="/${roleLower}/account"
+                <a href="/account"
                    class="flex items-center gap-2 px-4 py-2 text-sm text-text-primary dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

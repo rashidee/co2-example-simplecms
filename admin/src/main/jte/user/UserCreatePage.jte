@@ -14,6 +14,7 @@
     userInitials = userInitials,
     userName = userName,
     cspNonce = cspNonce,
+    _csrf = _csrf,
     content = @`
     <div class="max-w-2xl mx-auto">
         <h1 class="text-xl font-bold text-[#1e1e1e] mb-6">Create New User</h1>

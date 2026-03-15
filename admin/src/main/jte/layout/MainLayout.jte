@@ -1,5 +1,6 @@
 @import gg.jte.Content
 @import com.simplecms.adminportal.shared.vite.ViteManifestService
+@import org.springframework.security.web.csrf.CsrfToken
 
 @param Content content
 @param String pageTitle = "Admin Portal"
@@ -9,6 +10,7 @@
 @param String userName = ""
 @param ViteManifestService vite
 @param String cspNonce = ""
+@param CsrfToken _csrf = null
 
 <!DOCTYPE html>
 <html lang="en" x-data :class="{ 'dark': $store.theme.dark }">
@@ -25,10 +27,11 @@
         userInitials = userInitials,
         userName = userName,
         userRole = userRole,
-        cspNonce = cspNonce
+        cspNonce = cspNonce,
+        _csrf = _csrf
     )
 
-    <div class="flex pt-16 min-h-[calc(100vh-4rem)]">
+    <div class="flex-1 flex pt-16">
         @template.fragment.Sidebar(
             currentPath = currentPath,
             userRole = userRole

@@ -2,6 +2,8 @@
 
 @source "../../jte";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   --color-primary: #2271b1;
   --color-secondary: #135e96;

@@ -26,7 +26,7 @@ public class CspNonceFilter extends OncePerRequestFilter {
         request.setAttribute("cspNonce", nonce);
 
         response.setHeader("Content-Security-Policy",
-                String.format("script-src 'nonce-%s' 'strict-dynamic'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self';",
+                String.format("script-src 'nonce-%s' 'strict-dynamic' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; object-src 'none'; base-uri 'self';",
                         nonce));
 
         filterChain.doFilter(request, response);

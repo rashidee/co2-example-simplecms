@@ -14,6 +14,7 @@
     userInitials = userInitials,
     userName = userName,
     cspNonce = cspNonce,
+    _csrf = _csrf,
     content = @`
     <div class="max-w-2xl mx-auto">
         <div class="flex items-center justify-between mb-6">

@@ -1,14 +1,12 @@
 @param String currentPath = ""
 @param String userRole = ""
 
-!{var roleLower = userRole.toLowerCase();}
-
 <aside class="w-64 bg-sidebar fixed top-16 bottom-0 left-0 overflow-y-auto z-20">
     <nav class="py-4" x-data="{ active: '${currentPath}' }">
 
         <%-- Home — all roles --%>
-        <a href="/${roleLower}/home"
-           :class="active.startsWith('/${roleLower}/home')
+        <a href="/"
+           :class="active === '/' || active === '/users' || active === '/hero-section'
                ? 'bg-white/10 text-white border-l-4 border-white font-medium'
                : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
            class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
@@ -24,8 +22,8 @@
             <div class="px-4 pt-4 pb-1">
                 <span class="text-xs font-semibold text-sidebar-text/40 uppercase tracking-wider">System</span>
             </div>
-            <a href="/admin/users"
-               :class="active.startsWith('/admin/users')
+            <a href="/users"
+               :class="active.startsWith('/users')
                    ? 'bg-white/10 text-white border-l-4 border-white font-medium'
                    : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
@@ -43,8 +41,8 @@
                 <span class="text-xs font-semibold text-sidebar-text/40 uppercase tracking-wider">Marketing</span>
             </div>
 
-            <a href="/editor/hero_section"
-               :class="active.startsWith('/editor/hero_section')
+            <a href="/hero-section"
+               :class="active.startsWith('/hero-section')
                    ? 'bg-white/10 text-white border-l-4 border-white font-medium'
                    : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
@@ -55,8 +53,8 @@
                 <span>Hero Section</span>
             </a>
 
-            <a href="/editor/product_and_service"
-               :class="active.startsWith('/editor/product_and_service')
+            <a href="/product-and-service"
+               :class="active.startsWith('/product-and-service')
                    ? 'bg-white/10 text-white border-l-4 border-white font-medium'
                    : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
@@ -67,8 +65,8 @@
                 <span>Products & Services</span>
             </a>
 
-            <a href="/editor/features_section"
-               :class="active.startsWith('/editor/features_section')
+            <a href="/features-section"
+               :class="active.startsWith('/features-section')
                    ? 'bg-white/10 text-white border-l-4 border-white font-medium'
                    : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
@@ -79,8 +77,8 @@
                 <span>Features</span>
             </a>
 
-            <a href="/editor/testimonials"
-               :class="active.startsWith('/editor/testimonials')
+            <a href="/testimonials"
+               :class="active.startsWith('/testimonials')
                    ? 'bg-white/10 text-white border-l-4 border-white font-medium'
                    : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
@@ -91,8 +89,8 @@
                 <span>Testimonials</span>
             </a>
 
-            <a href="/editor/team_section"
-               :class="active.startsWith('/editor/team_section')
+            <a href="/team-section"
+               :class="active.startsWith('/team-section')
                    ? 'bg-white/10 text-white border-l-4 border-white font-medium'
                    : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
@@ -103,8 +101,8 @@
                 <span>Team</span>
             </a>
 
-            <a href="/editor/contact_section"
-               :class="active.startsWith('/editor/contact_section')
+            <a href="/contact-section"
+               :class="active.startsWith('/contact-section')
                    ? 'bg-white/10 text-white border-l-4 border-white font-medium'
                    : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
@@ -120,8 +118,8 @@
                 <span class="text-xs font-semibold text-sidebar-text/40 uppercase tracking-wider">Blog</span>
             </div>
 
-            <a href="/editor/blog_categories"
-               :class="active.startsWith('/editor/blog_categories')
+            <a href="/blog/categories"
+               :class="active.startsWith('/blog/categories')
                    ? 'bg-white/10 text-white border-l-4 border-white font-medium'
                    : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
@@ -132,8 +130,8 @@
                 <span>Blog Categories</span>
             </a>
 
-            <a href="/editor/blog"
-               :class="active.startsWith('/editor/blog') && !active.startsWith('/editor/blog_categories')
+            <a href="/blog"
+               :class="active.startsWith('/blog') && !active.startsWith('/blog/categories')
                    ? 'bg-white/10 text-white border-l-4 border-white font-medium'
                    : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">

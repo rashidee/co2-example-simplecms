@@ -5,7 +5,7 @@
 @param String userInitials = ""
 @param String userName = ""
 @param String cspNonce = ""
-
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 @template.layout.MainLayout(
     vite = vite,
     currentPath = currentPath,
@@ -13,6 +13,7 @@
     userInitials = userInitials,
     userName = userName,
     cspNonce = cspNonce,
+    _csrf = _csrf,
     content = @`
     <div class="flex items-center justify-between mb-6">
         <h1 class="text-xl font-bold text-[#1e1e1e]">Contact Messages</h1>

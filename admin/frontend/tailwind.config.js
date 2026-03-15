@@ -4,7 +4,7 @@ export default {
     '../src/main/jte/**/*.jte',
     './src/js/**/*.js',
   ],
-  darkMode: ['class', '[data-theme="dark"]'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
@@ -13,7 +13,10 @@ export default {
           hover: '#135e96',
           light: '#e8f0fe',
         },
-        sidebar: '#1d2327',
+        sidebar: {
+          DEFAULT: '#1d2327',
+          text: '#c3c4c7',
+        },
         success: '#00a32a',
         warning: '#dba617',
         danger: '#d63638',
