@@ -17,7 +17,7 @@
     _csrf = _csrf,
     content = @`
     <div class="flex items-center justify-between mb-6">
-        <h1 class="text-xl font-bold text-[#1e1e1e]">Testimonials</h1>
+        <h1 class="text-xl font-bold text-[#1e1e1e] dark:text-slate-100">Testimonials</h1>
         <a href="/testimonials/create"
            class="px-4 py-2 bg-[#2271b1] hover:bg-[#135e96] text-white text-sm font-medium rounded-[4px] transition-colors duration-200">
             Add New
@@ -30,12 +30,12 @@
         </div>
     @endif
 
-    <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-4 mb-6">
+    <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] p-4 mb-6">
         <form hx-get="/testimonials/fragments/card-grid" hx-target="#card-grid" hx-swap="innerHTML"
               class="flex flex-wrap gap-4 items-end">
             <div>
-                <label class="block text-sm font-medium text-[#1e1e1e] mb-1">Status</label>
-                <select name="status" class="px-3 py-2 text-sm border border-[#c3c4c7] rounded-[4px]">
+                <label class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Status</label>
+                <select name="status" class="px-3 py-2 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px]">
                     <option value="">All</option>
                     @for(var s : view.statuses())
                         @if(s.equals(view.filterStatus()))
@@ -52,9 +52,9 @@
 
     <div id="card-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         @for(var t : view.testimonials().getContent())
-            <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-4">
-                <h3 class="font-semibold text-[#1e1e1e] text-sm mb-1">${t.customerName()}</h3>
-                <p class="text-xs text-[#646970] mb-2 line-clamp-3">${t.customerReview()}</p>
+            <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] p-4">
+                <h3 class="font-semibold text-[#1e1e1e] dark:text-slate-100 text-sm mb-1">${t.customerName()}</h3>
+                <p class="text-xs text-[#646970] dark:text-slate-400 mb-2 line-clamp-3">${t.customerReview()}</p>
                 <div class="flex items-center gap-0.5 mb-2">
                     @for(int i = 1; i <= 5; i++)
                         <span class="text-sm ${i <= t.customerRating() ? "text-[#dba617]" : "text-[#c3c4c7]"}">&#9733;</span>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -39,9 +40,9 @@ class BlogPostPageController {
             Model model) {
 
         LocalDateTime effDate = effectiveDate != null && !effectiveDate.isBlank()
-            ? LocalDateTime.parse(effectiveDate) : null;
+            ? LocalDate.parse(effectiveDate).atStartOfDay() : null;
         LocalDateTime expDate = expirationDate != null && !expirationDate.isBlank()
-            ? LocalDateTime.parse(expirationDate) : null;
+            ? LocalDate.parse(expirationDate).atStartOfDay() : null;
 
         Page<BlogPostDTO> posts = blogService.listPosts(status, effDate, expDate, pageable);
         model.addAttribute("view", BlogPostListView.of(posts, status, effectiveDate, expirationDate));
@@ -68,9 +69,9 @@ class BlogPostPageController {
             @RequestParam("image") MultipartFile image,
             RedirectAttributes redirectAttributes) {
         try {
-            LocalDateTime effDate = LocalDateTime.parse(effectiveDate);
+            LocalDateTime effDate = LocalDate.parse(effectiveDate).atStartOfDay();
             LocalDateTime expDate = expirationDate != null && !expirationDate.isBlank()
-                ? LocalDateTime.parse(expirationDate) : null;
+                ? LocalDate.parse(expirationDate).atStartOfDay() : null;
 
             blogService.createPost(categoryId, authorId, title, summary, content,
                 effDate, expDate, status, image);
@@ -104,9 +105,9 @@ class BlogPostPageController {
             @RequestParam(value = "image", required = false) MultipartFile image,
             RedirectAttributes redirectAttributes) {
         try {
-            LocalDateTime effDate = LocalDateTime.parse(effectiveDate);
+            LocalDateTime effDate = LocalDate.parse(effectiveDate).atStartOfDay();
             LocalDateTime expDate = expirationDate != null && !expirationDate.isBlank()
-                ? LocalDateTime.parse(expirationDate) : null;
+                ? LocalDate.parse(expirationDate).atStartOfDay() : null;
 
             blogService.updatePost(id, categoryId, authorId, title, summary, content,
                 effDate, expDate, status, image);

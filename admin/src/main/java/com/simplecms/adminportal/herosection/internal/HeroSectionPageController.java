@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -41,9 +42,9 @@ class HeroSectionPageController {
             Model model) {
 
         LocalDateTime effDate = effectiveDate != null && !effectiveDate.isBlank()
-            ? LocalDateTime.parse(effectiveDate) : null;
+            ? LocalDate.parse(effectiveDate).atStartOfDay() : null;
         LocalDateTime expDate = expirationDate != null && !expirationDate.isBlank()
-            ? LocalDateTime.parse(expirationDate) : null;
+            ? LocalDate.parse(expirationDate).atStartOfDay() : null;
 
         Page<HeroSectionDTO> heroSections = heroSectionService.list(status, effDate, expDate, pageable);
         model.addAttribute("view", HeroSectionListView.of(heroSections, status,
@@ -70,9 +71,9 @@ class HeroSectionPageController {
             RedirectAttributes redirectAttributes) {
 
         try {
-            LocalDateTime effDate = LocalDateTime.parse(effectiveDate);
+            LocalDateTime effDate = LocalDate.parse(effectiveDate).atStartOfDay();
             LocalDateTime expDate = expirationDate != null && !expirationDate.isBlank()
-                ? LocalDateTime.parse(expirationDate) : null;
+                ? LocalDate.parse(expirationDate).atStartOfDay() : null;
 
             heroSectionService.create(headline, subheadline, ctaUrl, ctaText,
                 effDate, expDate, status, image);
@@ -105,9 +106,9 @@ class HeroSectionPageController {
             RedirectAttributes redirectAttributes) {
 
         try {
-            LocalDateTime effDate = LocalDateTime.parse(effectiveDate);
+            LocalDateTime effDate = LocalDate.parse(effectiveDate).atStartOfDay();
             LocalDateTime expDate = expirationDate != null && !expirationDate.isBlank()
-                ? LocalDateTime.parse(expirationDate) : null;
+                ? LocalDate.parse(expirationDate).atStartOfDay() : null;
 
             heroSectionService.update(id, headline, subheadline, ctaUrl, ctaText,
                 effDate, expDate, status, image);

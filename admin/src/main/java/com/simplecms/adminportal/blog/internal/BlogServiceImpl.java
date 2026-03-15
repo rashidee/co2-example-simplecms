@@ -65,7 +65,7 @@ class BlogServiceImpl implements BlogService {
     private final BlogMapper mapper;
     private final UserService userService;
 
-    @Value("${app.upload.path:/uploads}")
+    @Value("${app.upload.base-path:./uploads}")
     private String uploadPath;
 
     BlogServiceImpl(BlogCategoryRepository categoryRepository,
@@ -152,7 +152,8 @@ class BlogServiceImpl implements BlogService {
     @Transactional(readOnly = true)
     public Page<BlogPostDTO> listPosts(BlogPostStatus status, LocalDateTime effectiveDate,
                                        LocalDateTime expirationDate, Pageable pageable) {
-        return postRepository.findWithFilters(status, effectiveDate, expirationDate, pageable)
+        String statusStr = status != null ? status.name() : null;
+        return postRepository.findWithFilters(statusStr, effectiveDate, expirationDate, pageable)
             .map(this::enrichPostDTO);
     }
 
@@ -333,7 +334,7 @@ class BlogServiceImpl implements BlogService {
     private String saveImage(MultipartFile image) {
         try {
             String filename = "blog-" + UUID.randomUUID() + getExtension(image.getOriginalFilename());
-            Path dir = Paths.get(uploadPath, "blog");
+            Path dir = Paths.get(uploadPath, "blog").toAbsolutePath();
             Files.createDirectories(dir);
             Path filePath = dir.resolve(filename);
             image.transferTo(filePath.toFile());
@@ -345,7 +346,7 @@ class BlogServiceImpl implements BlogService {
 
     private String generateThumbnail(String originalPath) {
         try {
-            Path source = Paths.get(uploadPath).resolve(originalPath.replaceFirst("^/uploads/", ""));
+            Path source = Paths.get(uploadPath).toAbsolutePath().resolve(originalPath.replaceFirst("^/uploads/", ""));
             BufferedImage original = ImageIO.read(source.toFile());
             BufferedImage thumbnail = Scalr.resize(original, Scalr.Method.QUALITY,
                 Scalr.Mode.FIT_EXACT, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);

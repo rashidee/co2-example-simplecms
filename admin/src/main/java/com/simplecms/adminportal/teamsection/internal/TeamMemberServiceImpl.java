@@ -33,7 +33,7 @@ class TeamMemberServiceImpl implements TeamMemberService {
     private final TeamMemberRepository repository;
     private final TeamMemberMapper mapper;
 
-    @Value("${app.upload.path:/uploads}")
+    @Value("${app.upload.base-path:./uploads}")
     private String uploadPath;
 
     TeamMemberServiceImpl(TeamMemberRepository repository, TeamMemberMapper mapper) {
@@ -133,7 +133,7 @@ class TeamMemberServiceImpl implements TeamMemberService {
     private String saveImage(MultipartFile image) {
         try {
             String filename = "team-" + UUID.randomUUID() + getExtension(image.getOriginalFilename());
-            Path dir = Paths.get(uploadPath, "team-section");
+            Path dir = Paths.get(uploadPath, "team-section").toAbsolutePath();
             Files.createDirectories(dir);
             Path filePath = dir.resolve(filename);
             image.transferTo(filePath.toFile());

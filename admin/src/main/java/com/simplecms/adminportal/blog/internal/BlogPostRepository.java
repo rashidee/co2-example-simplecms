@@ -14,13 +14,18 @@ import java.util.UUID;
 @Repository
 interface BlogPostRepository extends JpaRepository<BlogPostEntity, UUID> {
 
-    @Query("SELECT p FROM BlogPostEntity p WHERE " +
-           "(:status IS NULL OR p.status = :status) AND " +
-           "(:effectiveDate IS NULL OR p.effectiveDate >= :effectiveDate) AND " +
-           "(:expirationDate IS NULL OR p.expirationDate <= :expirationDate) " +
-           "ORDER BY p.effectiveDate DESC")
+    @Query(value = "SELECT * FROM blg_blog_post p WHERE " +
+           "(CAST(:status AS VARCHAR) IS NULL OR p.status = :status) AND " +
+           "(CAST(:effectiveDate AS TIMESTAMP) IS NULL OR p.effective_date >= :effectiveDate) AND " +
+           "(CAST(:expirationDate AS TIMESTAMP) IS NULL OR p.expiration_date <= :expirationDate) " +
+           "ORDER BY p.effective_date DESC",
+           countQuery = "SELECT COUNT(*) FROM blg_blog_post p WHERE " +
+           "(CAST(:status AS VARCHAR) IS NULL OR p.status = :status) AND " +
+           "(CAST(:effectiveDate AS TIMESTAMP) IS NULL OR p.effective_date >= :effectiveDate) AND " +
+           "(CAST(:expirationDate AS TIMESTAMP) IS NULL OR p.expiration_date <= :expirationDate)",
+           nativeQuery = true)
     Page<BlogPostEntity> findWithFilters(
-        @Param("status") BlogPostStatus status,
+        @Param("status") String status,
         @Param("effectiveDate") LocalDateTime effectiveDate,
         @Param("expirationDate") LocalDateTime expirationDate,
         Pageable pageable);

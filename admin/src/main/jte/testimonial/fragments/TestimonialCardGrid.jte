@@ -2,9 +2,9 @@
 @param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @for(var t : testimonials.getContent())
-    <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-4">
-        <h3 class="font-semibold text-[#1e1e1e] text-sm mb-1">${t.customerName()}</h3>
-        <p class="text-xs text-[#646970] mb-2 line-clamp-3">${t.customerReview()}</p>
+    <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] p-4">
+        <h3 class="font-semibold text-[#1e1e1e] dark:text-slate-100 text-sm mb-1">${t.customerName()}</h3>
+        <p class="text-xs text-[#646970] dark:text-slate-400 mb-2 line-clamp-3">${t.customerReview()}</p>
         <div class="flex items-center gap-0.5 mb-2">
             @for(int i = 1; i <= 5; i++)
                 <span class="text-sm ${i <= t.customerRating() ? "text-[#dba617]" : "text-[#c3c4c7]"}">&#9733;</span>

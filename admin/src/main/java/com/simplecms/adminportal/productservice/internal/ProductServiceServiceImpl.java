@@ -41,7 +41,7 @@ class ProductServiceServiceImpl implements ProductServiceService {
     private final ProductServiceRepository repository;
     private final ProductServiceMapper mapper;
 
-    @Value("${app.upload.path:/uploads}")
+    @Value("${app.upload.base-path:./uploads}")
     private String uploadPath;
 
     ProductServiceServiceImpl(ProductServiceRepository repository, ProductServiceMapper mapper) {
@@ -148,7 +148,7 @@ class ProductServiceServiceImpl implements ProductServiceService {
     private String saveImage(MultipartFile image, String prefix) {
         try {
             String filename = prefix + "-" + UUID.randomUUID() + getExtension(image.getOriginalFilename());
-            Path dir = Paths.get(uploadPath, "product-service");
+            Path dir = Paths.get(uploadPath, "product-service").toAbsolutePath();
             Files.createDirectories(dir);
             Path filePath = dir.resolve(filename);
             image.transferTo(filePath.toFile());
@@ -165,7 +165,7 @@ class ProductServiceServiceImpl implements ProductServiceService {
      */
     private String generateThumbnail(String originalPath, int width, int height) {
         try {
-            Path source = Paths.get(uploadPath).resolve(originalPath.replaceFirst("^/uploads/", ""));
+            Path source = Paths.get(uploadPath).toAbsolutePath().resolve(originalPath.replaceFirst("^/uploads/", ""));
             BufferedImage original = ImageIO.read(source.toFile());
             BufferedImage thumbnail = Scalr.resize(original, Scalr.Method.QUALITY,
                 Scalr.Mode.FIT_EXACT, width, height);

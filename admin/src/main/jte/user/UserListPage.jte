@@ -17,7 +17,7 @@
     _csrf = _csrf,
     content = @`
     <div class="flex items-center justify-between mb-6">
-        <h1 class="text-xl font-bold text-[#1e1e1e]">Users</h1>
+        <h1 class="text-xl font-bold text-[#1e1e1e] dark:text-slate-100">Users</h1>
         <a href="/users/create"
            class="px-4 py-2 bg-[#2271b1] hover:bg-[#135e96] text-white text-sm font-medium rounded-[4px] transition-colors duration-200">
             Add New User
@@ -30,22 +30,22 @@
         </div>
     @endif
 
-    <div class="bg-white border border-[#c3c4c7] rounded-[8px] overflow-hidden">
+    <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] overflow-hidden">
         <table class="w-full text-sm">
-            <thead class="bg-gray-50 border-b border-[#c3c4c7]">
+            <thead class="bg-gray-50 dark:bg-slate-700 border-b border-[#c3c4c7] dark:border-slate-600">
                 <tr>
-                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e]">Email</th>
-                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e]">Name</th>
-                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e]">Role</th>
-                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e]">Status</th>
-                    <th class="px-4 py-3 text-right font-medium text-[#1e1e1e]">Actions</th>
+                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e] dark:text-slate-100">Email</th>
+                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e] dark:text-slate-100">Name</th>
+                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e] dark:text-slate-100">Role</th>
+                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e] dark:text-slate-100">Status</th>
+                    <th class="px-4 py-3 text-right font-medium text-[#1e1e1e] dark:text-slate-100">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @for(var user : view.users().getContent())
-                    <tr class="border-b border-[#c3c4c7] last:border-b-0">
-                        <td class="px-4 py-3 text-[#1e1e1e]">${user.email()}</td>
-                        <td class="px-4 py-3 text-[#1e1e1e]">${user.firstName()} ${user.lastName()}</td>
+                    <tr class="border-b border-[#c3c4c7] dark:border-slate-600 last:border-b-0">
+                        <td class="px-4 py-3 text-[#1e1e1e] dark:text-slate-100">${user.email()}</td>
+                        <td class="px-4 py-3 text-[#1e1e1e] dark:text-slate-100">${user.firstName()} ${user.lastName()}</td>
                         <td class="px-4 py-3">${user.role().name()}</td>
                         <td class="px-4 py-3">
                             <span class="inline-block px-2 py-0.5 text-xs font-medium rounded-full

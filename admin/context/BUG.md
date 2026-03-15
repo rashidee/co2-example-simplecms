@@ -43,7 +43,7 @@
   - Expected result: The editor user should be able to log in successfully and access the system
 
 [v1.0.3]
-- All the cards in all the pages does not support dark mode and the text is hard to read when dark mode is enabled
+- [BUG-010] All the cards in all the pages does not support dark mode and the text is hard to read when dark mode is enabled
   - Priority: Low
   - Steps to reproduce:
       1. Login as admin user
@@ -103,7 +103,7 @@
 ## Hero Section
 
 [v1.0.3]
-- Error 500 when creating new hero section content.
+- [BUG-011] Error 500 when creating new hero section content.
   - Priority: Medium
   - Steps to reproduce:
     1. Login as editor user
@@ -118,7 +118,7 @@
 ## Product and Service Section
 
 [v1.0.3]
-- Error 500 when creating new product/service content.
+- [BUG-012] Error 500 when creating new product/service content.
   - Priority: Medium
   - Steps to reproduce:
     1. Login as editor user
@@ -133,7 +133,7 @@
 ## Features Section
 
 [v1.0.3]
-- Icon selection is not showing the icon itself in the new features content form.
+- [BUG-013] Icon selection is not showing the icon itself in the new features content form.
   - Priority: Low
   - Steps to reproduce:
     1. Login as editor user
@@ -155,7 +155,7 @@
 ## Team Section
 
 [v1.0.3]
-- Error 500 when creating new team member content.
+- [BUG-014] Error 500 when creating new team member content.
   - Priority: Medium
   - Steps to reproduce:
     1. Login as editor user
@@ -170,7 +170,7 @@
 ## Blog
 
 [v1.0.3]
-- Menu Blog Posts is not working when logging in as editor
+- [BUG-015] Menu Blog Posts is not working when logging in as editor
   - Priority: Medium
   - Steps to reproduce:
     1. Login as editor user

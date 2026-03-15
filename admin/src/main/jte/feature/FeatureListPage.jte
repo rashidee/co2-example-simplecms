@@ -17,7 +17,7 @@
     _csrf = _csrf,
     content = @`
     <div class="flex items-center justify-between mb-6">
-        <h1 class="text-xl font-bold text-[#1e1e1e]">Features</h1>
+        <h1 class="text-xl font-bold text-[#1e1e1e] dark:text-slate-100">Features</h1>
         <a href="/features-section/create"
            class="px-4 py-2 bg-[#2271b1] hover:bg-[#135e96] text-white text-sm font-medium rounded-[4px] transition-colors duration-200">
             Add New
@@ -30,12 +30,12 @@
         </div>
     @endif
 
-    <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-4 mb-6">
+    <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] p-4 mb-6">
         <form hx-get="/features-section/fragments/card-grid" hx-target="#card-grid" hx-swap="innerHTML"
               class="flex flex-wrap gap-4 items-end">
             <div>
-                <label class="block text-sm font-medium text-[#1e1e1e] mb-1">Status</label>
-                <select name="status" class="px-3 py-2 text-sm border border-[#c3c4c7] rounded-[4px]">
+                <label class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Status</label>
+                <select name="status" class="px-3 py-2 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px]">
                     <option value="">All</option>
                     @for(var s : view.statuses())
                         @if(s.equals(view.filterStatus()))
@@ -52,10 +52,10 @@
 
     <div id="card-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         @for(var feature : view.features().getContent())
-            <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-4">
+            <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] p-4">
                 <div class="text-3xl text-[#2271b1] mb-3"><i class="${feature.icon()}"></i></div>
-                <h3 class="font-semibold text-[#1e1e1e] text-sm mb-1">${feature.title()}</h3>
-                <p class="text-xs text-[#646970] mb-2 line-clamp-3">${feature.description()}</p>
+                <h3 class="font-semibold text-[#1e1e1e] dark:text-slate-100 text-sm mb-1">${feature.title()}</h3>
+                <p class="text-xs text-[#646970] dark:text-slate-400 mb-2 line-clamp-3">${feature.description()}</p>
                 <span class="inline-block px-2 py-0.5 text-xs font-medium rounded-full
                     ${feature.status().name().equals("ACTIVE") ? "bg-[#00a32a]/10 text-[#00a32a]" :
                       feature.status().name().equals("DRAFT") ? "bg-[#dba617]/10 text-[#dba617]" :

@@ -2,7 +2,7 @@
 
 **Started**: 2026-03-16
 **Context**: admin/context
-**Version Filter**: v1.0.2
+**Version Filter**: v1.0.3
 **Module Filter**: All
 **Status**: COMPLETED
 
@@ -12,28 +12,47 @@
 
 | Code | Version | Description | Status | Remark |
 |------|---------|-------------|--------|--------|
-| BUG-002 | v1.0.2 | Menu color is dark and hard to read since the sidebar background is also dark | FIXED | Root cause: CSP blocked Alpine.js eval, so `:class` bindings failed and sidebar text had no color set. Fixed by adding `unsafe-eval` to CSP in CspNonceFilter.java. |
-| BUG-003 | v1.0.2 | Dark mode toggle is not working | FIXED | Root cause: (1) CSP blocked Alpine.js eval, (2) Tailwind v4 dark mode used `@media prefers-color-scheme` instead of class-based. Fixed: CSP `unsafe-eval` + `@custom-variant dark (&:is(.dark *))` in main.css. |
-| BUG-004 | v1.0.2 | User avatar dropdown menu is not working | FIXED | Root cause: CSP blocked Alpine.js eval so `x-data` couldn't initialize. Fixed by same CSP change. |
-| BUG-005 | v1.0.2 | Footer not positioned at bottom and overlaps with content | FIXED | Root cause: Outer flex container missing `flex-1`, so it didn't fill the body height. Fixed: Changed `flex pt-16 min-h-[calc(100vh-4rem)]` to `flex-1 flex pt-16` in MainLayout.jte. |
-| BUG-006 | v1.0.2 | Logging in as editor causing 500 error | FIXED | Root cause: PostgreSQL `IS NULL OR` JPQL pattern fails with `could not determine data type of parameter`. Fixed: Added `findAllByOrderByEffectiveDateDesc` for no-filter case; converted filtered query to native SQL with CAST. |
+| BUG-010 | v1.0.3 | All cards in all pages do not support dark mode — text hard to read when dark mode enabled | FIXED | Root cause: All page templates used hardcoded light-mode CSS (`bg-white`, `text-[#1e1e1e]`, `border-[#c3c4c7]`, `text-[#646970]`) without `dark:` Tailwind variants. Fixed by adding dark mode classes to all 44 JTE page templates. |
 
 ---
 
-## Authentication and Authorization
+## Hero Section
 
 | Code | Version | Description | Status | Remark |
 |------|---------|-------------|--------|--------|
-| BUG-007 | v1.0.2 | Logout URL not working and causing 403 error | FIXED | Root cause: CSRF token not passed from page templates → MainLayout → Header fragment. Fixed: Added `_csrf` param to MainLayout.jte and all 29 page templates, passed it to Header.jte. |
+| BUG-011 | v1.0.3 | Error 500 when creating new hero section content | FIXED | Root cause: (1) `LocalDateTime.parse()` used for HTML date inputs that send `yyyy-MM-dd` format — fixed to `LocalDate.parse().atStartOfDay()`. (2) `@Value("${app.upload.path}")` property name mismatch with `app.upload.base-path` in YAML — fixed property name. (3) Relative upload path resolved by Tomcat differently — added `.toAbsolutePath()`. (4) DB column `expiration_date` NOT NULL but form treats it as optional — added Flyway V3 migration to DROP NOT NULL. |
 
 ---
 
-## User
+## Product and Service Section
 
 | Code | Version | Description | Status | Remark |
 |------|---------|-------------|--------|--------|
-| BUG-008 | v1.0.2 | System > User menu is not working when logging in as admin | FIXED | Root cause: Sidebar links used role-prefixed paths (`/admin/users`) that had no controller. Fixed: Updated Sidebar.jte to use actual controller paths (`/users`, `/hero-section`, etc.). Also fixed Header.jte profile/account links. |
-| BUG-009 | v1.0.2 | In the create/edit user form, the role selection of USER should be removed | FIXED | Root cause: UserFormView.forCreate/forEdit used `UserRole.values()` which includes USER. Fixed: Added `ASSIGNABLE_ROLES` filter excluding `UserRole.USER` in UserFormView.java. |
+| BUG-012 | v1.0.3 | Error 500 when creating new product/service content | FIXED | Same root cause as BUG-011: `@Value` property name mismatch and relative upload path. Fixed by same changes to `ProductServiceServiceImpl.java`. |
+
+---
+
+## Features Section
+
+| Code | Version | Description | Status | Remark |
+|------|---------|-------------|--------|--------|
+| BUG-013 | v1.0.3 | Icon selection not showing icons in new features content form | FIXED | Root cause: (1) CSP missing `font-src` directive blocked Font Awesome font loading. (2) HTML `<option>` elements can't render web fonts — replaced Unicode chars with text labels + Alpine.js icon preview box next to select. Fixed both create and edit pages. |
+
+---
+
+## Team Section
+
+| Code | Version | Description | Status | Remark |
+|------|---------|-------------|--------|--------|
+| BUG-014 | v1.0.3 | Error 500 when creating new team member content | FIXED | Same root cause as BUG-011: `@Value` property name mismatch and relative upload path. Fixed by same changes to `TeamMemberServiceImpl.java`. |
+
+---
+
+## Blog
+
+| Code | Version | Description | Status | Remark |
+|------|---------|-------------|--------|--------|
+| BUG-015 | v1.0.3 | Menu Blog Posts not working when logging in as editor | FIXED | Root cause: Same as hero section v1.0.2 bug — JPQL `IS NULL OR` pattern fails on PostgreSQL. Fixed by converting to native SQL query with `CAST(:param AS type) IS NULL`. Also fixed `LocalDateTime.parse()` date issue in blog controllers. |
 
 ---
 
@@ -43,7 +62,7 @@
 |--------|-------|
 | NEW | 0 |
 | IN_PROGRESS | 0 |
-| FIXED | 8 |
+| FIXED | 6 |
 | CANNOT_REPRODUCE | 0 |
 | HIGH_IMPACT | 0 |
-| **Total** | **8** |
+| **Total** | **6** |

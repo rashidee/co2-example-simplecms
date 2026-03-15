@@ -42,7 +42,7 @@ class HeroSectionServiceImpl implements HeroSectionService {
     private final HeroSectionRepository repository;
     private final HeroSectionMapper mapper;
 
-    @Value("${app.upload.path:/uploads}")
+    @Value("${app.upload.base-path:./uploads}")
     private String uploadPath;
 
     HeroSectionServiceImpl(HeroSectionRepository repository, HeroSectionMapper mapper) {
@@ -153,7 +153,7 @@ class HeroSectionServiceImpl implements HeroSectionService {
     private String saveImage(MultipartFile image, String prefix) {
         try {
             String filename = prefix + "-" + UUID.randomUUID() + getExtension(image.getOriginalFilename());
-            Path dir = Paths.get(uploadPath, "hero-section");
+            Path dir = Paths.get(uploadPath, "hero-section").toAbsolutePath();
             Files.createDirectories(dir);
             Path filePath = dir.resolve(filename);
             image.transferTo(filePath.toFile());
@@ -170,7 +170,7 @@ class HeroSectionServiceImpl implements HeroSectionService {
      */
     private String generateThumbnail(String originalPath, int width, int height) {
         try {
-            Path source = Paths.get(uploadPath).resolve(originalPath.replaceFirst("^/uploads/", ""));
+            Path source = Paths.get(uploadPath).toAbsolutePath().resolve(originalPath.replaceFirst("^/uploads/", ""));
             BufferedImage original = ImageIO.read(source.toFile());
             BufferedImage thumbnail = Scalr.resize(original, Scalr.Method.QUALITY,
                 Scalr.Mode.FIT_EXACT, width, height);

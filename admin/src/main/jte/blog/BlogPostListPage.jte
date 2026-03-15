@@ -17,9 +17,9 @@
     _csrf = _csrf,
     content = @`
     <div class="flex items-center justify-between mb-6">
-        <h1 class="text-xl font-bold text-[#1e1e1e]">Blog Posts</h1>
+        <h1 class="text-xl font-bold text-[#1e1e1e] dark:text-slate-100">Blog Posts</h1>
         <div class="flex gap-3">
-            <a href="/blog/categories" class="px-4 py-2 border border-[#c3c4c7] text-sm font-medium rounded-[4px] hover:bg-gray-50">Categories</a>
+            <a href="/blog/categories" class="px-4 py-2 border border-[#c3c4c7] dark:border-slate-600 text-sm font-medium rounded-[4px] hover:bg-gray-50 dark:hover:bg-slate-700">Categories</a>
             <a href="/blog/create" class="px-4 py-2 bg-[#2271b1] hover:bg-[#135e96] text-white text-sm font-medium rounded-[4px]">Add New Post</a>
         </div>
     </div>
@@ -30,12 +30,12 @@
         </div>
     @endif
 
-    <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-4 mb-6">
+    <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] p-4 mb-6">
         <form hx-get="/blog/fragments/card-grid" hx-target="#card-grid" hx-swap="innerHTML"
               class="flex flex-wrap gap-4 items-end">
             <div>
-                <label class="block text-sm font-medium text-[#1e1e1e] mb-1">Status</label>
-                <select name="status" class="px-3 py-2 text-sm border border-[#c3c4c7] rounded-[4px]">
+                <label class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Status</label>
+                <select name="status" class="px-3 py-2 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px]">
                     <option value="">All</option>
                     @for(var s : view.statuses())
                         @if(s.equals(view.filterStatus()))
@@ -47,14 +47,14 @@
                 </select>
             </div>
             <div>
-                <label class="block text-sm font-medium text-[#1e1e1e] mb-1">Effective Date</label>
+                <label class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Effective Date</label>
                 <input type="date" name="effectiveDate" value="${view.filterEffectiveDate() != null ? view.filterEffectiveDate() : ""}"
-                       class="px-3 py-2 text-sm border border-[#c3c4c7] rounded-[4px]">
+                       class="px-3 py-2 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px]">
             </div>
             <div>
-                <label class="block text-sm font-medium text-[#1e1e1e] mb-1">Expiration Date</label>
+                <label class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Expiration Date</label>
                 <input type="date" name="expirationDate" value="${view.filterExpirationDate() != null ? view.filterExpirationDate() : ""}"
-                       class="px-3 py-2 text-sm border border-[#c3c4c7] rounded-[4px]">
+                       class="px-3 py-2 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px]">
             </div>
             <button type="submit" class="px-4 py-2 bg-[#2271b1] hover:bg-[#135e96] text-white text-sm font-medium rounded-[4px]">Filter</button>
         </form>
@@ -62,14 +62,14 @@
 
     <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @for(var post : view.posts().getContent())
-            <div class="bg-white border border-[#c3c4c7] rounded-[8px] overflow-hidden">
+            <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] overflow-hidden">
                 <img src="${post.thumbnailPath()}" alt="${post.title()}" class="w-full h-[125px] object-cover">
                 <div class="p-4">
                     <span class="text-xs text-[#2271b1] font-medium">${post.categoryName()}</span>
-                    <h3 class="font-semibold text-[#1e1e1e] text-sm mt-1 mb-1">${post.title()}</h3>
-                    <p class="text-xs text-[#646970] mb-2 line-clamp-2">${post.summary()}</p>
-                    <p class="text-xs text-[#646970] mb-1">By ${post.authorName()}</p>
-                    <div class="flex items-center justify-between text-xs text-[#646970]">
+                    <h3 class="font-semibold text-[#1e1e1e] dark:text-slate-100 text-sm mt-1 mb-1">${post.title()}</h3>
+                    <p class="text-xs text-[#646970] dark:text-slate-400 mb-2 line-clamp-2">${post.summary()}</p>
+                    <p class="text-xs text-[#646970] dark:text-slate-400 mb-1">By ${post.authorName()}</p>
+                    <div class="flex items-center justify-between text-xs text-[#646970] dark:text-slate-400">
                         <span>${post.effectiveDate().toString()}${post.expirationDate() != null ? " - " + post.expirationDate().toString() : ""}</span>
                         <span class="inline-block px-2 py-0.5 font-medium rounded-full
                             ${post.status().name().equals("ACTIVE") ? "bg-[#00a32a]/10 text-[#00a32a]" :

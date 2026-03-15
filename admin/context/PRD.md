@@ -78,6 +78,13 @@
 - [BUG-007] Fixed logout 403 error by passing CSRF token from page templates through MainLayout to Header logout form
 - [BUG-008] Fixed sidebar navigation links to use actual controller paths instead of non-existent role-prefixed paths
 - [BUG-009] Fixed role selection in user create/edit forms to exclude USER role, only showing ADMIN and EDITOR
+[v1.0.3]
+- [BUG-010] Fixed dark mode support for all cards/forms across all pages by adding Tailwind `dark:` CSS variants to all JTE page templates
+- [BUG-011] Fixed hero section create 500 error by fixing date parsing (LocalDate vs LocalDateTime), upload path property name mismatch, relative path resolution, and nullable expiration_date DB constraint
+- [BUG-012] Fixed product/service create 500 error by fixing upload path property name and relative path resolution
+- [BUG-013] Fixed icon selection in features form by adding CSP font-src directive for Font Awesome and adding Alpine.js icon preview next to dropdown
+- [BUG-014] Fixed team member create 500 error by fixing upload path property name and relative path resolution
+- [BUG-015] Fixed blog posts page 500 error by converting JPQL query to native SQL with CAST for PostgreSQL null parameter handling
 
 ---
 

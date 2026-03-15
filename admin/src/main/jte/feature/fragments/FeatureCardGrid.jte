@@ -2,10 +2,10 @@
 @param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @for(var feature : features.getContent())
-    <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-4">
+    <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] p-4">
         <div class="text-3xl text-[#2271b1] mb-3"><i class="${feature.icon()}"></i></div>
-        <h3 class="font-semibold text-[#1e1e1e] text-sm mb-1">${feature.title()}</h3>
-        <p class="text-xs text-[#646970] mb-2 line-clamp-3">${feature.description()}</p>
+        <h3 class="font-semibold text-[#1e1e1e] dark:text-slate-100 text-sm mb-1">${feature.title()}</h3>
+        <p class="text-xs text-[#646970] dark:text-slate-400 mb-2 line-clamp-3">${feature.description()}</p>
         <span class="inline-block px-2 py-0.5 text-xs font-medium rounded-full
             ${feature.status().name().equals("ACTIVE") ? "bg-[#00a32a]/10 text-[#00a32a]" :
               feature.status().name().equals("DRAFT") ? "bg-[#dba617]/10 text-[#dba617]" :

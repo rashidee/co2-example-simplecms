@@ -2,11 +2,11 @@
 @param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @for(var m : teamMembers.getContent())
-    <div class="bg-white border border-[#c3c4c7] rounded-[8px] overflow-hidden">
+    <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] overflow-hidden">
         <img src="${m.profilePicturePath()}" alt="${m.name()}" class="w-full h-[200px] object-cover">
         <div class="p-4">
-            <h3 class="font-semibold text-[#1e1e1e] text-sm">${m.name()}</h3>
-            <p class="text-xs text-[#646970] mb-1">${m.role()}</p>
+            <h3 class="font-semibold text-[#1e1e1e] dark:text-slate-100 text-sm">${m.name()}</h3>
+            <p class="text-xs text-[#646970] dark:text-slate-400 mb-1">${m.role()}</p>
             @if(m.linkedinUrl() != null)
                 <a href="${m.linkedinUrl()}" target="_blank" class="text-xs text-[#2271b1] hover:underline">LinkedIn</a>
             @endif

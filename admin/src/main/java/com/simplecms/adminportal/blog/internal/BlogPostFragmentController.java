@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Controller
@@ -33,9 +34,9 @@ class BlogPostFragmentController {
             Model model) {
 
         LocalDateTime effDate = effectiveDate != null && !effectiveDate.isBlank()
-            ? LocalDateTime.parse(effectiveDate) : null;
+            ? LocalDate.parse(effectiveDate).atStartOfDay() : null;
         LocalDateTime expDate = expirationDate != null && !expirationDate.isBlank()
-            ? LocalDateTime.parse(expirationDate) : null;
+            ? LocalDate.parse(expirationDate).atStartOfDay() : null;
 
         model.addAttribute("posts", blogService.listPosts(status, effDate, expDate, pageable));
         return "blog/fragments/BlogPostCardGrid";

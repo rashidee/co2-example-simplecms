@@ -17,9 +17,9 @@
     _csrf = _csrf,
     content = @`
     <div class="max-w-2xl mx-auto">
-        <h1 class="text-xl font-bold text-[#1e1e1e] mb-6">Create New Feature</h1>
+        <h1 class="text-xl font-bold text-[#1e1e1e] dark:text-slate-100 mb-6">Create New Feature</h1>
 
-        <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-6">
+        <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] p-6">
             @if(view.hasError())
                 <div class="mb-4 p-3 bg-[#d63638]/10 border border-[#d63638]/30 rounded-[4px] text-sm text-[#d63638]">
                     ${view.errorMessage()}
@@ -30,52 +30,57 @@
                 @if(_csrf != null)
                     <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
                 @endif
-                <div>
-                    <label for="icon" class="block text-sm font-medium text-[#1e1e1e] mb-1">Icon</label>
-                    <select id="icon" name="icon" required
-                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
-                        <option value="">Select an icon...</option>
-                        <option value="fa-solid fa-bolt">&#xf0e7; Bolt</option>
-                        <option value="fa-solid fa-shield-halved">&#xf3ed; Shield</option>
-                        <option value="fa-solid fa-rocket">&#xf135; Rocket</option>
-                        <option value="fa-solid fa-gear">&#xf013; Gear</option>
-                        <option value="fa-solid fa-chart-line">&#xf201; Chart Line</option>
-                        <option value="fa-solid fa-cloud">&#xf0c2; Cloud</option>
-                        <option value="fa-solid fa-lock">&#xf023; Lock</option>
-                        <option value="fa-solid fa-code">&#xf121; Code</option>
-                        <option value="fa-solid fa-database">&#xf1c0; Database</option>
-                        <option value="fa-solid fa-globe">&#xf0ac; Globe</option>
-                        <option value="fa-solid fa-heart">&#xf004; Heart</option>
-                        <option value="fa-solid fa-star">&#xf005; Star</option>
-                        <option value="fa-solid fa-users">&#xf0c0; Users</option>
-                        <option value="fa-solid fa-bell">&#xf0f3; Bell</option>
-                        <option value="fa-solid fa-check-circle">&#xf058; Check Circle</option>
-                        <option value="fa-solid fa-cog">&#xf013; Cog</option>
-                        <option value="fa-solid fa-lightbulb">&#xf0eb; Lightbulb</option>
-                        <option value="fa-solid fa-puzzle-piece">&#xf12e; Puzzle Piece</option>
-                        <option value="fa-solid fa-wrench">&#xf0ad; Wrench</option>
-                        <option value="fa-solid fa-mobile-screen">&#xf3cf; Mobile</option>
-                    </select>
+                <div x-data="{ selectedIcon: '' }">
+                    <label for="icon" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Icon</label>
+                    <div class="flex items-center gap-3">
+                        <select id="icon" name="icon" required x-model="selectedIcon"
+                                class="flex-1 px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
+                            <option value="">Select an icon...</option>
+                            <option value="fa-solid fa-bolt">Bolt</option>
+                            <option value="fa-solid fa-shield-halved">Shield</option>
+                            <option value="fa-solid fa-rocket">Rocket</option>
+                            <option value="fa-solid fa-gear">Gear</option>
+                            <option value="fa-solid fa-chart-line">Chart Line</option>
+                            <option value="fa-solid fa-cloud">Cloud</option>
+                            <option value="fa-solid fa-lock">Lock</option>
+                            <option value="fa-solid fa-code">Code</option>
+                            <option value="fa-solid fa-database">Database</option>
+                            <option value="fa-solid fa-globe">Globe</option>
+                            <option value="fa-solid fa-heart">Heart</option>
+                            <option value="fa-solid fa-star">Star</option>
+                            <option value="fa-solid fa-users">Users</option>
+                            <option value="fa-solid fa-bell">Bell</option>
+                            <option value="fa-solid fa-check-circle">Check Circle</option>
+                            <option value="fa-solid fa-cog">Cog</option>
+                            <option value="fa-solid fa-lightbulb">Lightbulb</option>
+                            <option value="fa-solid fa-puzzle-piece">Puzzle Piece</option>
+                            <option value="fa-solid fa-wrench">Wrench</option>
+                            <option value="fa-solid fa-mobile-screen">Mobile</option>
+                        </select>
+                        <div x-show="selectedIcon" class="w-10 h-10 flex items-center justify-center border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] bg-gray-50 dark:bg-slate-700 text-xl text-[#2271b1]">
+                            <i :class="selectedIcon"></i>
+                        </div>
+                    </div>
                 </div>
                 <div>
-                    <label for="title" class="block text-sm font-medium text-[#1e1e1e] mb-1">Title</label>
+                    <label for="title" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Title</label>
                     <input type="text" id="title" name="title" required maxlength="100"
-                           class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
+                           class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
                 </div>
                 <div>
-                    <label for="description" class="block text-sm font-medium text-[#1e1e1e] mb-1">Description</label>
+                    <label for="description" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Description</label>
                     <textarea id="description" name="description" required maxlength="500" rows="4"
-                              class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]"></textarea>
+                              class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]"></textarea>
                 </div>
                 <div>
-                    <label for="displayOrder" class="block text-sm font-medium text-[#1e1e1e] mb-1">Display Order</label>
+                    <label for="displayOrder" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Display Order</label>
                     <input type="number" id="displayOrder" name="displayOrder" required value="0" min="0"
-                           class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
+                           class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
                 </div>
                 <div>
-                    <label for="status" class="block text-sm font-medium text-[#1e1e1e] mb-1">Status</label>
+                    <label for="status" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Status</label>
                     <select id="status" name="status" required
-                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
+                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
                         @for(var status : view.statuses())
                             @if(status.name().equals("DRAFT"))
                                 <option value="${status.name()}" selected>${status.name()}</option>
@@ -91,7 +96,7 @@
                         Create Feature
                     </button>
                     <a href="/features-section"
-                       class="px-4 py-2.5 bg-white hover:bg-gray-50 text-[#1e1e1e] text-sm font-medium border border-[#c3c4c7] rounded-[4px] transition-colors duration-200">
+                       class="px-4 py-2.5 bg-white dark:bg-slate-800 hover:bg-gray-50 text-[#1e1e1e] dark:text-slate-100 text-sm font-medium border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] transition-colors duration-200">
                         Cancel
                     </a>
                 </div>

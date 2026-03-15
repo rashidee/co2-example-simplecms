@@ -16,7 +16,7 @@
     _csrf = _csrf,
     content = @`
     <div class="flex items-center justify-between mb-6">
-        <h1 class="text-xl font-bold text-[#1e1e1e]">Contact Messages</h1>
+        <h1 class="text-xl font-bold text-[#1e1e1e] dark:text-slate-100">Contact Messages</h1>
         <a href="/contact-section" class="text-sm text-[#2271b1] hover:underline">Back to Contact Info</a>
     </div>
 
@@ -26,23 +26,23 @@
         </div>
     @endif
 
-    <div class="bg-white border border-[#c3c4c7] rounded-[8px] overflow-hidden">
+    <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] overflow-hidden">
         <table class="w-full text-sm">
-            <thead class="bg-gray-50 border-b border-[#c3c4c7]">
+            <thead class="bg-gray-50 dark:bg-slate-700 border-b border-[#c3c4c7] dark:border-slate-600">
                 <tr>
-                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e]">Sender Name</th>
-                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e]">Sender Email</th>
-                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e]">Submitted At</th>
-                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e]">Response</th>
-                    <th class="px-4 py-3 text-right font-medium text-[#1e1e1e]">Actions</th>
+                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e] dark:text-slate-100">Sender Name</th>
+                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e] dark:text-slate-100">Sender Email</th>
+                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e] dark:text-slate-100">Submitted At</th>
+                    <th class="px-4 py-3 text-left font-medium text-[#1e1e1e] dark:text-slate-100">Response</th>
+                    <th class="px-4 py-3 text-right font-medium text-[#1e1e1e] dark:text-slate-100">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @for(var msg : view.messages().getContent())
-                    <tr class="border-b border-[#c3c4c7] last:border-b-0">
-                        <td class="px-4 py-3 text-[#1e1e1e]">${msg.senderName()}</td>
-                        <td class="px-4 py-3 text-[#1e1e1e]">${msg.senderEmail()}</td>
-                        <td class="px-4 py-3 text-[#646970]">${msg.submittedAt().toString()}</td>
+                    <tr class="border-b border-[#c3c4c7] dark:border-slate-600 last:border-b-0">
+                        <td class="px-4 py-3 text-[#1e1e1e] dark:text-slate-100">${msg.senderName()}</td>
+                        <td class="px-4 py-3 text-[#1e1e1e] dark:text-slate-100">${msg.senderEmail()}</td>
+                        <td class="px-4 py-3 text-[#646970] dark:text-slate-400">${msg.submittedAt().toString()}</td>
                         <td class="px-4 py-3">
                             @if(msg.hasResponse())
                                 <span class="inline-block px-2 py-0.5 text-xs font-medium rounded-full bg-[#00a32a]/10 text-[#00a32a]">Responded</span>
