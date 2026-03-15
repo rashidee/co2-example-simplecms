@@ -66,6 +66,10 @@
 
 [v1.0.0]
 
+### Bug
+[v1.0.1]
+- [BUG-001] Fixed 403 error after login by adding missing CSRF token to all POST forms and creating HomeController for post-login redirect
+
 ---
 
 ## User

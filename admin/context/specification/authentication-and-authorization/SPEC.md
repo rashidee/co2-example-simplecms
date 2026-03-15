@@ -75,15 +75,17 @@ src/main/jte
 
 | Endpoint | Method | Access |
 |----------|--------|--------|
+| `/` | GET | authenticated |
 | `/login` | GET, POST | public (permitAll) |
 | `/forgot-password` | GET, POST | public (permitAll) |
 | `/reset-password` | GET, POST | public (permitAll) |
 | `/logout` | POST | authenticated |
 
-- After successful login, redirect to `/` (home).
+- After successful login, redirect to `/` (home). `HomeController` redirects based on role: ADMIN→`/users`, EDITOR→`/hero-section`, default→`/profile`.
 - Login, forgot-password, and reset-password pages use `AuthLayout` (no sidebar/header).
 - Spring Security form login with `loginPage("/login")` and `loginProcessingUrl("/login")`.
 - Username parameter: `email`, password parameter: `password`.
+- CSRF protection is enabled. All POST forms include a hidden CSRF token field via `@ModelAttribute("_csrf")` in `WebMvcConfig`.
 
 ---
 
