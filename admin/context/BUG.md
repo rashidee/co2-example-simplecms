@@ -28,6 +28,19 @@
       2. Click on the user avatar in the header
       3. Observe that the dropdown menu does not appear and there is an error in the console
   - Expected result: The user avatar dropdown menu should appear with options for profile and logout without any errors
+- The footer is not positioned at the bottom of the page and overlaps with the content when the page height is small
+  - Priority: Low
+  - Steps to reproduce:
+      1. Login as admin user
+      2. Resize the browser window to a smaller height
+      3. Observe that the footer overlaps with the main content and is not fixed at the bottom of the page
+  - Expected result: The footer should be fixed at the bottom of the page and should not overlap with the main content regardless of the page height
+- Logging in as editor causing 500 error
+  - Priority: High
+  - Steps to reproduce:
+      1. Login as editor user
+      2. Observe that there is a 500 error and the editor user cannot access the system
+  - Expected result: The editor user should be able to log in successfully and access the system
 
 # System Module
 
@@ -42,6 +55,16 @@
     3. Click login button
     4. Observe 403 error page
   - Expected result: User should be redirected to the dashboard page after successful login
+
+[v1.0.2]
+- Logout URL not working and causing 500 error
+  - Priority: Medium
+  - Steps to reproduce:
+    1. Login as admin user
+    2. Click on the user avatar in the header
+    3. Click on the Logout option in the dropdown menu
+    4. Observe that there is a 500 error and the user is not logged out successfully
+  - Expected result: The logout URL should log the user out successfully and redirect to the login page without any errors
 
 ---
 
