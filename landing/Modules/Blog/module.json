@@ -1,0 +1,11 @@
+{
+    "name": "Blog",
+    "alias": "blog",
+    "description": "Blog directory and detail pages for the landing page",
+    "keywords": ["blog", "landing"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Blog\\Providers\\BlogServiceProvider"
+    ],
+    "files": []
+}

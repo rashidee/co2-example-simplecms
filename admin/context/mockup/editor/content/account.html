@@ -1,0 +1,97 @@
+<!-- USA000015 [v1.0.0] -->
+
+<!-- Breadcrumb -->
+<div class="px-6 pt-5 pb-2">
+  <nav class="flex items-center text-sm text-[#646970]">
+    <a href="/editor/home" hx-get="/api/content/editor/home" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/home" class="text-primary hover:text-secondary hover:underline">Home</a>
+    <svg class="w-4 h-4 mx-2 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    <span class="text-[#1e1e1e] font-medium">Account Settings</span>
+  </nav>
+</div>
+
+<!-- Page Content -->
+<div class="px-6 pb-6 flex-1">
+  <h1 class="text-2xl font-bold text-[#1e1e1e] mb-6">Account Settings</h1>
+
+  <div class="space-y-6 max-w-2xl">
+    <!-- Change Password -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card">
+      <div class="px-6 py-4 border-b border-[#c3c4c7]">
+        <h2 class="text-lg font-semibold text-[#1e1e1e] flex items-center gap-2">
+          <svg class="w-5 h-5 text-[#646970]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          Change Password
+        </h2>
+      </div>
+      <form class="p-6 space-y-4">
+        <div>
+          <label for="current-password" class="block text-sm font-medium text-[#1e1e1e] mb-1">Current Password</label>
+          <input type="password" id="current-password" name="current_password" placeholder="Enter your current password" class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] rounded-btn focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+        </div>
+        <div>
+          <label for="new-password" class="block text-sm font-medium text-[#1e1e1e] mb-1">New Password</label>
+          <input type="password" id="new-password" name="new_password" placeholder="Enter your new password" class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] rounded-btn focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+        </div>
+        <div>
+          <label for="confirm-password" class="block text-sm font-medium text-[#1e1e1e] mb-1">Confirm New Password</label>
+          <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm your new password" class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] rounded-btn focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-colors">
+        </div>
+        <div class="pt-2">
+          <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-secondary text-white text-sm font-medium rounded-btn transition-colors duration-200">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Update Password
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Notification Preferences -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card" x-data="{ emailNotif: true, contentNotif: true, systemNotif: false }">
+      <div class="px-6 py-4 border-b border-[#c3c4c7]">
+        <h2 class="text-lg font-semibold text-[#1e1e1e] flex items-center gap-2">
+          <svg class="w-5 h-5 text-[#646970]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+          Notification Preferences
+        </h2>
+      </div>
+      <div class="p-6 space-y-5">
+        <!-- Email Notifications -->
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-[#1e1e1e]">Email Notifications</p>
+            <p class="text-xs text-[#646970] mt-0.5">Receive notifications via email</p>
+          </div>
+          <button type="button" @click="emailNotif = !emailNotif" :class="emailNotif ? 'bg-primary' : 'bg-[#c3c4c7]'" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+            <span :class="emailNotif ? 'translate-x-5' : 'translate-x-0'" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out mt-0.5 ml-0.5"></span>
+          </button>
+        </div>
+
+        <!-- Content Update Notifications -->
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-[#1e1e1e]">Content Updates</p>
+            <p class="text-xs text-[#646970] mt-0.5">Get notified when content is published or updated</p>
+          </div>
+          <button type="button" @click="contentNotif = !contentNotif" :class="contentNotif ? 'bg-primary' : 'bg-[#c3c4c7]'" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+            <span :class="contentNotif ? 'translate-x-5' : 'translate-x-0'" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out mt-0.5 ml-0.5"></span>
+          </button>
+        </div>
+
+        <!-- System Notifications -->
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm font-medium text-[#1e1e1e]">System Notifications</p>
+            <p class="text-xs text-[#646970] mt-0.5">Receive system maintenance and update alerts</p>
+          </div>
+          <button type="button" @click="systemNotif = !systemNotif" :class="systemNotif ? 'bg-primary' : 'bg-[#c3c4c7]'" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+            <span :class="systemNotif ? 'translate-x-5' : 'translate-x-0'" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out mt-0.5 ml-0.5"></span>
+          </button>
+        </div>
+      </div>
+      <div class="px-6 py-4 border-t border-[#c3c4c7] bg-[#f0f0f1]/50 rounded-b-card">
+        <button type="button" class="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-secondary text-white text-sm font-medium rounded-btn transition-colors duration-200">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Save Preferences
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+{
+    "name": "TestimonialsSection",
+    "alias": "testimonialssection",
+    "description": "Testimonials section for the landing page",
+    "keywords": ["testimonials", "landing"],
+    "priority": 0,
+    "providers": [
+        "Modules\\TestimonialsSection\\Providers\\TestimonialsSectionServiceProvider"
+    ],
+    "files": []
+}

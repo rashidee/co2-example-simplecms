@@ -1,0 +1,11 @@
+{
+    "name": "TeamSection",
+    "alias": "teamsection",
+    "description": "Team section for the landing page",
+    "keywords": ["team", "landing"],
+    "priority": 0,
+    "providers": [
+        "Modules\\TeamSection\\Providers\\TeamSectionServiceProvider"
+    ],
+    "files": []
+}

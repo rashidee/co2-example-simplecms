@@ -1,0 +1,19 @@
+%% Module: Contact Section | Prefix: CTS
+%% Application: Landing Page (Read-Only + Write for ContactMessage)
+%% Shared tables: contact_info (read-only), contact_messages (write)
+%% Versions included: v1.0.0
+erDiagram
+    CTS_CONTACT_INFO {
+        uuid id PK
+        string phone_number
+        string email_address
+        string physical_address
+    }
+    CTS_CONTACT_MESSAGE {
+        uuid id PK
+        string sender_name
+        string sender_email
+        text message_content
+        timestamp submitted_at
+        timestamp created_at
+    }

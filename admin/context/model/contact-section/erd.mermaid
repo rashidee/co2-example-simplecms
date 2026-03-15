@@ -1,0 +1,41 @@
+%% Module: Contact Section | Prefix: CTS
+%% Versions included: v1.0.0
+erDiagram
+    CTS_CONTACT_INFO {
+        uuid id PK
+        string phone_number
+        string email_address
+        string physical_address
+        string linkedin_url
+        bigint version
+        timestamp created_at
+        string created_by
+        timestamp updated_at
+        string updated_by
+    }
+    CTS_CONTACT_MESSAGE {
+        uuid id PK
+        string sender_name
+        string sender_email
+        text message_content
+        timestamp submitted_at
+        bigint version
+        timestamp created_at
+        string created_by
+        timestamp updated_at
+        string updated_by
+    }
+    CTS_CONTACT_RESPONSE {
+        uuid id PK
+        uuid contact_message_id FK
+        string responder_name
+        string responder_email
+        text response_content
+        timestamp sent_at
+        bigint version
+        timestamp created_at
+        string created_by
+        timestamp updated_at
+        string updated_by
+    }
+    CTS_CONTACT_MESSAGE ||--o{ CTS_CONTACT_RESPONSE : "has"

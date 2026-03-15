@@ -1,0 +1,237 @@
+<!-- USA000069 [v1.0.0] -->
+
+<!-- Breadcrumb -->
+<div class="px-6 pt-5 pb-2">
+  <nav class="flex items-center text-sm text-[#646970]">
+    <a href="/editor/home" hx-get="/api/content/editor/home" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/home" class="text-primary hover:text-secondary hover:underline">Home</a>
+    <svg class="w-4 h-4 mx-2 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    <span class="text-[#1e1e1e] font-medium">Testimonials</span>
+  </nav>
+</div>
+
+<!-- Page Content -->
+<div class="px-6 pb-6 flex-1" x-data="{ statusFilter: 'ALL', currentPage: 1, totalPages: 2, showDeleteConfirm: false, deleteTarget: '' }">
+  <!-- Page Title & Add Button -->
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-[#1e1e1e]">Testimonials</h1>
+    <a href="/editor/testimonials_create" hx-get="/api/content/editor/testimonials_create" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/testimonials_create" class="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-secondary text-white text-sm font-medium rounded-btn transition-colors duration-200">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+      Add New
+    </a>
+  </div>
+
+  <!-- Filters -->
+  <div class="bg-white border border-[#c3c4c7] rounded-card p-4 mb-6">
+    <div class="flex flex-wrap items-end gap-4">
+      <div>
+        <label class="block text-xs font-medium text-[#646970] mb-1">Status</label>
+        <select x-model="statusFilter" class="px-3 py-2 border border-[#c3c4c7] rounded-btn text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
+          <option value="ALL">All Statuses</option>
+          <option value="DRAFT">Draft</option>
+          <option value="INACTIVE">Inactive</option>
+          <option value="ACTIVE">Active</option>
+        </select>
+      </div>
+      <div>
+        <button class="px-4 py-2 bg-primary hover:bg-secondary text-white text-sm font-medium rounded-btn transition-colors duration-200">Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+
+    <!-- Card 1 - ACTIVE, 5 stars -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-sm font-semibold text-[#1e1e1e]">Sarah Johnson</h3>
+        <span class="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-full">ACTIVE</span>
+      </div>
+      <p class="text-xs text-[#646970] mb-3 line-clamp-2">Absolutely fantastic service! The team went above and beyond to deliver our website on time. The design is modern and our customers love it.</p>
+      <div class="flex items-center gap-0.5 mb-3">
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7]">
+        <a href="/editor/testimonials_edit" hx-get="/api/content/editor/testimonials_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/testimonials_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Sarah Johnson'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 2 - ACTIVE, 4 stars -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-sm font-semibold text-[#1e1e1e]">Michael Chen</h3>
+        <span class="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-full">ACTIVE</span>
+      </div>
+      <p class="text-xs text-[#646970] mb-3 line-clamp-2">Great experience working with this team. They understood our vision and translated it perfectly into a beautiful website.</p>
+      <div class="flex items-center gap-0.5 mb-3">
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7]">
+        <a href="/editor/testimonials_edit" hx-get="/api/content/editor/testimonials_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/testimonials_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Michael Chen'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 3 - DRAFT, 3 stars -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-sm font-semibold text-[#1e1e1e]">Emily Rodriguez</h3>
+        <span class="px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800 rounded-full">DRAFT</span>
+      </div>
+      <p class="text-xs text-[#646970] mb-3 line-clamp-2">The website looks good overall. Some minor tweaks were needed but the team was responsive and fixed everything quickly.</p>
+      <div class="flex items-center gap-0.5 mb-3">
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7]">
+        <a href="/editor/testimonials_edit" hx-get="/api/content/editor/testimonials_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/testimonials_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Emily Rodriguez'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 4 - INACTIVE, 2 stars -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-sm font-semibold text-[#1e1e1e]">David Park</h3>
+        <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-800 rounded-full">INACTIVE</span>
+      </div>
+      <p class="text-xs text-[#646970] mb-3 line-clamp-2">The initial design was decent but we had some communication issues during the project. The final result was acceptable.</p>
+      <div class="flex items-center gap-0.5 mb-3">
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7]">
+        <a href="/editor/testimonials_edit" hx-get="/api/content/editor/testimonials_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/testimonials_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'David Park'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 5 - ACTIVE, 5 stars -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-sm font-semibold text-[#1e1e1e]">Lisa Thompson</h3>
+        <span class="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-full">ACTIVE</span>
+      </div>
+      <p class="text-xs text-[#646970] mb-3 line-clamp-2">Outstanding work! Our new website has increased conversions by 40%. The team really knows what they are doing.</p>
+      <div class="flex items-center gap-0.5 mb-3">
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7]">
+        <a href="/editor/testimonials_edit" hx-get="/api/content/editor/testimonials_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/testimonials_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Lisa Thompson'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 6 - DRAFT, 4 stars -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-sm font-semibold text-[#1e1e1e]">James Wilson</h3>
+        <span class="px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800 rounded-full">DRAFT</span>
+      </div>
+      <p class="text-xs text-[#646970] mb-3 line-clamp-2">Very professional team with excellent attention to detail. The project was delivered on schedule and within budget.</p>
+      <div class="flex items-center gap-0.5 mb-3">
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7]">
+        <a href="/editor/testimonials_edit" hx-get="/api/content/editor/testimonials_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/testimonials_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'James Wilson'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 7 - ACTIVE, 4 stars -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-sm font-semibold text-[#1e1e1e]">Amanda Foster</h3>
+        <span class="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-full">ACTIVE</span>
+      </div>
+      <p class="text-xs text-[#646970] mb-3 line-clamp-2">We are very happy with our new marketing page. It perfectly represents our brand and has helped us reach more customers.</p>
+      <div class="flex items-center gap-0.5 mb-3">
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7]">
+        <a href="/editor/testimonials_edit" hx-get="/api/content/editor/testimonials_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/testimonials_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Amanda Foster'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 8 - INACTIVE, 1 star -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="text-sm font-semibold text-[#1e1e1e]">Robert Kim</h3>
+        <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-800 rounded-full">INACTIVE</span>
+      </div>
+      <p class="text-xs text-[#646970] mb-3 line-clamp-2">The project took longer than expected and there were several revisions needed. Communication could have been better throughout.</p>
+      <div class="flex items-center gap-0.5 mb-3">
+        <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7]">
+        <a href="/editor/testimonials_edit" hx-get="/api/content/editor/testimonials_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/testimonials_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Robert Kim'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="bg-white border border-[#c3c4c7] rounded-card">
+    <div class="flex items-center justify-between px-4 py-3">
+      <p class="text-sm text-[#646970]">Showing <span class="font-medium">1</span> to <span class="font-medium">8</span> of <span class="font-medium">12</span> testimonials</p>
+      <div class="flex items-center gap-1">
+        <button @click="currentPage = Math.max(1, currentPage - 1)" :disabled="currentPage === 1" :class="currentPage === 1 ? 'text-[#c3c4c7] cursor-not-allowed' : 'text-[#646970] hover:bg-[#f0f0f1] hover:text-[#1e1e1e]'" class="px-3 py-1.5 text-sm border border-[#c3c4c7] rounded-btn transition-colors duration-200">Previous</button>
+        <template x-for="page in totalPages" :key="page">
+          <button @click="currentPage = page" :class="currentPage === page ? 'bg-primary text-white border-primary' : 'text-[#646970] hover:bg-[#f0f0f1] hover:text-[#1e1e1e] border-[#c3c4c7]'" class="px-3 py-1.5 text-sm border rounded-btn transition-colors duration-200" x-text="page"></button>
+        </template>
+        <button @click="currentPage = Math.min(totalPages, currentPage + 1)" :disabled="currentPage === totalPages" :class="currentPage === totalPages ? 'text-[#c3c4c7] cursor-not-allowed' : 'text-[#646970] hover:bg-[#f0f0f1] hover:text-[#1e1e1e]'" class="px-3 py-1.5 text-sm border border-[#c3c4c7] rounded-btn transition-colors duration-200">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div x-show="showDeleteConfirm" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" @keydown.escape.window="showDeleteConfirm = false">
+    <div class="bg-white rounded-card border border-[#c3c4c7] shadow-xl p-6 max-w-md mx-4" @click.outside="showDeleteConfirm = false">
+      <div class="flex items-start gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5 text-[#d63638]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-[#1e1e1e]">Delete Testimonial</h3>
+          <p class="text-sm text-[#646970] mt-1">Are you sure you want to delete the testimonial from "<span class="font-medium text-[#1e1e1e]" x-text="deleteTarget"></span>"? This action cannot be undone.</p>
+        </div>
+      </div>
+      <div class="flex justify-end gap-3">
+        <button @click="showDeleteConfirm = false" class="px-4 py-2 border border-[#c3c4c7] hover:bg-[#f0f0f1] text-[#1e1e1e] text-sm font-medium rounded-btn transition-colors duration-200">Cancel</button>
+        <button @click="showDeleteConfirm = false" class="px-4 py-2 bg-[#d63638] hover:bg-red-700 text-white text-sm font-medium rounded-btn transition-colors duration-200">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+%% Module: Product and Service Section | Prefix: PAS
+%% Application: Landing Page (Read-Only)
+%% Shared table: product_services (managed by Admin Portal)
+%% Versions included: v1.0.0
+erDiagram
+    PAS_PRODUCT_SERVICE {
+        uuid id PK
+        string image_path
+        string title
+        string description
+        string cta_url
+        string cta_text
+        integer display_order
+        string status
+    }

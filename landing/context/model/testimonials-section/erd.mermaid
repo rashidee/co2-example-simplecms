@@ -1,0 +1,13 @@
+%% Module: Testimonials Section | Prefix: TST
+%% Application: Landing Page (Read-Only)
+%% Shared table: testimonials (managed by Admin Portal)
+%% Versions included: v1.0.0
+erDiagram
+    TST_TESTIMONIAL {
+        uuid id PK
+        string customer_name
+        string customer_review
+        integer customer_rating
+        integer display_order
+        string status
+    }

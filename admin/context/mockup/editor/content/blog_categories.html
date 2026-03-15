@@ -1,0 +1,120 @@
+<!-- USA000108 [v1.0.0] -->
+
+<!-- Breadcrumb -->
+<div class="px-6 pt-5 pb-2">
+  <nav class="flex items-center text-sm text-[#646970]">
+    <a href="/editor/home" hx-get="/api/content/editor/home" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/home" class="text-primary hover:text-secondary hover:underline">Home</a>
+    <svg class="w-4 h-4 mx-1 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    <span class="text-[#1e1e1e] font-medium">Blog Categories</span>
+  </nav>
+</div>
+
+<!-- Page Content -->
+<div class="px-6 pb-6 flex-1" x-data="{ currentPage: 1, totalPages: 1, showDeleteConfirm: false, deleteTarget: '' }">
+  <!-- Page Title & Add Button -->
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-[#1e1e1e]">Blog Categories</h1>
+    <a href="/editor/blog_categories_create" hx-get="/api/content/editor/blog_categories_create" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/blog_categories_create" class="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-secondary text-white text-sm font-medium rounded-btn transition-colors duration-200">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+      Add Category
+    </a>
+  </div>
+
+  <!-- Categories Table -->
+  <div class="bg-white border border-[#c3c4c7] rounded-card overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-[#f0f0f1] border-b border-[#c3c4c7]">
+          <tr>
+            <th class="px-4 py-3 font-semibold text-[#1e1e1e]">Name</th>
+            <th class="px-4 py-3 font-semibold text-[#1e1e1e]">Description</th>
+            <th class="px-4 py-3 font-semibold text-[#1e1e1e] text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[#c3c4c7]">
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Technology</td>
+            <td class="px-4 py-3 text-[#646970]">Articles about the latest trends in software, hardware, and digital innovation.</td>
+            <td class="px-4 py-3 text-center">
+              <div class="flex items-center justify-center gap-3">
+                <a href="/editor/blog_categories_edit" hx-get="/api/content/editor/blog_categories_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/blog_categories_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+                <button @click="deleteTarget = 'Technology'; showDeleteConfirm = true" class="text-danger hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+              </div>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Business</td>
+            <td class="px-4 py-3 text-[#646970]">Insights and tips for entrepreneurs, startups, and business management.</td>
+            <td class="px-4 py-3 text-center">
+              <div class="flex items-center justify-center gap-3">
+                <a href="/editor/blog_categories_edit" hx-get="/api/content/editor/blog_categories_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/blog_categories_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+                <button @click="deleteTarget = 'Business'; showDeleteConfirm = true" class="text-danger hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+              </div>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Marketing</td>
+            <td class="px-4 py-3 text-[#646970]">Strategies and best practices for digital marketing, SEO, and social media.</td>
+            <td class="px-4 py-3 text-center">
+              <div class="flex items-center justify-center gap-3">
+                <a href="/editor/blog_categories_edit" hx-get="/api/content/editor/blog_categories_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/blog_categories_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+                <button @click="deleteTarget = 'Marketing'; showDeleteConfirm = true" class="text-danger hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+              </div>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Lifestyle</td>
+            <td class="px-4 py-3 text-[#646970]">Content covering work-life balance, productivity, and personal development.</td>
+            <td class="px-4 py-3 text-center">
+              <div class="flex items-center justify-center gap-3">
+                <a href="/editor/blog_categories_edit" hx-get="/api/content/editor/blog_categories_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/blog_categories_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+                <button @click="deleteTarget = 'Lifestyle'; showDeleteConfirm = true" class="text-danger hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+              </div>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">News</td>
+            <td class="px-4 py-3 text-[#646970]">Company announcements, product updates, and industry news.</td>
+            <td class="px-4 py-3 text-center">
+              <div class="flex items-center justify-center gap-3">
+                <a href="/editor/blog_categories_edit" hx-get="/api/content/editor/blog_categories_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/blog_categories_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+                <button @click="deleteTarget = 'News'; showDeleteConfirm = true" class="text-danger hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex items-center justify-between px-4 py-3 border-t border-[#c3c4c7] bg-[#f0f0f1]">
+      <p class="text-sm text-[#646970]">Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">5</span> categories</p>
+      <div class="flex items-center gap-1">
+        <button disabled class="px-3 py-1.5 text-sm border border-[#c3c4c7] rounded-btn text-[#c3c4c7] cursor-not-allowed">Previous</button>
+        <button class="px-3 py-1.5 text-sm border border-primary rounded-btn bg-primary text-white">1</button>
+        <button disabled class="px-3 py-1.5 text-sm border border-[#c3c4c7] rounded-btn text-[#c3c4c7] cursor-not-allowed">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONSA0036 Delete Confirmation Modal -->
+  <div x-show="showDeleteConfirm" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" @keydown.escape.window="showDeleteConfirm = false">
+    <div class="bg-white rounded-card border border-[#c3c4c7] shadow-xl p-6 max-w-md mx-4" @click.outside="showDeleteConfirm = false">
+      <div class="flex items-start gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5 text-danger" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/></svg>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-[#1e1e1e]">Delete Category</h3>
+          <p class="text-sm text-[#646970] mt-1">Are you sure you want to delete the category "<span class="font-medium text-[#1e1e1e]" x-text="deleteTarget"></span>"?</p>
+          <!-- CONSA0036 -->
+          <p class="text-sm text-danger mt-2">Note: Categories that have associated blog posts cannot be deleted. Please reassign or remove the blog posts first.</p>
+        </div>
+      </div>
+      <div class="flex justify-end gap-3">
+        <button @click="showDeleteConfirm = false" class="px-4 py-2 border border-[#c3c4c7] hover:bg-[#f0f0f1] text-[#1e1e1e] text-sm font-medium rounded-btn transition-colors duration-200">Cancel</button>
+        <button @click="showDeleteConfirm = false" class="px-4 py-2 bg-danger hover:bg-red-700 text-white text-sm font-medium rounded-btn transition-colors duration-200">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

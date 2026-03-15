@@ -1,0 +1,167 @@
+<!-- USA000030 [v1.0.0] — Hero Section Create Form -->
+<!-- NFRA00021, NFRA00024, NFRA00027, NFRA00030 [v1.0.0] -->
+
+<!-- Breadcrumb -->
+<nav class="bg-white border-b border-[#c3c4c7] px-6 py-3">
+  <ol class="flex items-center gap-2 text-sm text-[#646970]">
+    <li>
+      <a href="/editor/home" hx-get="/api/content/editor/home" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/home" class="hover:text-[#2271b1] transition-colors">Home</a>
+    </li>
+    <li>
+      <svg class="w-4 h-4 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </li>
+    <li>
+      <a href="/editor/hero_section" hx-get="/api/content/editor/hero_section" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/hero_section" class="hover:text-[#2271b1] transition-colors">Hero Section</a>
+    </li>
+    <li>
+      <svg class="w-4 h-4 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </li>
+    <li class="text-[#1e1e1e] font-medium">Add New</li>
+  </ol>
+</nav>
+
+<!-- Page Content -->
+<div class="p-6 flex-1" x-data="heroSectionCreate()">
+
+  <h1 class="text-2xl font-semibold text-[#1e1e1e] mb-6">Add New Hero Section</h1>
+
+  <!-- Form Card -->
+  <div class="bg-white border border-[#c3c4c7] rounded-card p-6 max-w-3xl">
+    <form @submit.prevent="submitForm()" class="space-y-6">
+
+      <!-- Image Upload (NFRA00021) -->
+      <div>
+        <label class="block text-sm font-medium text-[#1e1e1e] mb-1">
+          Hero Image <span class="text-[#d63638]">*</span>
+        </label>
+        <p class="text-xs text-[#646970] mb-2">Accepted dimension: 1600 x 500 pixels only.</p>
+        <div class="border-2 border-dashed border-[#c3c4c7] rounded-card p-6 text-center hover:border-[#2271b1] transition-colors cursor-pointer" @click="$refs.imageInput.click()">
+          <input type="file" x-ref="imageInput" accept="image/png,image/jpeg,image/webp" class="hidden" @change="handleImageUpload($event)">
+          <svg class="w-10 h-10 mx-auto text-[#c3c4c7] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <p class="text-sm text-[#646970]">Click to upload or drag and drop</p>
+          <p class="text-xs text-[#646970] mt-1">PNG, JPG or WebP (1600 x 500px)</p>
+        </div>
+        <template x-if="imageError">
+          <p class="text-xs text-[#d63638] mt-1" x-text="imageError"></p>
+        </template>
+      </div>
+
+      <!-- Headline (NFRA00024) -->
+      <div>
+        <label for="headline" class="block text-sm font-medium text-[#1e1e1e] mb-1">
+          Headline <span class="text-[#d63638]">*</span>
+        </label>
+        <input type="text" id="headline" x-model="form.headline" maxlength="100" required placeholder="Enter headline text" class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] placeholder-[#c3c4c7] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+        <p class="text-xs text-[#646970] mt-1"><span x-text="form.headline.length"></span> / 100 characters</p>
+      </div>
+
+      <!-- Subheadline (NFRA00024) -->
+      <div>
+        <label for="subheadline" class="block text-sm font-medium text-[#1e1e1e] mb-1">
+          Subheadline <span class="text-[#d63638]">*</span>
+        </label>
+        <textarea id="subheadline" x-model="form.subheadline" maxlength="200" required rows="3" placeholder="Enter subheadline text" class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] placeholder-[#c3c4c7] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1] resize-none"></textarea>
+        <p class="text-xs text-[#646970] mt-1"><span x-text="form.subheadline.length"></span> / 200 characters</p>
+      </div>
+
+      <!-- CTA URL (NFRA00027) -->
+      <div>
+        <label for="ctaUrl" class="block text-sm font-medium text-[#1e1e1e] mb-1">
+          CTA URL <span class="text-[#d63638]">*</span>
+        </label>
+        <input type="url" id="ctaUrl" x-model="form.ctaUrl" required placeholder="https://example.com/page" class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] placeholder-[#c3c4c7] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+        <p class="text-xs text-[#646970] mt-1">Must be a valid URL.</p>
+      </div>
+
+      <!-- CTA Text (NFRA00030) -->
+      <div>
+        <label for="ctaText" class="block text-sm font-medium text-[#1e1e1e] mb-1">
+          CTA Text <span class="text-[#d63638]">*</span>
+        </label>
+        <input type="text" id="ctaText" x-model="form.ctaText" maxlength="50" required placeholder="e.g. Learn More" class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] placeholder-[#c3c4c7] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+        <p class="text-xs text-[#646970] mt-1"><span x-text="form.ctaText.length"></span> / 50 characters</p>
+      </div>
+
+      <!-- Date Fields -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Effective Date -->
+        <div>
+          <label for="effectiveDate" class="block text-sm font-medium text-[#1e1e1e] mb-1">
+            Effective Date <span class="text-[#d63638]">*</span>
+          </label>
+          <input type="date" id="effectiveDate" x-model="form.effectiveDate" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+        </div>
+        <!-- Expiration Date -->
+        <div>
+          <label for="expirationDate" class="block text-sm font-medium text-[#1e1e1e] mb-1">
+            Expiration Date <span class="text-[#d63638]">*</span>
+          </label>
+          <input type="date" id="expirationDate" x-model="form.expirationDate" required :min="form.effectiveDate" class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+          <template x-if="form.expirationDate && form.effectiveDate && form.expirationDate <= form.effectiveDate">
+            <p class="text-xs text-[#d63638] mt-1">Expiration date must be after effective date.</p>
+          </template>
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div>
+        <label for="status" class="block text-sm font-medium text-[#1e1e1e] mb-1">
+          Status <span class="text-[#d63638]">*</span>
+        </label>
+        <select id="status" x-model="form.status" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+          <option value="DRAFT">Draft</option>
+          <option value="READY">Ready</option>
+          <option value="ACTIVE">Active</option>
+          <option value="EXPIRED">Expired</option>
+        </select>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3 pt-4 border-t border-[#c3c4c7]">
+        <button type="submit" class="inline-flex items-center gap-2 bg-[#2271b1] hover:bg-[#135e96] text-white px-5 py-2 rounded-btn text-sm font-medium transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Submit
+        </button>
+        <a href="/editor/hero_section" hx-get="/api/content/editor/hero_section" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/hero_section" class="inline-flex items-center gap-2 bg-white border border-[#c3c4c7] text-[#646970] hover:text-[#1e1e1e] px-5 py-2 rounded-btn text-sm font-medium transition-colors">
+          Cancel
+        </a>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<script>
+  function heroSectionCreate() {
+    return {
+      form: {
+        headline: '',
+        subheadline: '',
+        ctaUrl: '',
+        ctaText: '',
+        effectiveDate: '',
+        expirationDate: '',
+        status: 'DRAFT'
+      },
+      imageError: '',
+      handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const img = new Image();
+        img.onload = () => {
+          if (img.width !== 1600 || img.height !== 500) {
+            this.imageError = 'Image must be exactly 1600 x 500 pixels. Uploaded: ' + img.width + ' x ' + img.height + '.';
+            event.target.value = '';
+          } else {
+            this.imageError = '';
+          }
+        };
+        img.src = URL.createObjectURL(file);
+      },
+      submitForm() {
+        /* POST to /api/hero-sections */
+      }
+    }
+  }
+</script>

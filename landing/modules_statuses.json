@@ -1,0 +1,9 @@
+{
+    "Blog": true,
+    "ContactSection": true,
+    "FeaturesSection": true,
+    "HeroSection": true,
+    "ProductAndServiceSection": true,
+    "TeamSection": true,
+    "TestimonialsSection": true
+}

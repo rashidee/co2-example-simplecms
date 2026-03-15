@@ -1,0 +1,124 @@
+<!-- USA000096 [v1.0.0] -->
+<!-- NFRA00111, NFRA00126, NFRA00129 [v1.0.0] -->
+
+<!-- Breadcrumb -->
+<div class="px-6 pt-5 pb-2">
+  <nav class="flex items-center text-sm text-[#646970]">
+    <a href="/editor/home" hx-get="/api/content/editor/home" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/home" class="text-primary hover:text-secondary hover:underline">Home</a>
+    <svg class="w-4 h-4 mx-2 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    <a href="/editor/blog" hx-get="/api/content/editor/blog" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/blog" class="text-primary hover:text-secondary hover:underline">Blog Posts</a>
+    <svg class="w-4 h-4 mx-2 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    <span class="text-[#1e1e1e] font-medium">Add New</span>
+  </nav>
+</div>
+
+<!-- Page Content -->
+<div class="px-6 pb-6 flex-1" x-data="{ form: { category: '', title: '', slug: '', summary: '', content: '', author: '', effectiveDate: '', expirationDate: '', status: 'DRAFT' }, imageError: '' }">
+  <h1 class="text-2xl font-bold text-[#1e1e1e] mb-6">Add New Blog Post</h1>
+
+  <div class="bg-white border border-[#c3c4c7] rounded-card p-6 max-w-3xl">
+    <form @submit.prevent class="space-y-6">
+
+      <!-- Category -->
+      <div>
+        <label for="category" class="block text-sm font-medium text-[#1e1e1e] mb-1">Category <span class="text-[#d63638]">*</span></label>
+        <select id="category" x-model="form.category" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+          <option value="" disabled>Select category</option>
+          <option value="Technology">Technology</option>
+          <option value="Business">Business</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Lifestyle">Lifestyle</option>
+          <option value="News">News</option>
+        </select>
+      </div>
+
+      <!-- Title -->
+      <div>
+        <label for="title" class="block text-sm font-medium text-[#1e1e1e] mb-1">Title <span class="text-[#d63638]">*</span></label>
+        <input type="text" id="title" x-model="form.title" maxlength="100" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]" placeholder="Enter blog post title">
+        <p class="text-xs text-[#646970] mt-1"><span x-text="form.title.length"></span> / 100 characters</p>
+      </div>
+
+      <!-- Slug (NFRA00126) -->
+      <div>
+        <label for="slug" class="block text-sm font-medium text-[#1e1e1e] mb-1">Slug</label>
+        <input type="text" id="slug" x-model="form.slug" readonly class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#646970] bg-[#f0f0f1] cursor-not-allowed" placeholder="Auto-generated from title">
+        <p class="text-xs text-[#646970] mt-1">Automatically generated from the title (NFRA00126). Read-only.</p>
+      </div>
+
+      <!-- Summary -->
+      <div>
+        <label for="summary" class="block text-sm font-medium text-[#1e1e1e] mb-1">Summary <span class="text-[#d63638]">*</span></label>
+        <textarea id="summary" x-model="form.summary" maxlength="300" required rows="3" class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1] resize-none" placeholder="Enter a brief summary of the blog post"></textarea>
+        <p class="text-xs text-[#646970] mt-1"><span x-text="form.summary.length"></span> / 300 characters</p>
+      </div>
+
+      <!-- Content (NFRA00129) -->
+      <div>
+        <label for="content" class="block text-sm font-medium text-[#1e1e1e] mb-1">Content <span class="text-[#d63638]">*</span></label>
+        <textarea id="content" x-model="form.content" required rows="12" class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1] resize-none" placeholder="Write your blog post content here..."></textarea>
+        <p class="text-xs text-[#646970] mt-1">
+          <svg class="w-3.5 h-3.5 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Rich text editor will be integrated (NFRA00129). Currently plain text.
+        </p>
+      </div>
+
+      <!-- Author -->
+      <div>
+        <label for="author" class="block text-sm font-medium text-[#1e1e1e] mb-1">Author <span class="text-[#d63638]">*</span></label>
+        <select id="author" x-model="form.author" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+          <option value="" disabled>Select author</option>
+          <option value="john-smith">John Smith - Editor</option>
+          <option value="jane-doe">Jane Doe - Editor</option>
+        </select>
+      </div>
+
+      <!-- Image Upload (NFRA00111) -->
+      <div>
+        <label class="block text-sm font-medium text-[#1e1e1e] mb-1">Featured Image <span class="text-[#d63638]">*</span></label>
+        <p class="text-xs text-[#646970] mb-2">Accepted dimension: 1600 x 500 pixels only (NFRA00111).</p>
+        <div class="border-2 border-dashed border-[#c3c4c7] rounded-card p-6 text-center hover:border-[#2271b1] transition-colors cursor-pointer" @click="$refs.imageInput.click()">
+          <input type="file" x-ref="imageInput" accept="image/png,image/jpeg,image/webp" class="hidden">
+          <svg class="w-10 h-10 mx-auto text-[#c3c4c7] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <p class="text-sm text-[#646970]">Click to upload featured image</p>
+          <p class="text-xs text-[#646970] mt-1">PNG, JPG or WebP (1600 x 500px)</p>
+        </div>
+        <template x-if="imageError">
+          <p class="text-xs text-[#d63638] mt-1" x-text="imageError"></p>
+        </template>
+      </div>
+
+      <!-- Dates -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="effectiveDate" class="block text-sm font-medium text-[#1e1e1e] mb-1">Effective Date <span class="text-[#d63638]">*</span></label>
+          <input type="date" id="effectiveDate" x-model="form.effectiveDate" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+        </div>
+        <div>
+          <label for="expirationDate" class="block text-sm font-medium text-[#1e1e1e] mb-1">Expiration Date <span class="text-[#d63638]">*</span></label>
+          <input type="date" id="expirationDate" x-model="form.expirationDate" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div>
+        <label for="status" class="block text-sm font-medium text-[#1e1e1e] mb-1">Status <span class="text-[#d63638]">*</span></label>
+        <select id="status" x-model="form.status" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1] max-w-xs">
+          <option value="DRAFT">Draft</option>
+          <option value="READY">Ready</option>
+          <option value="ACTIVE">Active</option>
+          <option value="EXPIRED">Expired</option>
+        </select>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-3 pt-4 border-t border-[#c3c4c7]">
+        <button type="submit" class="inline-flex items-center gap-2 bg-[#2271b1] hover:bg-[#135e96] text-white px-5 py-2 rounded-btn text-sm font-medium transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          Submit
+        </button>
+        <a href="/editor/blog" hx-get="/api/content/editor/blog" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/blog" class="inline-flex items-center gap-2 bg-white border border-[#c3c4c7] text-[#646970] hover:text-[#1e1e1e] px-5 py-2 rounded-btn text-sm font-medium transition-colors">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

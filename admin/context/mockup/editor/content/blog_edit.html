@@ -1,0 +1,160 @@
+<!-- USA000096 [v1.0.0] -->
+<!-- NFRA00111, NFRA00126, NFRA00129 [v1.0.0] -->
+
+<!-- Breadcrumb -->
+<div class="px-6 pt-5 pb-2">
+  <nav class="flex items-center text-sm text-[#646970]">
+    <a href="/editor/home" hx-get="/api/content/editor/home" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/home" class="text-primary hover:text-secondary hover:underline">Home</a>
+    <svg class="w-4 h-4 mx-2 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    <a href="/editor/blog" hx-get="/api/content/editor/blog" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/blog" class="text-primary hover:text-secondary hover:underline">Blog Posts</a>
+    <svg class="w-4 h-4 mx-2 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    <span class="text-[#1e1e1e] font-medium">Edit</span>
+  </nav>
+</div>
+
+<!-- Page Content -->
+<div class="px-6 pb-6 flex-1" x-data="{ form: { category: 'Technology', title: 'Getting Started with Cloud Computing', slug: 'getting-started-with-cloud-computing', summary: 'A comprehensive guide to understanding cloud computing fundamentals, benefits, and how small businesses can leverage cloud services for growth.', content: 'Cloud computing has revolutionized the way businesses operate in the digital age. From startups to enterprises, organizations are increasingly moving their infrastructure, applications, and data to the cloud.\n\nIn this article, we will explore the key concepts of cloud computing, including Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS). We will also discuss the benefits of cloud adoption, common challenges, and best practices for getting started.\n\nWhether you are a small business owner looking to reduce IT costs or a developer wanting to build scalable applications, understanding cloud computing is essential in today\'s technology landscape.', author: 'jane-doe', effectiveDate: '2026-01-15', expirationDate: '2026-12-31', status: 'ACTIVE' }, imageError: '', showDeleteConfirm: false }">
+  <h1 class="text-2xl font-bold text-[#1e1e1e] mb-6">Edit Blog Post</h1>
+
+  <div class="bg-white border border-[#c3c4c7] rounded-card p-6 max-w-3xl">
+    <form @submit.prevent class="space-y-6">
+
+      <!-- Category -->
+      <div>
+        <label for="category" class="block text-sm font-medium text-[#1e1e1e] mb-1">Category <span class="text-[#d63638]">*</span></label>
+        <select id="category" x-model="form.category" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+          <option value="Technology">Technology</option>
+          <option value="Business">Business</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Lifestyle">Lifestyle</option>
+          <option value="News">News</option>
+        </select>
+      </div>
+
+      <!-- Title -->
+      <div>
+        <label for="title" class="block text-sm font-medium text-[#1e1e1e] mb-1">Title <span class="text-[#d63638]">*</span></label>
+        <input type="text" id="title" x-model="form.title" maxlength="100" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+        <p class="text-xs text-[#646970] mt-1"><span x-text="form.title.length"></span> / 100 characters</p>
+      </div>
+
+      <!-- Slug (NFRA00126) -->
+      <div>
+        <label for="slug" class="block text-sm font-medium text-[#1e1e1e] mb-1">Slug</label>
+        <input type="text" id="slug" x-model="form.slug" readonly class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#646970] bg-[#f0f0f1] cursor-not-allowed">
+        <p class="text-xs text-[#646970] mt-1">Automatically generated from the title (NFRA00126). Read-only.</p>
+      </div>
+
+      <!-- Summary -->
+      <div>
+        <label for="summary" class="block text-sm font-medium text-[#1e1e1e] mb-1">Summary <span class="text-[#d63638]">*</span></label>
+        <textarea id="summary" x-model="form.summary" maxlength="300" required rows="3" class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1] resize-none"></textarea>
+        <p class="text-xs text-[#646970] mt-1"><span x-text="form.summary.length"></span> / 300 characters</p>
+      </div>
+
+      <!-- Content (NFRA00129) -->
+      <div>
+        <label for="content" class="block text-sm font-medium text-[#1e1e1e] mb-1">Content <span class="text-[#d63638]">*</span></label>
+        <textarea id="content" x-model="form.content" required rows="12" class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1] resize-none"></textarea>
+        <p class="text-xs text-[#646970] mt-1">
+          <svg class="w-3.5 h-3.5 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          Rich text editor will be integrated (NFRA00129). Currently plain text.
+        </p>
+      </div>
+
+      <!-- Author -->
+      <div>
+        <label for="author" class="block text-sm font-medium text-[#1e1e1e] mb-1">Author <span class="text-[#d63638]">*</span></label>
+        <select id="author" x-model="form.author" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+          <option value="john-smith">John Smith - Editor</option>
+          <option value="jane-doe">Jane Doe - Editor</option>
+        </select>
+      </div>
+
+      <!-- Current Image Preview & Upload (NFRA00111) -->
+      <div>
+        <label class="block text-sm font-medium text-[#1e1e1e] mb-1">Featured Image <span class="text-[#d63638]">*</span></label>
+        <p class="text-xs text-[#646970] mb-2">Accepted dimension: 1600 x 500 pixels only (NFRA00111).</p>
+
+        <!-- Current Image Preview -->
+        <div class="mb-3 border border-[#c3c4c7] rounded-card overflow-hidden">
+          <a href="https://placehold.co/1600x500" target="_blank" rel="noopener noreferrer" title="Open full-size image in new tab">
+            <img src="https://placehold.co/1600x500" alt="Current featured image" class="w-full h-auto object-cover">
+          </a>
+          <div class="px-3 py-2 bg-[#f0f0f1] flex items-center gap-2 text-xs text-[#646970]">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Current image. Click to open full size.</span>
+          </div>
+        </div>
+
+        <!-- Upload replacement -->
+        <div class="border-2 border-dashed border-[#c3c4c7] rounded-card p-4 text-center hover:border-[#2271b1] transition-colors cursor-pointer" @click="$refs.imageInput.click()">
+          <input type="file" x-ref="imageInput" accept="image/png,image/jpeg,image/webp" class="hidden">
+          <svg class="w-8 h-8 mx-auto text-[#c3c4c7] mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+          <p class="text-sm text-[#646970]">Click to upload a replacement image</p>
+          <p class="text-xs text-[#646970] mt-1">PNG, JPG or WebP (1600 x 500px)</p>
+        </div>
+        <template x-if="imageError">
+          <p class="text-xs text-[#d63638] mt-1" x-text="imageError"></p>
+        </template>
+      </div>
+
+      <!-- Dates -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="effectiveDate" class="block text-sm font-medium text-[#1e1e1e] mb-1">Effective Date <span class="text-[#d63638]">*</span></label>
+          <input type="date" id="effectiveDate" x-model="form.effectiveDate" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+        </div>
+        <div>
+          <label for="expirationDate" class="block text-sm font-medium text-[#1e1e1e] mb-1">Expiration Date <span class="text-[#d63638]">*</span></label>
+          <input type="date" id="expirationDate" x-model="form.expirationDate" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1]">
+        </div>
+      </div>
+
+      <!-- Status -->
+      <div>
+        <label for="status" class="block text-sm font-medium text-[#1e1e1e] mb-1">Status <span class="text-[#d63638]">*</span></label>
+        <select id="status" x-model="form.status" required class="w-full border border-[#c3c4c7] rounded-btn px-3 py-2 text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-[#2271b1] focus:border-[#2271b1] max-w-xs">
+          <option value="DRAFT">Draft</option>
+          <option value="READY">Ready</option>
+          <option value="ACTIVE">Active</option>
+          <option value="EXPIRED">Expired</option>
+        </select>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center justify-between pt-4 border-t border-[#c3c4c7]">
+        <div class="flex items-center gap-3">
+          <button type="submit" class="inline-flex items-center gap-2 bg-[#2271b1] hover:bg-[#135e96] text-white px-5 py-2 rounded-btn text-sm font-medium transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            Save
+          </button>
+          <a href="/editor/blog" hx-get="/api/content/editor/blog" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/blog" class="inline-flex items-center gap-2 bg-white border border-[#c3c4c7] text-[#646970] hover:text-[#1e1e1e] px-5 py-2 rounded-btn text-sm font-medium transition-colors">Cancel</a>
+        </div>
+        <button type="button" @click="showDeleteConfirm = true" class="inline-flex items-center gap-2 bg-white border border-[#d63638] text-[#d63638] hover:bg-[#d63638] hover:text-white px-5 py-2 rounded-btn text-sm font-medium transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          Delete
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div x-show="showDeleteConfirm" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" @keydown.escape.window="showDeleteConfirm = false">
+    <div class="bg-white rounded-card border border-[#c3c4c7] shadow-xl p-6 max-w-md mx-4" @click.outside="showDeleteConfirm = false">
+      <div class="flex items-start gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5 text-[#d63638]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-[#1e1e1e]">Delete Blog Post</h3>
+          <p class="text-sm text-[#646970] mt-1">Are you sure you want to delete "<span class="font-medium text-[#1e1e1e]" x-text="form.title"></span>"? This action cannot be undone.</p>
+        </div>
+      </div>
+      <div class="flex justify-end gap-3">
+        <button @click="showDeleteConfirm = false" class="px-4 py-2 border border-[#c3c4c7] hover:bg-[#f0f0f1] text-[#1e1e1e] text-sm font-medium rounded-btn transition-colors duration-200">Cancel</button>
+        <button @click="showDeleteConfirm = false" class="px-4 py-2 bg-[#d63638] hover:bg-red-700 text-white text-sm font-medium rounded-btn transition-colors duration-200">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

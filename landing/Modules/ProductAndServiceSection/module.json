@@ -1,0 +1,11 @@
+{
+    "name": "ProductAndServiceSection",
+    "alias": "productandservicesection",
+    "description": "Product and service section for the landing page",
+    "keywords": ["product", "service", "landing"],
+    "priority": 0,
+    "providers": [
+        "Modules\\ProductAndServiceSection\\Providers\\ProductAndServiceSectionServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,205 @@
+<!-- USA000081 [v1.0.0] -->
+
+<!-- Breadcrumb -->
+<div class="px-6 pt-5 pb-2">
+  <nav class="flex items-center text-sm text-[#646970]">
+    <a href="/editor/home" hx-get="/api/content/editor/home" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/home" class="text-primary hover:text-secondary hover:underline">Home</a>
+    <svg class="w-4 h-4 mx-2 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    <span class="text-[#1e1e1e] font-medium">Team</span>
+  </nav>
+</div>
+
+<!-- Page Content -->
+<div class="px-6 pb-6 flex-1" x-data="{ statusFilter: 'ALL', currentPage: 1, totalPages: 2, showDeleteConfirm: false, deleteTarget: '' }">
+  <!-- Page Title & Add Button -->
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-[#1e1e1e]">Team</h1>
+    <a href="/editor/team_section_create" hx-get="/api/content/editor/team_section_create" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/team_section_create" class="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-secondary text-white text-sm font-medium rounded-btn transition-colors duration-200">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+      Add New
+    </a>
+  </div>
+
+  <!-- Filters -->
+  <div class="bg-white border border-[#c3c4c7] rounded-card p-4 mb-6">
+    <div class="flex flex-wrap items-end gap-4">
+      <div>
+        <label class="block text-xs font-medium text-[#646970] mb-1">Status</label>
+        <select x-model="statusFilter" class="px-3 py-2 border border-[#c3c4c7] rounded-btn text-sm text-[#1e1e1e] focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
+          <option value="ALL">All Statuses</option>
+          <option value="DRAFT">Draft</option>
+          <option value="INACTIVE">Inactive</option>
+          <option value="ACTIVE">Active</option>
+        </select>
+      </div>
+      <div>
+        <button class="px-4 py-2 bg-primary hover:bg-secondary text-white text-sm font-medium rounded-btn transition-colors duration-200">Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Card Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+
+    <!-- Card 1 - ACTIVE -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col items-center text-center">
+      <img src="https://placehold.co/100x100" alt="Emily Chen" class="w-20 h-20 rounded-full object-cover mb-3">
+      <h3 class="text-sm font-semibold text-[#1e1e1e]">Emily Chen</h3>
+      <p class="text-xs text-[#646970] mb-2">Head of Design</p>
+      <a href="https://linkedin.com/in/emilychen" target="_blank" rel="noopener noreferrer" class="text-xs text-primary hover:text-secondary hover:underline mb-3 inline-flex items-center gap-1">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <span class="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-full mb-3">ACTIVE</span>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7] w-full justify-center">
+        <a href="/editor/team_section_edit" hx-get="/api/content/editor/team_section_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/team_section_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Emily Chen'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 2 - ACTIVE -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col items-center text-center">
+      <img src="https://placehold.co/100x100" alt="Marcus Johnson" class="w-20 h-20 rounded-full object-cover mb-3">
+      <h3 class="text-sm font-semibold text-[#1e1e1e]">Marcus Johnson</h3>
+      <p class="text-xs text-[#646970] mb-2">CTO</p>
+      <a href="https://linkedin.com/in/marcusjohnson" target="_blank" rel="noopener noreferrer" class="text-xs text-primary hover:text-secondary hover:underline mb-3 inline-flex items-center gap-1">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <span class="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-full mb-3">ACTIVE</span>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7] w-full justify-center">
+        <a href="/editor/team_section_edit" hx-get="/api/content/editor/team_section_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/team_section_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Marcus Johnson'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 3 - DRAFT -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col items-center text-center">
+      <img src="https://placehold.co/100x100" alt="Sarah Williams" class="w-20 h-20 rounded-full object-cover mb-3">
+      <h3 class="text-sm font-semibold text-[#1e1e1e]">Sarah Williams</h3>
+      <p class="text-xs text-[#646970] mb-2">Marketing Director</p>
+      <a href="https://linkedin.com/in/sarahwilliams" target="_blank" rel="noopener noreferrer" class="text-xs text-primary hover:text-secondary hover:underline mb-3 inline-flex items-center gap-1">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <span class="px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800 rounded-full mb-3">DRAFT</span>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7] w-full justify-center">
+        <a href="/editor/team_section_edit" hx-get="/api/content/editor/team_section_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/team_section_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Sarah Williams'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 4 - INACTIVE -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col items-center text-center">
+      <img src="https://placehold.co/100x100" alt="David Lee" class="w-20 h-20 rounded-full object-cover mb-3">
+      <h3 class="text-sm font-semibold text-[#1e1e1e]">David Lee</h3>
+      <p class="text-xs text-[#646970] mb-2">Senior Developer</p>
+      <a href="https://linkedin.com/in/davidlee" target="_blank" rel="noopener noreferrer" class="text-xs text-primary hover:text-secondary hover:underline mb-3 inline-flex items-center gap-1">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <span class="px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-800 rounded-full mb-3">INACTIVE</span>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7] w-full justify-center">
+        <a href="/editor/team_section_edit" hx-get="/api/content/editor/team_section_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/team_section_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'David Lee'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 5 - ACTIVE -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col items-center text-center">
+      <img src="https://placehold.co/100x100" alt="Jessica Taylor" class="w-20 h-20 rounded-full object-cover mb-3">
+      <h3 class="text-sm font-semibold text-[#1e1e1e]">Jessica Taylor</h3>
+      <p class="text-xs text-[#646970] mb-2">Product Manager</p>
+      <a href="https://linkedin.com/in/jessicataylor" target="_blank" rel="noopener noreferrer" class="text-xs text-primary hover:text-secondary hover:underline mb-3 inline-flex items-center gap-1">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <span class="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-full mb-3">ACTIVE</span>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7] w-full justify-center">
+        <a href="/editor/team_section_edit" hx-get="/api/content/editor/team_section_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/team_section_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Jessica Taylor'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 6 - ACTIVE -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col items-center text-center">
+      <img src="https://placehold.co/100x100" alt="Ryan Martinez" class="w-20 h-20 rounded-full object-cover mb-3">
+      <h3 class="text-sm font-semibold text-[#1e1e1e]">Ryan Martinez</h3>
+      <p class="text-xs text-[#646970] mb-2">UX Researcher</p>
+      <a href="https://linkedin.com/in/ryanmartinez" target="_blank" rel="noopener noreferrer" class="text-xs text-primary hover:text-secondary hover:underline mb-3 inline-flex items-center gap-1">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <span class="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-full mb-3">ACTIVE</span>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7] w-full justify-center">
+        <a href="/editor/team_section_edit" hx-get="/api/content/editor/team_section_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/team_section_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Ryan Martinez'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 7 - DRAFT -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col items-center text-center">
+      <img src="https://placehold.co/100x100" alt="Anna Kowalski" class="w-20 h-20 rounded-full object-cover mb-3">
+      <h3 class="text-sm font-semibold text-[#1e1e1e]">Anna Kowalski</h3>
+      <p class="text-xs text-[#646970] mb-2">Content Strategist</p>
+      <a href="https://linkedin.com/in/annakowalski" target="_blank" rel="noopener noreferrer" class="text-xs text-primary hover:text-secondary hover:underline mb-3 inline-flex items-center gap-1">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <span class="px-2 py-0.5 text-xs font-medium bg-amber-100 text-amber-800 rounded-full mb-3">DRAFT</span>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7] w-full justify-center">
+        <a href="/editor/team_section_edit" hx-get="/api/content/editor/team_section_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/team_section_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Anna Kowalski'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+
+    <!-- Card 8 - ACTIVE -->
+    <div class="bg-white border border-[#c3c4c7] rounded-card p-4 flex flex-col items-center text-center">
+      <img src="https://placehold.co/100x100" alt="Tom Anderson" class="w-20 h-20 rounded-full object-cover mb-3">
+      <h3 class="text-sm font-semibold text-[#1e1e1e]">Tom Anderson</h3>
+      <p class="text-xs text-[#646970] mb-2">DevOps Engineer</p>
+      <a href="https://linkedin.com/in/tomanderson" target="_blank" rel="noopener noreferrer" class="text-xs text-primary hover:text-secondary hover:underline mb-3 inline-flex items-center gap-1">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <span class="px-2 py-0.5 text-xs font-medium bg-green-100 text-green-800 rounded-full mb-3">ACTIVE</span>
+      <div class="mt-auto flex items-center gap-3 pt-3 border-t border-[#c3c4c7] w-full justify-center">
+        <a href="/editor/team_section_edit" hx-get="/api/content/editor/team_section_edit" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/team_section_edit" class="text-primary hover:text-secondary hover:underline text-sm font-medium">Edit</a>
+        <button @click="deleteTarget = 'Tom Anderson'; showDeleteConfirm = true" class="text-[#d63638] hover:text-red-700 hover:underline text-sm font-medium">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="bg-white border border-[#c3c4c7] rounded-card">
+    <div class="flex items-center justify-between px-4 py-3">
+      <p class="text-sm text-[#646970]">Showing <span class="font-medium">1</span> to <span class="font-medium">8</span> of <span class="font-medium">10</span> members</p>
+      <div class="flex items-center gap-1">
+        <button @click="currentPage = Math.max(1, currentPage - 1)" :disabled="currentPage === 1" :class="currentPage === 1 ? 'text-[#c3c4c7] cursor-not-allowed' : 'text-[#646970] hover:bg-[#f0f0f1] hover:text-[#1e1e1e]'" class="px-3 py-1.5 text-sm border border-[#c3c4c7] rounded-btn transition-colors duration-200">Previous</button>
+        <template x-for="page in totalPages" :key="page">
+          <button @click="currentPage = page" :class="currentPage === page ? 'bg-primary text-white border-primary' : 'text-[#646970] hover:bg-[#f0f0f1] hover:text-[#1e1e1e] border-[#c3c4c7]'" class="px-3 py-1.5 text-sm border rounded-btn transition-colors duration-200" x-text="page"></button>
+        </template>
+        <button @click="currentPage = Math.min(totalPages, currentPage + 1)" :disabled="currentPage === totalPages" :class="currentPage === totalPages ? 'text-[#c3c4c7] cursor-not-allowed' : 'text-[#646970] hover:bg-[#f0f0f1] hover:text-[#1e1e1e]'" class="px-3 py-1.5 text-sm border border-[#c3c4c7] rounded-btn transition-colors duration-200">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div x-show="showDeleteConfirm" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black/50" @keydown.escape.window="showDeleteConfirm = false">
+    <div class="bg-white rounded-card border border-[#c3c4c7] shadow-xl p-6 max-w-md mx-4" @click.outside="showDeleteConfirm = false">
+      <div class="flex items-start gap-3 mb-4">
+        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5 text-[#d63638]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+        </div>
+        <div>
+          <h3 class="text-lg font-semibold text-[#1e1e1e]">Delete Team Member</h3>
+          <p class="text-sm text-[#646970] mt-1">Are you sure you want to delete "<span class="font-medium text-[#1e1e1e]" x-text="deleteTarget"></span>"? This action cannot be undone.</p>
+        </div>
+      </div>
+      <div class="flex justify-end gap-3">
+        <button @click="showDeleteConfirm = false" class="px-4 py-2 border border-[#c3c4c7] hover:bg-[#f0f0f1] text-[#1e1e1e] text-sm font-medium rounded-btn transition-colors duration-200">Cancel</button>
+        <button @click="showDeleteConfirm = false" class="px-4 py-2 bg-[#d63638] hover:bg-red-700 text-white text-sm font-medium rounded-btn transition-colors duration-200">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,10 +4,6 @@
 
 ---
 
-# Common Module
-
----
-
 # System Module
 
 ## Authentication and Authorization
@@ -18,58 +14,32 @@
 
 ---
 
-## Notification
-
----
-
-## Activities
-
----
-
-## Audit Trail
-
----
-
-## Document Management
-
----
-
 # Business Module
 
-## Location Information
+## Hero Section
 
 ---
 
-## Corridor
+## Product and Service Section
 
 ---
 
-## Recruitment Step
+## Features Section
 
 ---
 
-## Employer
+## Testimonials Section
 
 ---
 
-## Recruitment Agent
+## Contact Section
 
 ---
 
-## Industrial Classification
+## Team Section
 
 ---
 
-## Occupation Classification
+## Blog
 
 ---
-
-## Job Demand
-
----
-
-## Candidate Registration
-
----
-
-## Recruitment Agent Sync

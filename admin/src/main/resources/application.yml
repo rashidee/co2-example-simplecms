@@ -1,0 +1,68 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: admin-portal
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cms_db
+    username: cms_user
+    password: cms_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: AdminPortalScheduler
+            instanceId: AUTO
+          jobStore:
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            useProperties: false
+            tablePrefix: QRTZ_
+            isClustered: false
+          threadPool:
+            threadCount: 5
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  modulith:
+    events:
+      republish-outstanding-events-on-restart: true
+gg:
+  jte:
+    development-mode: false
+    use-precompiled-templates: true
+    template-suffix: .jte
+    template-location: src/main/jte
+app:
+  theme:
+    primary-color: "#2271b1"
+    secondary-color: "#135e96"
+    sidebar-bg: "#1d2327"
+  upload:
+    base-path: ./uploads
+    hero-image-dir: hero
+    product-service-image-dir: product-service
+    team-image-dir: team
+    blog-image-dir: blog
+  scheduling:
+    content-expiration-cron: "0 */5 * * * ?"
+    email-send-cron: "0 */2 * * * ?"
+logging:
+  level:
+    root: WARN
+    com.simplecms.adminportal: INFO
+    org.springframework.security: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] [%X{userId}] %-5level %logger{36} - %msg%n"

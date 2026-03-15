@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Getting Started with Simple CMS - Blog - Simple CMS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2271b1',
+            'primary-dark': '#135e96',
+            'text-primary': '#1e1e1e',
+            'text-secondary': '#646970',
+            border: '#c3c4c7',
+            success: '#00a32a',
+            warning: '#dba617',
+            error: '#d63638',
+            'page-bg': '#f0f0f1',
+            surface: '#ffffff',
+            'footer-bg': '#1d2327',
+          },
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'sans-serif'],
+          },
+          borderRadius: {
+            btn: '4px',
+            card: '8px',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="font-sans text-text-primary bg-page-bg">
+
+  <!-- ==================== NAVIGATION BAR ==================== -->
+  <nav class="fixed top-0 left-0 right-0 bg-white shadow z-50" x-data="{ mobileOpen: false }">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="/" class="text-xl font-bold text-primary">Simple CMS</a>
+        <div class="hidden md:flex space-x-6 text-sm font-medium text-text-secondary">
+          <a href="/" class="hover:text-primary transition">Home</a>
+          <a href="/#products" class="hover:text-primary transition">Products &amp; Services</a>
+          <a href="/#features" class="hover:text-primary transition">Features</a>
+          <a href="/#testimonials" class="hover:text-primary transition">Testimonials</a>
+          <a href="/#team" class="hover:text-primary transition">Team</a>
+          <a href="/#contact" class="hover:text-primary transition">Contact</a>
+          <a href="/blog" class="text-primary font-bold">Blog</a>
+        </div>
+        <button class="md:hidden p-2 rounded text-text-secondary hover:text-primary" @click="mobileOpen = !mobileOpen" aria-label="Toggle menu">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path x-show="!mobileOpen" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            <path x-show="mobileOpen" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div x-show="mobileOpen" x-transition class="md:hidden pb-4 space-y-2 text-sm font-medium text-text-secondary">
+        <a href="/" class="block py-2 hover:text-primary">Home</a>
+        <a href="/#products" class="block py-2 hover:text-primary">Products &amp; Services</a>
+        <a href="/#features" class="block py-2 hover:text-primary">Features</a>
+        <a href="/#testimonials" class="block py-2 hover:text-primary">Testimonials</a>
+        <a href="/#team" class="block py-2 hover:text-primary">Team</a>
+        <a href="/#contact" class="block py-2 hover:text-primary">Contact</a>
+        <a href="/blog" class="block py-2 text-primary font-bold">Blog</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="h-16"></div>
+
+  <!-- ==================== BLOG DETAIL ==================== -->
+  <!-- USL000024 [v1.0.0] -->
+  <!-- NFRL00102 [v1.0.0] - Blog detail layout -->
+
+  <!-- Hero image with title overlay -->
+  <section class="relative w-full">
+    <img src="https://placehold.co/1600x500/2271b1/ffffff?text=Getting+Started+with+Simple+CMS" alt="Getting Started with Simple CMS" class="w-full h-[400px] md:h-[500px] object-cover">
+    <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center px-4">
+      <h1 class="text-white text-3xl md:text-5xl font-bold mb-4">Getting Started with Simple CMS</h1>
+      <p class="text-white/80 text-sm">Published on March 10, 2026 &middot; 8 min read</p>
+    </div>
+  </section>
+
+  <!-- Article content -->
+  <article class="bg-white py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Back to blog -->
+      <a href="/blog" class="inline-flex items-center text-primary hover:text-primary-dark text-sm font-medium mb-8 transition">
+        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        Back to Blog
+      </a>
+
+      <!-- Article body -->
+      <div class="prose prose-lg max-w-none text-text-primary">
+
+        <p class="text-lg leading-relaxed mb-6">
+          Welcome to Simple CMS, the easiest way for small business owners to create professional marketing pages and manage blog content. In this guide, we will walk you through everything you need to know to get your first page live in under 30 minutes.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Why Choose Simple CMS?</h2>
+        <p class="text-base leading-relaxed mb-6">
+          Running a small business means wearing many hats. You should not have to become a web developer just to have an online presence. Simple CMS was built from the ground up with non-technical users in mind. Our intuitive interface lets you focus on what matters most: your business.
+        </p>
+
+        <p class="text-base leading-relaxed mb-6">
+          Whether you are a bakery owner, a freelance consultant or a local services provider, Simple CMS gives you the tools to look professional online without the complexity or cost of custom web development.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Step 1: Set Up Your Account</h2>
+        <p class="text-base leading-relaxed mb-6">
+          Getting started is straightforward. Visit our sign-up page and create your account with just your email address and a password. You will receive a confirmation email within seconds. Once confirmed, you are ready to start building.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Step 2: Choose Your Sections</h2>
+        <p class="text-base leading-relaxed mb-4">
+          Simple CMS comes with pre-built sections that you can customise to match your brand. Here are the sections available:
+        </p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 text-base text-text-secondary">
+          <li><strong class="text-text-primary">Hero Section</strong> &mdash; A full-width carousel to showcase your key messages with compelling imagery and calls-to-action.</li>
+          <li><strong class="text-text-primary">Products &amp; Services</strong> &mdash; Display what you offer with images, descriptions and links to learn more.</li>
+          <li><strong class="text-text-primary">Features</strong> &mdash; Highlight the key benefits of working with you using icons and short descriptions.</li>
+          <li><strong class="text-text-primary">Testimonials</strong> &mdash; Build trust by showcasing reviews from your satisfied customers.</li>
+          <li><strong class="text-text-primary">Team</strong> &mdash; Introduce the people behind your business with photos and LinkedIn profiles.</li>
+          <li><strong class="text-text-primary">Contact</strong> &mdash; Make it easy for visitors to reach you with a built-in contact form.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Step 3: Customise Your Content</h2>
+        <p class="text-base leading-relaxed mb-6">
+          Each section comes with sample content that you can replace with your own. Upload your images, write your copy and adjust colours to match your brand. The admin portal makes it simple to edit text, swap images and rearrange elements.
+        </p>
+
+        <p class="text-base leading-relaxed mb-6">
+          Our design system ensures that everything looks polished and consistent. You do not need to worry about fonts, spacing or alignment. Simple CMS handles the design so you can focus on your message.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Step 4: Start Your Blog</h2>
+        <p class="text-base leading-relaxed mb-6">
+          A blog is one of the most effective ways to drive organic traffic to your website. With Simple CMS, you can create, categorise and publish blog posts in minutes. Use tags and categories to organise your content, and let visitors search by keywords.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">Step 5: Publish and Share</h2>
+        <p class="text-base leading-relaxed mb-6">
+          Once you are happy with your content, hit publish. Your marketing page and blog will be live and accessible to visitors immediately. Share your new site on social media, include it in your email signature and start driving traffic to your business.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4">What Comes Next?</h2>
+        <p class="text-base leading-relaxed mb-6">
+          This is just the beginning. As your business grows, you can add more products, publish new blog posts and collect more testimonials. Simple CMS scales with you, so you will never outgrow your website.
+        </p>
+
+        <p class="text-base leading-relaxed mb-6">
+          If you have any questions or need help getting started, visit our contact page or reach out to our customer success team. We are here to help you succeed online.
+        </p>
+
+        <div class="border-t border-border mt-10 pt-8">
+          <p class="text-sm text-text-secondary">
+            Tags: <span class="text-primary">getting started</span>, <span class="text-primary">tutorial</span>, <span class="text-primary">small business</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Back to blog (bottom) -->
+      <div class="mt-10">
+        <a href="/blog" class="inline-flex items-center text-primary hover:text-primary-dark text-sm font-medium transition">
+          <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          Back to Blog
+        </a>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-footer-bg text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-lg font-bold mb-4">Simple CMS</h3>
+          <p class="text-gray-400 text-sm">Empowering small businesses to create and manage their online presence with ease.</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/" class="hover:text-white transition">Home</a></li>
+            <li><a href="/#products" class="hover:text-white transition">Products &amp; Services</a></li>
+            <li><a href="/#features" class="hover:text-white transition">Features</a></li>
+            <li><a href="/#testimonials" class="hover:text-white transition">Testimonials</a></li>
+            <li><a href="/#team" class="hover:text-white transition">Team</a></li>
+            <li><a href="/#contact" class="hover:text-white transition">Contact</a></li>
+            <li><a href="/blog" class="hover:text-white transition">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-4">Follow Us</h3>
+          <div class="flex space-x-4">
+            <a href="https://facebook.com/example" target="_blank" rel="noopener" aria-label="Facebook" class="text-gray-400 hover:text-white transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://twitter.com/example" target="_blank" rel="noopener" aria-label="Twitter" class="text-gray-400 hover:text-white transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://instagram.com/example" target="_blank" rel="noopener" aria-label="Instagram" class="text-gray-400 hover:text-white transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/example" target="_blank" rel="noopener" aria-label="LinkedIn" class="text-gray-400 hover:text-white transition">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-gray-600 mt-8 pt-8 text-center text-sm text-gray-400">
+        &copy; 2026 Simple CMS. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!-- USA000087 [v1.0.0] -->
+
+<!-- Breadcrumb -->
+<div class="px-6 pt-5 pb-2">
+  <nav class="flex items-center text-sm text-[#646970]">
+    <a href="/editor/home" hx-get="/api/content/editor/home" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/home" class="text-primary hover:text-secondary hover:underline">Home</a>
+    <svg class="w-4 h-4 mx-1 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    <a href="/editor/contact_section" hx-get="/api/content/editor/contact_section" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/contact_section" class="text-primary hover:text-secondary hover:underline">Contact</a>
+    <svg class="w-4 h-4 mx-1 text-[#c3c4c7]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    <span class="text-[#1e1e1e] font-medium">Messages</span>
+  </nav>
+</div>
+
+<!-- Page Content -->
+<div class="px-6 pb-6 flex-1" x-data="{ currentPage: 1, totalPages: 3 }">
+  <!-- Page Title -->
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-2xl font-bold text-[#1e1e1e]">Contact Messages</h1>
+  </div>
+
+  <!-- Messages Table -->
+  <div class="bg-white border border-[#c3c4c7] rounded-card overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-[#f0f0f1] border-b border-[#c3c4c7]">
+          <tr>
+            <th class="px-4 py-3 font-semibold text-[#1e1e1e]">Sender Name</th>
+            <th class="px-4 py-3 font-semibold text-[#1e1e1e]">Email</th>
+            <th class="px-4 py-3 font-semibold text-[#1e1e1e]">Message</th>
+            <th class="px-4 py-3 font-semibold text-[#1e1e1e]">Date Submitted</th>
+            <th class="px-4 py-3 font-semibold text-[#1e1e1e] text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[#c3c4c7]">
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Alice Johnson</td>
+            <td class="px-4 py-3 text-[#646970]">alice.johnson@email.com</td>
+            <td class="px-4 py-3 text-[#646970] max-w-xs truncate">I would like to know more about your enterprise pricing plans and whether you offer custom...</td>
+            <td class="px-4 py-3 text-[#646970]">2026-03-15</td>
+            <td class="px-4 py-3 text-center">
+              <a href="/editor/contact_messages_detail" hx-get="/api/content/editor/contact_messages_detail" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/contact_messages_detail" class="text-primary hover:text-secondary hover:underline text-sm font-medium">View</a>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Bob Martinez</td>
+            <td class="px-4 py-3 text-[#646970]">bob.martinez@company.org</td>
+            <td class="px-4 py-3 text-[#646970] max-w-xs truncate">We are interested in a partnership opportunity. Could we schedule a meeting to discuss...</td>
+            <td class="px-4 py-3 text-[#646970]">2026-03-14</td>
+            <td class="px-4 py-3 text-center">
+              <a href="/editor/contact_messages_detail" hx-get="/api/content/editor/contact_messages_detail" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/contact_messages_detail" class="text-primary hover:text-secondary hover:underline text-sm font-medium">View</a>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Carol Davis</td>
+            <td class="px-4 py-3 text-[#646970]">carol.davis@startup.io</td>
+            <td class="px-4 py-3 text-[#646970] max-w-xs truncate">Your product looks fantastic! I have a few questions about the onboarding process and...</td>
+            <td class="px-4 py-3 text-[#646970]">2026-03-13</td>
+            <td class="px-4 py-3 text-center">
+              <a href="/editor/contact_messages_detail" hx-get="/api/content/editor/contact_messages_detail" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/contact_messages_detail" class="text-primary hover:text-secondary hover:underline text-sm font-medium">View</a>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Daniel Lee</td>
+            <td class="px-4 py-3 text-[#646970]">daniel.lee@techfirm.com</td>
+            <td class="px-4 py-3 text-[#646970] max-w-xs truncate">I experienced an issue with the contact form on mobile. The submit button doesn't seem to...</td>
+            <td class="px-4 py-3 text-[#646970]">2026-03-12</td>
+            <td class="px-4 py-3 text-center">
+              <a href="/editor/contact_messages_detail" hx-get="/api/content/editor/contact_messages_detail" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/contact_messages_detail" class="text-primary hover:text-secondary hover:underline text-sm font-medium">View</a>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Emma Wilson</td>
+            <td class="px-4 py-3 text-[#646970]">emma.wilson@design.co</td>
+            <td class="px-4 py-3 text-[#646970] max-w-xs truncate">Love the new features section on your landing page! Would love to collaborate on a case...</td>
+            <td class="px-4 py-3 text-[#646970]">2026-03-11</td>
+            <td class="px-4 py-3 text-center">
+              <a href="/editor/contact_messages_detail" hx-get="/api/content/editor/contact_messages_detail" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/contact_messages_detail" class="text-primary hover:text-secondary hover:underline text-sm font-medium">View</a>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Frank Chen</td>
+            <td class="px-4 py-3 text-[#646970]">frank.chen@agency.net</td>
+            <td class="px-4 py-3 text-[#646970] max-w-xs truncate">We are a digital marketing agency and would like to resell your CMS platform to our clients...</td>
+            <td class="px-4 py-3 text-[#646970]">2026-03-10</td>
+            <td class="px-4 py-3 text-center">
+              <a href="/editor/contact_messages_detail" hx-get="/api/content/editor/contact_messages_detail" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/contact_messages_detail" class="text-primary hover:text-secondary hover:underline text-sm font-medium">View</a>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Grace Kim</td>
+            <td class="px-4 py-3 text-[#646970]">grace.kim@freelance.dev</td>
+            <td class="px-4 py-3 text-[#646970] max-w-xs truncate">Hi, I'm a freelance developer and I was wondering if you have an API that I could integrate...</td>
+            <td class="px-4 py-3 text-[#646970]">2026-03-09</td>
+            <td class="px-4 py-3 text-center">
+              <a href="/editor/contact_messages_detail" hx-get="/api/content/editor/contact_messages_detail" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/contact_messages_detail" class="text-primary hover:text-secondary hover:underline text-sm font-medium">View</a>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Henry Patel</td>
+            <td class="px-4 py-3 text-[#646970]">henry.patel@retail.com</td>
+            <td class="px-4 py-3 text-[#646970] max-w-xs truncate">Can your CMS handle multi-language content? We need support for English, Spanish, and French...</td>
+            <td class="px-4 py-3 text-[#646970]">2026-03-08</td>
+            <td class="px-4 py-3 text-center">
+              <a href="/editor/contact_messages_detail" hx-get="/api/content/editor/contact_messages_detail" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/contact_messages_detail" class="text-primary hover:text-secondary hover:underline text-sm font-medium">View</a>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">Isla Thompson</td>
+            <td class="px-4 py-3 text-[#646970]">isla.thompson@edu.org</td>
+            <td class="px-4 py-3 text-[#646970] max-w-xs truncate">We are an educational institution looking for a simple CMS for our department websites. Do...</td>
+            <td class="px-4 py-3 text-[#646970]">2026-03-07</td>
+            <td class="px-4 py-3 text-center">
+              <a href="/editor/contact_messages_detail" hx-get="/api/content/editor/contact_messages_detail" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/contact_messages_detail" class="text-primary hover:text-secondary hover:underline text-sm font-medium">View</a>
+            </td>
+          </tr>
+          <tr class="hover:bg-[#f9f9f9]">
+            <td class="px-4 py-3 text-[#1e1e1e] font-medium">James Rodriguez</td>
+            <td class="px-4 py-3 text-[#646970]">james.rodriguez@media.tv</td>
+            <td class="px-4 py-3 text-[#646970] max-w-xs truncate">Great platform! Would you be interested in being featured in our upcoming tech review...</td>
+            <td class="px-4 py-3 text-[#646970]">2026-03-06</td>
+            <td class="px-4 py-3 text-center">
+              <a href="/editor/contact_messages_detail" hx-get="/api/content/editor/contact_messages_detail" hx-target="#content-area" hx-swap="innerHTML" hx-push-url="/editor/contact_messages_detail" class="text-primary hover:text-secondary hover:underline text-sm font-medium">View</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex items-center justify-between px-4 py-3 border-t border-[#c3c4c7] bg-[#f0f0f1]">
+      <p class="text-sm text-[#646970]">Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">28</span> messages</p>
+      <div class="flex items-center gap-1">
+        <button @click="currentPage = Math.max(1, currentPage - 1)" :disabled="currentPage === 1" :class="currentPage === 1 ? 'text-[#c3c4c7] cursor-not-allowed' : 'text-[#646970] hover:bg-white hover:text-[#1e1e1e]'" class="px-3 py-1.5 text-sm border border-[#c3c4c7] rounded-btn transition-colors duration-200">Previous</button>
+        <template x-for="page in totalPages" :key="page">
+          <button @click="currentPage = page" :class="currentPage === page ? 'bg-primary text-white border-primary' : 'text-[#646970] hover:bg-white hover:text-[#1e1e1e] border-[#c3c4c7]'" class="px-3 py-1.5 text-sm border rounded-btn transition-colors duration-200" x-text="page"></button>
+        </template>
+        <button @click="currentPage = Math.min(totalPages, currentPage + 1)" :disabled="currentPage === totalPages" :class="currentPage === totalPages ? 'text-[#c3c4c7] cursor-not-allowed' : 'text-[#646970] hover:bg-white hover:text-[#1e1e1e]'" class="px-3 py-1.5 text-sm border border-[#c3c4c7] rounded-btn transition-colors duration-200">Next</button>
+      </div>
+    </div>
+  </div>
+</div>

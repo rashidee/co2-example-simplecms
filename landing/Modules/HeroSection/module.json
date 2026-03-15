@@ -1,0 +1,11 @@
+{
+    "name": "HeroSection",
+    "alias": "herosection",
+    "description": "Hero section carousel for the landing page",
+    "keywords": ["hero", "carousel", "landing"],
+    "priority": 0,
+    "providers": [
+        "Modules\\HeroSection\\Providers\\HeroSectionServiceProvider"
+    ],
+    "files": []
+}

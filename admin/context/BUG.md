@@ -4,19 +4,19 @@
 
 ---
 
-# Standards
-
-## UI/UX
-
-
-## Coding
--
-
----
-
 # System Module
 
 ## Authentication and Authorization
+
+[v1.0.1]
+- 403 error after successful login
+  - Priority: High
+  - Steps to reproduce:
+    1. Go to login page
+    2. Enter valid email and password
+    3. Click login button
+    4. Observe 403 error page
+  - Expected result: User should be redirected to the dashboard page after successful login
 
 ---
 
@@ -24,58 +24,32 @@
 
 ---
 
-## Notification
-
----
-
-## Activities
-
----
-
-## Audit Trail
-
----
-
-## Document Management
-
----
-
 # Business Module
 
-## Location Information
+## Hero Section
 
 ---
 
-## Corridor
+## Product and Service Section
 
 ---
 
-## Recruitment Step
+## Features Section
 
 ---
 
-## Employer
+## Testimonials Section
 
 ---
 
-## Recruitment Agent
+## Contact Section
 
 ---
 
-## Industrial Classification
+## Team Section
 
 ---
 
-## Occupation Classification
+## Blog
 
 ---
-
-## Job Demand
-
----
-
-## Candidate Registration
-
----
-
-## Recruitment Agent Sync

@@ -1,0 +1,21 @@
+%% Module: Blog | Prefix: BLG
+%% Application: Landing Page (Read-Only)
+%% Shared tables: blog_categories, blog_posts (managed by Admin Portal)
+%% Versions included: v1.0.0
+erDiagram
+    BLG_BLOG_CATEGORY {
+        uuid id PK
+        string name
+    }
+    BLG_BLOG_POST {
+        uuid id PK
+        uuid category_id FK
+        string title
+        string slug
+        string summary
+        text content
+        string image_path
+        timestamp effective_date
+        string status
+    }
+    BLG_BLOG_CATEGORY ||--o{ BLG_BLOG_POST : "categorizes"

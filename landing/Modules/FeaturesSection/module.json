@@ -1,0 +1,11 @@
+{
+    "name": "FeaturesSection",
+    "alias": "featuressection",
+    "description": "Features section for the landing page",
+    "keywords": ["features", "landing"],
+    "priority": 0,
+    "providers": [
+        "Modules\\FeaturesSection\\Providers\\FeaturesSectionServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,33 @@
+%% Module: Blog | Prefix: BLG
+%% Versions included: v1.0.0
+erDiagram
+    BLG_BLOG_CATEGORY {
+        uuid id PK
+        string name
+        string description
+        bigint version
+        timestamp created_at
+        string created_by
+        timestamp updated_at
+        string updated_by
+    }
+    BLG_BLOG_POST {
+        uuid id PK
+        uuid category_id FK
+        uuid author_id FK
+        string title
+        string slug
+        string summary
+        text content
+        string image_path
+        string thumbnail_path
+        timestamp effective_date
+        timestamp expiration_date
+        string status
+        bigint version
+        timestamp created_at
+        string created_by
+        timestamp updated_at
+        string updated_by
+    }
+    BLG_BLOG_CATEGORY ||--o{ BLG_BLOG_POST : "categorizes"

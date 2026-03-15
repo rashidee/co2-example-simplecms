@@ -1,0 +1,13 @@
+{
+  "src/main.css": {
+    "file": "css/styles-Bm3QeHO-.css",
+    "src": "src/main.css",
+    "isEntry": true
+  },
+  "src/main.js": {
+    "file": "js/app-Dc8FPWw2.js",
+    "name": "app",
+    "src": "src/main.js",
+    "isEntry": true
+  }
+}

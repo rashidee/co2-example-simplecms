@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - UI Mockup Sitemap</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2271b1',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen">
+
+  <div class="max-w-5xl mx-auto px-6 py-12">
+
+    <!-- Server Notice Banner -->
+    <div class="mb-8 bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 flex items-start gap-3">
+      <svg class="w-5 h-5 text-amber-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <div>
+        <p class="text-sm font-semibold text-amber-800">Mockup Server Required</p>
+        <p class="text-sm text-amber-700 mt-0.5">
+          Screen links open via the local Node.js server at
+          <code class="bg-amber-100 px-1.5 py-0.5 rounded text-amber-900 font-mono text-xs">http://localhost:3000</code>.
+          Start it with:
+          <code class="bg-amber-100 px-1.5 py-0.5 rounded text-amber-900 font-mono text-xs">cd mockup &amp;&amp; npm install &amp;&amp; npm start</code>
+        </p>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div class="mb-10">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-primary">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+          </svg>
+        </div>
+        <h1 class="text-3xl font-bold text-slate-900">Admin Portal — Simple CMS</h1>
+      </div>
+      <p class="text-slate-500 text-lg">A web application to manage marketing page and blog content for the Simple CMS platform.</p>
+      <div class="flex items-center gap-4 mt-4 text-sm text-slate-400">
+        <span>v1.0.0</span>
+        <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+        <span>41 screens</span>
+        <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+        <span>UI Mockup for Designer Review</span>
+      </div>
+      <div class="flex items-center gap-4 mt-2 text-xs text-slate-400">
+        <span>Generated for v1.0.0</span>
+        <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+        <span>36 user stories included, 0 excluded</span>
+      </div>
+    </div>
+
+    <!-- Role: User -->
+    <div class="mb-10">
+      <div class="flex items-center gap-2 mb-4">
+        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        </svg>
+        <h2 class="text-xl font-semibold text-slate-800">User</h2>
+        <span class="text-sm text-slate-400 ml-2">(4 screens)</span>
+        <a href="http://localhost:3000/user/home" target="_blank" rel="noopener noreferrer" class="ml-auto flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg border border-primary text-primary transition-colors hover:bg-primary/5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Open Role Dashboard
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="http://localhost:3000/user/home" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              <h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Home</h3>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <p class="text-sm text-slate-500">Dashboard home with welcome message</p>
+        </a>
+        <a href="http://localhost:3000/user/profile" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              <h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Profile</h3>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <p class="text-sm text-slate-500">View and edit user profile information</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000012</span></div>
+        </a>
+        <a href="http://localhost:3000/user/account" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Account</h3>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <p class="text-sm text-slate-500">Change password and account settings</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000015</span></div>
+        </a>
+        <a href="http://localhost:3000/user/notifications" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+              <h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Notifications</h3>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <p class="text-sm text-slate-500">View and manage notifications</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Role: Admin -->
+    <div class="mb-10">
+      <div class="flex items-center gap-2 mb-4">
+        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        </svg>
+        <h2 class="text-xl font-semibold text-slate-800">Admin</h2>
+        <span class="text-sm text-slate-400 ml-2">(7 screens)</span>
+        <a href="http://localhost:3000/admin/home" target="_blank" rel="noopener noreferrer" class="ml-auto flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg border border-primary text-primary transition-colors hover:bg-primary/5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Open Role Dashboard
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="http://localhost:3000/admin/home" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+              <h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Home</h3>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <p class="text-sm text-slate-500">Admin dashboard with user statistics</p>
+        </a>
+        <a href="http://localhost:3000/admin/profile" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+              <h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Profile</h3>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <p class="text-sm text-slate-500">View and edit profile</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000012</span></div>
+        </a>
+        <a href="http://localhost:3000/admin/account" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Account</h3>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <p class="text-sm text-slate-500">Change password and settings</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000015</span></div>
+        </a>
+        <a href="http://localhost:3000/admin/notifications" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+              <h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Notifications</h3>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <p class="text-sm text-slate-500">View and manage notifications</p>
+        </a>
+        <a href="http://localhost:3000/admin/users" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+              <h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Users</h3>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <p class="text-sm text-slate-500">Manage system users and roles</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000018</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000021</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000024</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000027</span></div>
+        </a>
+        <a href="http://localhost:3000/admin/users_create" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+              <h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Add New User</h3>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <p class="text-sm text-slate-500">Create a new user account</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000021</span></div>
+        </a>
+        <a href="http://localhost:3000/admin/users_edit" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2">
+            <div class="flex items-center gap-2">
+              <svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              <h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Edit User</h3>
+            </div>
+            <svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <p class="text-sm text-slate-500">Edit user information and role</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000024</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Role: Editor -->
+    <div class="mb-10">
+      <div class="flex items-center gap-2 mb-4">
+        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        </svg>
+        <h2 class="text-xl font-semibold text-slate-800">Editor</h2>
+        <span class="text-sm text-slate-400 ml-2">(30 screens)</span>
+        <a href="http://localhost:3000/editor/home" target="_blank" rel="noopener noreferrer" class="ml-auto flex items-center gap-1 text-xs px-3 py-1.5 rounded-lg border border-primary text-primary transition-colors hover:bg-primary/5">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          Open Role Dashboard
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Common screens -->
+        <a href="http://localhost:3000/editor/home" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Home</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">Editor dashboard with content overview</p>
+        </a>
+        <a href="http://localhost:3000/editor/profile" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Profile</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">View and edit profile</p>
+        </a>
+        <a href="http://localhost:3000/editor/account" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Account</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">Change password and settings</p>
+        </a>
+        <a href="http://localhost:3000/editor/notifications" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Notifications</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">View notifications</p>
+        </a>
+        <!-- Marketing modules -->
+        <a href="http://localhost:3000/editor/hero_section" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Hero Section</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">Manage hero banners with images and CTAs</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000030</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000033</span></div>
+        </a>
+        <a href="http://localhost:3000/editor/product_and_service" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Products &amp; Services</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">Manage product and service showcases</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000036</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000045</span></div>
+        </a>
+        <a href="http://localhost:3000/editor/features_section" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Features</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">Manage feature highlights with icons</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000048</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000057</span></div>
+        </a>
+        <a href="http://localhost:3000/editor/testimonials" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Testimonials</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">Manage customer testimonials and ratings</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000060</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000069</span></div>
+        </a>
+        <a href="http://localhost:3000/editor/team_section" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Team</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">Manage team member profiles</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000072</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000081</span></div>
+        </a>
+        <a href="http://localhost:3000/editor/contact_section" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Contact</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">Configure contact info and manage messages</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000084</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000087</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000090</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000093</span></div>
+        </a>
+        <a href="http://localhost:3000/editor/blog_categories" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Blog Categories</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">Manage blog categories</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000105</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000108</span></div>
+        </a>
+        <a href="http://localhost:3000/editor/blog" target="_blank" rel="noopener noreferrer" class="block bg-white rounded-xl border border-slate-200 p-4 hover:shadow-md transition-all duration-200 cursor-pointer group">
+          <div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><svg class="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg><h3 class="font-medium text-slate-800 group-hover:text-primary transition-colors">Blog Posts</h3></div><svg class="w-3.5 h-3.5 text-slate-300 group-hover:text-primary transition-colors shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></div>
+          <p class="text-sm text-slate-500">Create and manage blog content</p>
+          <div class="mt-3 flex flex-wrap gap-1"><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000096</span><span class="text-xs bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">USA000102</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-12 pt-6 border-t border-slate-200 text-center text-sm text-slate-400">
+      Generated for UI/UX designer review. Screens open in new tabs via the local mockup server.
+    </div>
+  </div>
+
+</body>
+</html>

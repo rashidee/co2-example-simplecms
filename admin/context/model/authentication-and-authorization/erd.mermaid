@@ -1,0 +1,15 @@
+%% Module: Authentication and Authorization | Prefix: AAA
+%% Versions included: v1.0.0
+erDiagram
+    AAA_PASSWORD_RESET_TOKEN {
+        uuid id PK
+        uuid user_id FK
+        string token
+        timestamp expires_at
+        boolean used
+        timestamp created_at
+        string created_by
+        timestamp updated_at
+        string updated_by
+        bigint version
+    }

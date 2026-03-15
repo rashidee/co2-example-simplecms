@@ -1,0 +1,52 @@
+@param com.simplecms.adminportal.blog.internal.BlogCategoryFormView view
+@param com.simplecms.adminportal.shared.vite.ViteManifestService vite
+@param String currentPath = ""
+@param String userRole = ""
+@param String userInitials = ""
+@param String userName = ""
+@param String cspNonce = ""
+
+@template.layout.MainLayout(
+    vite = vite,
+    currentPath = currentPath,
+    userRole = userRole,
+    userInitials = userInitials,
+    userName = userName,
+    cspNonce = cspNonce,
+    content = @`
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-xl font-bold text-[#1e1e1e] mb-6">Create Blog Category</h1>
+
+        <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-6">
+            @if(view.hasError())
+                <div class="mb-4 p-3 bg-[#d63638]/10 border border-[#d63638]/30 rounded-[4px] text-sm text-[#d63638]">
+                    ${view.errorMessage()}
+                </div>
+            @endif
+
+            <form method="post" action="/blog/categories/create" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-[#1e1e1e] mb-1">Name</label>
+                    <input type="text" id="name" name="name" required maxlength="100"
+                           class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
+                </div>
+                <div>
+                    <label for="description" class="block text-sm font-medium text-[#1e1e1e] mb-1">Description</label>
+                    <textarea id="description" name="description" rows="3" maxlength="500"
+                              class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]"></textarea>
+                </div>
+                <div class="flex gap-3">
+                    <button type="submit"
+                            class="px-4 py-2.5 bg-[#2271b1] hover:bg-[#135e96] text-white text-sm font-medium rounded-[4px]">
+                        Create
+                    </button>
+                    <a href="/blog/categories"
+                       class="px-4 py-2.5 bg-white hover:bg-gray-50 text-[#1e1e1e] text-sm font-medium border border-[#c3c4c7] rounded-[4px]">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+    `
+)

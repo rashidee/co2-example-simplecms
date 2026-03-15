@@ -1,0 +1,148 @@
+@param String currentPath = ""
+@param String userRole = ""
+
+!{var roleLower = userRole.toLowerCase();}
+
+<aside class="w-64 bg-sidebar fixed top-16 bottom-0 left-0 overflow-y-auto z-20">
+    <nav class="py-4" x-data="{ active: '${currentPath}' }">
+
+        <%-- Home — all roles --%>
+        <a href="/${roleLower}/home"
+           :class="active.startsWith('/${roleLower}/home')
+               ? 'bg-white/10 text-white border-l-4 border-white font-medium'
+               : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
+           class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
+            <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+            <span>Home</span>
+        </a>
+
+        @if(userRole.equals("ADMIN"))
+            <%-- ADMIN: System group --%>
+            <div class="px-4 pt-4 pb-1">
+                <span class="text-xs font-semibold text-sidebar-text/40 uppercase tracking-wider">System</span>
+            </div>
+            <a href="/admin/users"
+               :class="active.startsWith('/admin/users')
+                   ? 'bg-white/10 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
+               class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+                <span>Users</span>
+            </a>
+        @endif
+
+        @if(userRole.equals("EDITOR"))
+            <%-- EDITOR: Marketing group --%>
+            <div class="px-4 pt-4 pb-1">
+                <span class="text-xs font-semibold text-sidebar-text/40 uppercase tracking-wider">Marketing</span>
+            </div>
+
+            <a href="/editor/hero_section"
+               :class="active.startsWith('/editor/hero_section')
+                   ? 'bg-white/10 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
+               class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+                <span>Hero Section</span>
+            </a>
+
+            <a href="/editor/product_and_service"
+               :class="active.startsWith('/editor/product_and_service')
+                   ? 'bg-white/10 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
+               class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                </svg>
+                <span>Products & Services</span>
+            </a>
+
+            <a href="/editor/features_section"
+               :class="active.startsWith('/editor/features_section')
+                   ? 'bg-white/10 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
+               class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                </svg>
+                <span>Features</span>
+            </a>
+
+            <a href="/editor/testimonials"
+               :class="active.startsWith('/editor/testimonials')
+                   ? 'bg-white/10 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
+               class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>
+                <span>Testimonials</span>
+            </a>
+
+            <a href="/editor/team_section"
+               :class="active.startsWith('/editor/team_section')
+                   ? 'bg-white/10 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
+               class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                </svg>
+                <span>Team</span>
+            </a>
+
+            <a href="/editor/contact_section"
+               :class="active.startsWith('/editor/contact_section')
+                   ? 'bg-white/10 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
+               class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <span>Contact</span>
+            </a>
+
+            <%-- EDITOR: Blog group --%>
+            <div class="px-4 pt-4 pb-1">
+                <span class="text-xs font-semibold text-sidebar-text/40 uppercase tracking-wider">Blog</span>
+            </div>
+
+            <a href="/editor/blog_categories"
+               :class="active.startsWith('/editor/blog_categories')
+                   ? 'bg-white/10 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
+               class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+                </svg>
+                <span>Blog Categories</span>
+            </a>
+
+            <a href="/editor/blog"
+               :class="active.startsWith('/editor/blog') && !active.startsWith('/editor/blog_categories')
+                   ? 'bg-white/10 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/5 hover:text-white'"
+               class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
+                <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                </svg>
+                <span>Blog Posts</span>
+            </a>
+        @endif
+    </nav>
+</aside>
