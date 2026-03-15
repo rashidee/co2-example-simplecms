@@ -1,6 +1,7 @@
 @param com.simplecms.adminportal.authentication.internal.ResetPasswordView view
 @param com.simplecms.adminportal.shared.vite.ViteManifestService vite
 @param String cspNonce = ""
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @template.layout.AuthLayout(vite = vite, cspNonce = cspNonce, pageTitle = "Reset Password", content = @`
     <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-6">
@@ -24,6 +25,9 @@
 
         @if(view.tokenValid())
             <form method="post" action="/reset-password" class="space-y-4">
+                @if(_csrf != null)
+                    <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                @endif
                 <input type="hidden" name="token" value="${view.token()}">
 
                 <div>

@@ -1,4 +1,5 @@
 @param org.springframework.data.domain.Page<com.simplecms.adminportal.testimonial.TestimonialDTO> testimonials
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @for(var t : testimonials.getContent())
     <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-4">
@@ -19,6 +20,9 @@
             <a href="/testimonials/${t.id().toString()}/edit" class="text-sm text-[#2271b1] hover:underline">Edit</a>
             <form method="post" action="/testimonials/${t.id().toString()}/delete" class="inline"
                   x-data x-on:submit.prevent="if(confirm('Are you sure you want to delete this testimonial?')) $el.submit()">
+                @if(_csrf != null)
+                    <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                @endif
                 <button type="submit" class="text-sm text-[#d63638] hover:underline">Delete</button>
             </form>
         </div>

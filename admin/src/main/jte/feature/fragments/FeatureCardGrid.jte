@@ -1,4 +1,5 @@
 @param org.springframework.data.domain.Page<com.simplecms.adminportal.feature.FeatureDTO> features
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @for(var feature : features.getContent())
     <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-4">
@@ -15,6 +16,9 @@
             <a href="/features-section/${feature.id().toString()}/edit" class="text-sm text-[#2271b1] hover:underline">Edit</a>
             <form method="post" action="/features-section/${feature.id().toString()}/delete" class="inline"
                   x-data x-on:submit.prevent="if(confirm('Are you sure you want to delete this feature?')) $el.submit()">
+                @if(_csrf != null)
+                    <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                @endif
                 <button type="submit" class="text-sm text-[#d63638] hover:underline">Delete</button>
             </form>
         </div>

@@ -1,4 +1,5 @@
 @param org.springframework.data.domain.Page<com.simplecms.adminportal.productservice.ProductServiceDTO> items
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @for(var item : items.getContent())
     <div class="bg-white border border-[#c3c4c7] rounded-[8px] overflow-hidden">
@@ -20,6 +21,9 @@
                    class="text-sm text-[#2271b1] hover:text-[#135e96] hover:underline">Edit</a>
                 <form method="post" action="/product-and-service/${item.id().toString()}/delete" class="inline"
                       x-data x-on:submit.prevent="if(confirm('Are you sure you want to delete this item?')) $el.submit()">
+                    @if(_csrf != null)
+                        <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                    @endif
                     <button type="submit" class="text-sm text-[#d63638] hover:underline">Delete</button>
                 </form>
             </div>

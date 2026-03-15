@@ -9,7 +9,7 @@
 ## Authentication and Authorization
 
 [v1.0.1]
-- 403 error after successful login
+- [BUG-001] 403 error after successful login
   - Priority: High
   - Steps to reproduce:
     1. Go to login page

@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -62,5 +63,10 @@ public class WebMvcConfig {
     @ModelAttribute("currentPath")
     public String currentPath(HttpServletRequest request) {
         return request.getRequestURI();
+    }
+
+    @ModelAttribute("_csrf")
+    public CsrfToken csrfToken(HttpServletRequest request) {
+        return (CsrfToken) request.getAttribute(CsrfToken.class.getName());
     }
 }

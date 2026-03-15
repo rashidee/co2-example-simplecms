@@ -1,4 +1,5 @@
 @param org.springframework.data.domain.Page<com.simplecms.adminportal.teamsection.TeamMemberDTO> teamMembers
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @for(var m : teamMembers.getContent())
     <div class="bg-white border border-[#c3c4c7] rounded-[8px] overflow-hidden">
@@ -21,6 +22,9 @@
                 <a href="/team-section/${m.id().toString()}/edit" class="text-sm text-[#2271b1] hover:underline">Edit</a>
                 <form method="post" action="/team-section/${m.id().toString()}/delete" class="inline"
                       x-data x-on:submit.prevent="if(confirm('Are you sure?')) $el.submit()">
+                    @if(_csrf != null)
+                        <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                    @endif
                     <button type="submit" class="text-sm text-[#d63638] hover:underline">Delete</button>
                 </form>
             </div>

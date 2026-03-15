@@ -5,6 +5,7 @@
 @param String userInitials = ""
 @param String userName = ""
 @param String cspNonce = ""
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @template.layout.MainLayout(
     vite = vite,
@@ -25,6 +26,9 @@
             @endif
 
             <form method="post" action="/blog/create" enctype="multipart/form-data" class="space-y-4">
+                @if(_csrf != null)
+                    <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                @endif
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label for="categoryId" class="block text-sm font-medium text-[#1e1e1e] mb-1">Category</label>

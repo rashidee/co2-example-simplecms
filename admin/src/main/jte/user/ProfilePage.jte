@@ -5,6 +5,7 @@
 @param String userInitials = ""
 @param String userName = ""
 @param String cspNonce = ""
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @template.layout.MainLayout(
     vite = vite,
@@ -30,6 +31,9 @@
             @endif
 
             <form method="post" action="/profile" class="space-y-4">
+                @if(_csrf != null)
+                    <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                @endif
                 <div>
                     <label class="block text-sm font-medium text-[#1e1e1e] mb-1">Email</label>
                     <input type="text" value="${view.user().email()}" disabled

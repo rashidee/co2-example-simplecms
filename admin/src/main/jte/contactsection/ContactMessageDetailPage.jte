@@ -5,6 +5,7 @@
 @param String userInitials = ""
 @param String userName = ""
 @param String cspNonce = ""
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @template.layout.MainLayout(
     vite = vite,
@@ -73,6 +74,9 @@
             <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-6">
                 <h2 class="text-lg font-semibold text-[#1e1e1e] mb-4">Submit Response</h2>
                 <form method="post" action="/contact-section/messages/${view.message().id().toString()}/respond" class="space-y-4">
+                    @if(_csrf != null)
+                        <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                    @endif
                     <div>
                         <label for="responderName" class="block text-sm font-medium text-[#1e1e1e] mb-1">Your Name</label>
                         <input type="text" id="responderName" name="responderName" required

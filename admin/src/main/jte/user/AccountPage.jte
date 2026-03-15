@@ -5,6 +5,7 @@
 @param String userInitials = ""
 @param String userName = ""
 @param String cspNonce = ""
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @template.layout.MainLayout(
     vite = vite,
@@ -37,6 +38,9 @@
 
             <h2 class="text-lg font-semibold text-[#1e1e1e] mb-4">Change Password</h2>
             <form method="post" action="/account" class="space-y-4">
+                @if(_csrf != null)
+                    <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                @endif
                 <div>
                     <label for="newPassword" class="block text-sm font-medium text-[#1e1e1e] mb-1">New Password</label>
                     <input type="password" id="newPassword" name="newPassword" required

@@ -5,6 +5,7 @@
 @param String userInitials = ""
 @param String userName = ""
 @param String cspNonce = ""
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @template.layout.MainLayout(
     vite = vite,
@@ -48,6 +49,9 @@
                             <a href="/blog/categories/${cat.id().toString()}/edit" class="text-[#2271b1] hover:underline">Edit</a>
                             <form method="post" action="/blog/categories/${cat.id().toString()}/delete" class="inline"
                                   x-data x-on:submit.prevent="if(confirm('Are you sure? Categories with posts cannot be deleted.')) $el.submit()">
+                                @if(_csrf != null)
+                                    <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                                @endif
                                 <button type="submit" class="text-[#d63638] hover:underline">Delete</button>
                             </form>
                         </td>

@@ -1,6 +1,7 @@
 @param com.simplecms.adminportal.authentication.internal.LoginView view
 @param com.simplecms.adminportal.shared.vite.ViteManifestService vite
 @param String cspNonce = ""
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @template.layout.AuthLayout(vite = vite, cspNonce = cspNonce, pageTitle = "Login", content = @`
     <div class="bg-white border border-[#c3c4c7] rounded-[8px] p-6">
@@ -19,6 +20,9 @@
         @endif
 
         <form method="post" action="/login" class="space-y-4">
+            @if(_csrf != null)
+                <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+            @endif
             <div>
                 <label for="email" class="block text-sm font-medium text-[#1e1e1e] mb-1">Email</label>
                 <input type="email" id="email" name="email" required

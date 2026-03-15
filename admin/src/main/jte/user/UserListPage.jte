@@ -5,6 +5,7 @@
 @param String userInitials = ""
 @param String userName = ""
 @param String cspNonce = ""
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @template.layout.MainLayout(
     vite = vite,
@@ -55,6 +56,9 @@
                             <a href="/users/${user.id().toString()}/edit" class="text-[#2271b1] hover:text-[#135e96] hover:underline">Edit</a>
                             <form method="post" action="/users/${user.id().toString()}/delete" class="inline"
                                   x-data x-on:submit.prevent="if(confirm('Are you sure you want to delete this user?')) $el.submit()">
+                                @if(_csrf != null)
+                                    <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                                @endif
                                 <button type="submit" class="text-[#d63638] hover:underline">Delete</button>
                             </form>
                         </td>

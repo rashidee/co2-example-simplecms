@@ -5,6 +5,7 @@
 @param String userInitials = ""
 @param String userName = ""
 @param String cspNonce = ""
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 @template.layout.MainLayout(
     vite = vite,
@@ -25,6 +26,9 @@
             @endif
 
             <form method="post" action="/team-section/create" enctype="multipart/form-data" class="space-y-4">
+                @if(_csrf != null)
+                    <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                @endif
                 <div>
                     <label for="name" class="block text-sm font-medium text-[#1e1e1e] mb-1">Name</label>
                     <input type="text" id="name" name="name" required maxlength="100"

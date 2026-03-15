@@ -2,6 +2,7 @@
 @param String userName = ""
 @param String userRole = ""
 @param String cspNonce = ""
+@param org.springframework.security.web.csrf.CsrfToken _csrf = null
 
 !{var roleLower = userRole.toLowerCase();}
 
@@ -67,6 +68,9 @@
                 </a>
                 <div class="border-t border-slate-100 dark:border-slate-700 my-1"></div>
                 <form method="post" action="/logout">
+                    @if(_csrf != null)
+                        <input type="hidden" name="${_csrf.getParameterName()}" value="${_csrf.getToken()}">
+                    @endif
                     <button type="submit"
                             class="flex w-full items-center gap-2 px-4 py-2 text-sm text-danger hover:bg-red-50 dark:hover:bg-red-900/20">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
