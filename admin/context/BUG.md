@@ -55,6 +55,14 @@
     2. Click on System > User menu
     3. Observe that the page is not loading and there is an error in the console
   - Expected result: The user management page should load successfully without any errors
+- In the create/edit user form, the role selection of `USER` should be removed
+  - Priority: Low
+  - Steps to reproduce:
+    1. Login as admin user
+    2. Go to System > User menu
+    3. Click on Create User or Edit an existing user
+    4. Observe that the role selection includes `USER` option
+  - Expected result: The role selection should only include `ADMIN` or `EDITOR` option since there is no functionality for `USER` role in the system and it can cause confusion for the admin users
 
 ---
 
