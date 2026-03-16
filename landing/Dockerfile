@@ -13,7 +13,7 @@ COPY Modules/ Modules/
 RUN npm run build
 
 # Stage 2: PHP application
-FROM php:8.2-fpm AS app
+FROM php:8.4-fpm AS app
 
 # Install system dependencies and PHP extensions
 RUN apt-get update && apt-get install -y \
@@ -39,6 +39,11 @@ COPY . .
 
 # Copy built frontend assets from builder stage
 COPY --from=frontend-builder /app/public/build public/build
+
+# Ensure storage directories exist (excluded by .dockerignore)
+RUN mkdir -p storage/framework/{cache,sessions,views} \
+    && mkdir -p storage/logs \
+    && mkdir -p bootstrap/cache
 
 # Generate optimized autoloader and run post-install scripts
 RUN composer dump-autoload --optimize \
