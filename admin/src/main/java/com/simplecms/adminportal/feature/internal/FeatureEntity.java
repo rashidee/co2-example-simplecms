@@ -1,6 +1,5 @@
 package com.simplecms.adminportal.feature.internal;
 
-import com.simplecms.adminportal.feature.FeatureStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,10 +35,6 @@ public class FeatureEntity {
 
     @Column(name = "display_order", nullable = false)
     private int displayOrder = 0;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false, length = 20)
-    private FeatureStatus status = FeatureStatus.DRAFT;
 
     @Version
     @Column(name = "version", nullable = false)

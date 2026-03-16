@@ -2,7 +2,6 @@ package com.simplecms.adminportal.testimonial.internal;
 
 import com.simplecms.adminportal.testimonial.TestimonialDTO;
 import com.simplecms.adminportal.testimonial.TestimonialService;
-import com.simplecms.adminportal.testimonial.TestimonialStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -30,11 +29,10 @@ class TestimonialPageController {
 
     @GetMapping
     String list(
-            @RequestParam(value = "status", required = false) TestimonialStatus status,
             @PageableDefault(size = 16) Pageable pageable,
             Model model) {
-        Page<TestimonialDTO> testimonials = testimonialService.list(status, pageable);
-        model.addAttribute("view", TestimonialListView.of(testimonials, status));
+        Page<TestimonialDTO> testimonials = testimonialService.list(pageable);
+        model.addAttribute("view", TestimonialListView.of(testimonials));
         return "testimonial/TestimonialListPage";
     }
 
@@ -50,10 +48,9 @@ class TestimonialPageController {
             @RequestParam("customerReview") String customerReview,
             @RequestParam("customerRating") int customerRating,
             @RequestParam("displayOrder") int displayOrder,
-            @RequestParam("status") TestimonialStatus status,
             RedirectAttributes redirectAttributes) {
         try {
-            testimonialService.create(customerName, customerReview, customerRating, displayOrder, status);
+            testimonialService.create(customerName, customerReview, customerRating, displayOrder);
             redirectAttributes.addFlashAttribute("successMessage", "Testimonial created successfully.");
             return "redirect:/testimonials";
         } catch (IllegalArgumentException e) {
@@ -76,10 +73,9 @@ class TestimonialPageController {
             @RequestParam("customerReview") String customerReview,
             @RequestParam("customerRating") int customerRating,
             @RequestParam("displayOrder") int displayOrder,
-            @RequestParam("status") TestimonialStatus status,
             RedirectAttributes redirectAttributes) {
         try {
-            testimonialService.update(id, customerName, customerReview, customerRating, displayOrder, status);
+            testimonialService.update(id, customerName, customerReview, customerRating, displayOrder);
             redirectAttributes.addFlashAttribute("successMessage", "Testimonial updated successfully.");
             return "redirect:/testimonials";
         } catch (IllegalArgumentException e) {

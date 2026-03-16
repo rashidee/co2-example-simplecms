@@ -3,21 +3,13 @@
 
 @for(var m : teamMembers.getContent())
     <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] overflow-hidden">
-        <img src="${m.profilePicturePath()}" alt="${m.name()}" class="w-full h-[200px] object-cover">
+        <img src="${m.imageUrl()}" alt="${m.name()}" class="w-full h-[200px] object-cover">
         <div class="p-4">
             <h3 class="font-semibold text-[#1e1e1e] dark:text-slate-100 text-sm">${m.name()}</h3>
             <p class="text-xs text-[#646970] dark:text-slate-400 mb-1">${m.role()}</p>
             @if(m.linkedinUrl() != null)
                 <a href="${m.linkedinUrl()}" target="_blank" class="text-xs text-[#2271b1] hover:underline">LinkedIn</a>
             @endif
-            <div class="mt-2">
-                <span class="inline-block px-2 py-0.5 text-xs font-medium rounded-full
-                    ${m.status().name().equals("ACTIVE") ? "bg-[#00a32a]/10 text-[#00a32a]" :
-                      m.status().name().equals("DRAFT") ? "bg-[#dba617]/10 text-[#dba617]" :
-                      "bg-[#d63638]/10 text-[#d63638]"}">
-                    ${m.status().name()}
-                </span>
-            </div>
             <div class="mt-3 flex gap-3">
                 <a href="/team-section/${m.id().toString()}/edit" class="text-sm text-[#2271b1] hover:underline">Edit</a>
                 <form method="post" action="/team-section/${m.id().toString()}/delete" class="inline"

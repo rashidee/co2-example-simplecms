@@ -10,12 +10,6 @@
                 <span class="text-sm ${i <= t.customerRating() ? "text-[#dba617]" : "text-[#c3c4c7]"}">&#9733;</span>
             @endfor
         </div>
-        <span class="inline-block px-2 py-0.5 text-xs font-medium rounded-full
-            ${t.status().name().equals("ACTIVE") ? "bg-[#00a32a]/10 text-[#00a32a]" :
-              t.status().name().equals("DRAFT") ? "bg-[#dba617]/10 text-[#dba617]" :
-              "bg-slate-100 text-slate-600"}">
-            ${t.status().name()}
-        </span>
         <div class="mt-3 flex gap-3">
             <a href="/testimonials/${t.id().toString()}/edit" class="text-sm text-[#2271b1] hover:underline">Edit</a>
             <form method="post" action="/testimonials/${t.id().toString()}/delete" class="inline"

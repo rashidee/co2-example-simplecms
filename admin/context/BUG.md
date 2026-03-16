@@ -52,7 +52,7 @@
   - Expected result: All the cards in all the pages should have a dark background with light text when dark mode is enabled for better readability
 
 [v1.0.4]
-- Menu sidebar highlight selected menu using white background on a white text color, which makes it hard to read the selected menu item
+- [BUG-016] Menu sidebar highlight selected menu using white background on a white text color, which makes it hard to read the selected menu item
   - Priority: Low
   - Steps to reproduce:
       1. Login as admin user
@@ -123,7 +123,7 @@
   - Expected result: The new hero section content should be created successfully without any errors
 
 [v1.0.4]
-- The hero section effective and end date is not saved properly.
+- [BUG-017] The hero section effective and end date is not saved properly.
   - Priority: Medium
   - Steps to reproduce:
     1. Login as editor user

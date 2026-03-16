@@ -2,7 +2,6 @@ package com.simplecms.adminportal.testimonial.internal;
 
 import com.simplecms.adminportal.testimonial.TestimonialDTO;
 import com.simplecms.adminportal.testimonial.TestimonialService;
-import com.simplecms.adminportal.testimonial.TestimonialStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -31,8 +30,8 @@ class TestimonialServiceImpl implements TestimonialService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<TestimonialDTO> list(TestimonialStatus status, Pageable pageable) {
-        return repository.findWithFilters(status, pageable).map(mapper::toDTO);
+    public Page<TestimonialDTO> list(Pageable pageable) {
+        return repository.findWithFilters(pageable).map(mapper::toDTO);
     }
 
     @Override
@@ -45,7 +44,7 @@ class TestimonialServiceImpl implements TestimonialService {
 
     @Override
     public TestimonialDTO create(String customerName, String customerReview,
-                                 int customerRating, int displayOrder, TestimonialStatus status) {
+                                 int customerRating, int displayOrder) {
         if (customerRating < 1 || customerRating > 5) {
             throw new IllegalArgumentException("Rating must be between 1 and 5");
         }
@@ -55,7 +54,6 @@ class TestimonialServiceImpl implements TestimonialService {
         entity.setCustomerReview(customerReview);
         entity.setCustomerRating(customerRating);
         entity.setDisplayOrder(displayOrder);
-        entity.setStatus(status);
         entity.setCreatedBy("EDITOR");
 
         TestimonialEntity saved = repository.save(entity);
@@ -65,7 +63,7 @@ class TestimonialServiceImpl implements TestimonialService {
 
     @Override
     public TestimonialDTO update(UUID id, String customerName, String customerReview,
-                                 int customerRating, int displayOrder, TestimonialStatus status) {
+                                 int customerRating, int displayOrder) {
         if (customerRating < 1 || customerRating > 5) {
             throw new IllegalArgumentException("Rating must be between 1 and 5");
         }
@@ -77,7 +75,6 @@ class TestimonialServiceImpl implements TestimonialService {
         entity.setCustomerReview(customerReview);
         entity.setCustomerRating(customerRating);
         entity.setDisplayOrder(displayOrder);
-        entity.setStatus(status);
         entity.setUpdatedBy("EDITOR");
 
         TestimonialEntity saved = repository.save(entity);

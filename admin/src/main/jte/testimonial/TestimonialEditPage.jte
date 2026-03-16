@@ -60,19 +60,6 @@
                            value="${view.testimonial().displayOrder()}"
                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
                 </div>
-                <div>
-                    <label for="status" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Status</label>
-                    <select id="status" name="status" required
-                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
-                        @for(var status : view.statuses())
-                            @if(status == view.testimonial().status())
-                                <option value="${status.name()}" selected>${status.name()}</option>
-                            @else
-                                <option value="${status.name()}">${status.name()}</option>
-                            @endif
-                        @endfor
-                    </select>
-                </div>
                 <div class="flex gap-3">
                     <button type="submit"
                             class="px-4 py-2.5 bg-[#2271b1] hover:bg-[#135e96] text-white text-sm font-medium rounded-[4px] transition-colors duration-200">

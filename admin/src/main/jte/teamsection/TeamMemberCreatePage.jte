@@ -51,15 +51,6 @@
                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
                 </div>
                 <div>
-                    <label for="status" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Status</label>
-                    <select id="status" name="status" required
-                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
-                        @for(var s : view.statuses())
-                            <option value="${s.name()}">${s.name()}</option>
-                        @endfor
-                    </select>
-                </div>
-                <div>
                     <label for="profilePicture" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Profile Picture (400x400px)</label>
                     <input type="file" id="profilePicture" name="profilePicture" required accept="image/*"
                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">

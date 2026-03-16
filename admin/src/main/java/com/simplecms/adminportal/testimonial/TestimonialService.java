@@ -13,12 +13,11 @@ import java.util.UUID;
 public interface TestimonialService {
 
     /**
-     * List testimonials with optional status filter,
-     * ordered by displayOrder ASC, then createdAt ASC.
+     * List testimonials ordered by displayOrder ASC, then createdAt ASC.
      *
      * Traces: USA000069, NFRA00078
      */
-    Page<TestimonialDTO> list(TestimonialStatus status, Pageable pageable);
+    Page<TestimonialDTO> list(Pageable pageable);
 
     /**
      * Get a testimonial by ID.
@@ -34,11 +33,10 @@ public interface TestimonialService {
      * @param customerReview customer review (max 1000)
      * @param customerRating rating 1-5
      * @param displayOrder   display order integer
-     * @param status         content status
      * @return created testimonial DTO
      */
     TestimonialDTO create(String customerName, String customerReview,
-                          int customerRating, int displayOrder, TestimonialStatus status);
+                          int customerRating, int displayOrder);
 
     /**
      * Update an existing testimonial.
@@ -46,7 +44,7 @@ public interface TestimonialService {
      * Traces: USA000060, USA000063
      */
     TestimonialDTO update(UUID id, String customerName, String customerReview,
-                          int customerRating, int displayOrder, TestimonialStatus status);
+                          int customerRating, int displayOrder);
 
     /**
      * Delete a testimonial by ID.

@@ -1,7 +1,6 @@
 package com.simplecms.adminportal.productservice.internal;
 
 import com.simplecms.adminportal.productservice.ProductServiceDTO;
-import com.simplecms.adminportal.productservice.ProductServiceStatus;
 import org.springframework.data.domain.Page;
 
 /**
@@ -11,12 +10,10 @@ import org.springframework.data.domain.Page;
  */
 public record ProductServiceListView(
     Page<ProductServiceDTO> items,
-    ProductServiceStatus filterStatus,
-    ProductServiceStatus[] statuses,
     String successMessage,
     boolean hasSuccess
 ) {
-    public static ProductServiceListView of(Page<ProductServiceDTO> items, ProductServiceStatus filterStatus) {
-        return new ProductServiceListView(items, filterStatus, ProductServiceStatus.values(), null, false);
+    public static ProductServiceListView of(Page<ProductServiceDTO> items) {
+        return new ProductServiceListView(items, null, false);
     }
 }

@@ -6,6 +6,9 @@ import com.simplecms.adminportal.herosection.HeroSectionStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.CacheControl;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +19,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Controller for hero section pages.
+ * v1.0.4: Status auto-computed, image served from BLOB.
  *
  * Traces: USA000030, USA000033
  */
@@ -66,7 +71,6 @@ class HeroSectionPageController {
             @RequestParam("ctaText") String ctaText,
             @RequestParam("effectiveDate") String effectiveDate,
             @RequestParam(value = "expirationDate", required = false) String expirationDate,
-            @RequestParam("status") HeroSectionStatus status,
             @RequestParam("image") MultipartFile image,
             RedirectAttributes redirectAttributes) {
 
@@ -76,7 +80,7 @@ class HeroSectionPageController {
                 ? LocalDate.parse(expirationDate).atStartOfDay() : null;
 
             heroSectionService.create(headline, subheadline, ctaUrl, ctaText,
-                effDate, expDate, status, image);
+                effDate, expDate, image);
             redirectAttributes.addFlashAttribute("successMessage", "Hero section created successfully.");
             return "redirect:/hero-section";
         } catch (IllegalArgumentException e) {
@@ -101,7 +105,6 @@ class HeroSectionPageController {
             @RequestParam("ctaText") String ctaText,
             @RequestParam("effectiveDate") String effectiveDate,
             @RequestParam(value = "expirationDate", required = false) String expirationDate,
-            @RequestParam("status") HeroSectionStatus status,
             @RequestParam(value = "image", required = false) MultipartFile image,
             RedirectAttributes redirectAttributes) {
 
@@ -111,12 +114,36 @@ class HeroSectionPageController {
                 ? LocalDate.parse(expirationDate).atStartOfDay() : null;
 
             heroSectionService.update(id, headline, subheadline, ctaUrl, ctaText,
-                effDate, expDate, status, image);
+                effDate, expDate, image);
             redirectAttributes.addFlashAttribute("successMessage", "Hero section updated successfully.");
             return "redirect:/hero-section";
         } catch (IllegalArgumentException e) {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
             return "redirect:/hero-section/" + id + "/edit";
         }
+    }
+
+    /**
+     * v1.0.4: Serve original image from BLOB.
+     */
+    @GetMapping("/{id}/image")
+    ResponseEntity<byte[]> serveImage(@PathVariable("id") UUID id) {
+        byte[] data = heroSectionService.getImageData(id);
+        return ResponseEntity.ok()
+            .contentType(MediaType.IMAGE_PNG)
+            .cacheControl(CacheControl.maxAge(1, TimeUnit.HOURS))
+            .body(data);
+    }
+
+    /**
+     * v1.0.4: Serve thumbnail image from BLOB.
+     */
+    @GetMapping("/{id}/thumbnail")
+    ResponseEntity<byte[]> serveThumbnail(@PathVariable("id") UUID id) {
+        byte[] data = heroSectionService.getThumbnailData(id);
+        return ResponseEntity.ok()
+            .contentType(MediaType.IMAGE_PNG)
+            .cacheControl(CacheControl.maxAge(1, TimeUnit.HOURS))
+            .body(data);
     }
 }

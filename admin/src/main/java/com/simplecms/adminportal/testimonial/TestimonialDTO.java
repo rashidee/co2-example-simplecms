@@ -12,6 +12,5 @@ public record TestimonialDTO(
     String customerReview,
     int customerRating,
     int displayOrder,
-    TestimonialStatus status,
     Instant createdAt
 ) {}

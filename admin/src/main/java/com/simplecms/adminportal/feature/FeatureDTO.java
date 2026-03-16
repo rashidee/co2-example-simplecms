@@ -12,6 +12,5 @@ public record FeatureDTO(
     String title,
     String description,
     int displayOrder,
-    FeatureStatus status,
     Instant createdAt
 ) {}

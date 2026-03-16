@@ -13,12 +13,11 @@ import java.util.UUID;
 public interface FeatureService {
 
     /**
-     * List features with optional status filter,
-     * ordered by displayOrder ASC, then createdAt ASC.
+     * List features ordered by displayOrder ASC, then createdAt ASC.
      *
      * Traces: USA000057, NFRA00066
      */
-    Page<FeatureDTO> list(FeatureStatus status, Pageable pageable);
+    Page<FeatureDTO> list(Pageable pageable);
 
     /**
      * Get a feature by ID.
@@ -34,11 +33,10 @@ public interface FeatureService {
      * @param title        title text (max 100)
      * @param description  description text (max 500)
      * @param displayOrder display order integer
-     * @param status       content status
      * @return created feature DTO
      */
     FeatureDTO create(String icon, String title, String description,
-                      int displayOrder, FeatureStatus status);
+                      int displayOrder);
 
     /**
      * Update an existing feature.
@@ -46,7 +44,7 @@ public interface FeatureService {
      * Traces: USA000048, USA000051
      */
     FeatureDTO update(UUID id, String icon, String title, String description,
-                      int displayOrder, FeatureStatus status);
+                      int displayOrder);
 
     /**
      * Delete a feature by ID.

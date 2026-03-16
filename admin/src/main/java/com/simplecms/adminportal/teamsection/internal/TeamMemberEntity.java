@@ -1,6 +1,5 @@
 package com.simplecms.adminportal.teamsection.internal;
 
-import com.simplecms.adminportal.teamsection.TeamMemberStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,8 +24,14 @@ public class TeamMemberEntity {
     @Column(name = "id", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "profile_picture_path", nullable = false, length = 500)
+    @Column(name = "profile_picture_path", length = 500)
     private String profilePicturePath;
+
+    @Column(name = "profile_picture_data", columnDefinition = "BYTEA")
+    private byte[] profilePictureData;
+
+    @Column(name = "thumbnail_data", columnDefinition = "BYTEA")
+    private byte[] thumbnailData;
 
     @Column(name = "name", nullable = false, length = 100)
     private String name;
@@ -39,10 +44,6 @@ public class TeamMemberEntity {
 
     @Column(name = "display_order", nullable = false)
     private int displayOrder = 0;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false, length = 20)
-    private TeamMemberStatus status = TeamMemberStatus.DRAFT;
 
     @Version
     @Column(name = "version", nullable = false)

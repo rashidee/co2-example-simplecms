@@ -2,7 +2,6 @@ package com.simplecms.adminportal.feature.internal;
 
 import com.simplecms.adminportal.feature.FeatureDTO;
 import com.simplecms.adminportal.feature.FeatureService;
-import com.simplecms.adminportal.feature.FeatureStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -30,11 +29,10 @@ class FeaturePageController {
 
     @GetMapping
     String list(
-            @RequestParam(value = "status", required = false) FeatureStatus status,
             @PageableDefault(size = 16) Pageable pageable,
             Model model) {
-        Page<FeatureDTO> features = featureService.list(status, pageable);
-        model.addAttribute("view", FeatureListView.of(features, status));
+        Page<FeatureDTO> features = featureService.list(pageable);
+        model.addAttribute("view", FeatureListView.of(features));
         return "feature/FeatureListPage";
     }
 
@@ -50,10 +48,9 @@ class FeaturePageController {
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("displayOrder") int displayOrder,
-            @RequestParam("status") FeatureStatus status,
             RedirectAttributes redirectAttributes) {
         try {
-            featureService.create(icon, title, description, displayOrder, status);
+            featureService.create(icon, title, description, displayOrder);
             redirectAttributes.addFlashAttribute("successMessage", "Feature created successfully.");
             return "redirect:/features-section";
         } catch (IllegalArgumentException e) {
@@ -76,10 +73,9 @@ class FeaturePageController {
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("displayOrder") int displayOrder,
-            @RequestParam("status") FeatureStatus status,
             RedirectAttributes redirectAttributes) {
         try {
-            featureService.update(id, icon, title, description, displayOrder, status);
+            featureService.update(id, icon, title, description, displayOrder);
             redirectAttributes.addFlashAttribute("successMessage", "Feature updated successfully.");
             return "redirect:/features-section";
         } catch (IllegalArgumentException e) {

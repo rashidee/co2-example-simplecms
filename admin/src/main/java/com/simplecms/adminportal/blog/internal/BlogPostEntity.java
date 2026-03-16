@@ -44,11 +44,17 @@ public class BlogPostEntity {
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(name = "image_path", nullable = false, length = 500)
+    @Column(name = "image_path", length = 500)
     private String imagePath;
 
-    @Column(name = "thumbnail_path", nullable = false, length = 500)
+    @Column(name = "thumbnail_path", length = 500)
     private String thumbnailPath;
+
+    @Column(name = "image_data", columnDefinition = "BYTEA")
+    private byte[] imageData;
+
+    @Column(name = "thumbnail_data", columnDefinition = "BYTEA")
+    private byte[] thumbnailData;
 
     @Column(name = "effective_date", nullable = false)
     private LocalDateTime effectiveDate;

@@ -2,11 +2,9 @@ package com.simplecms.adminportal.productservice.internal;
 
 import com.simplecms.adminportal.productservice.ProductServiceDTO;
 import com.simplecms.adminportal.productservice.ProductServiceService;
-import com.simplecms.adminportal.productservice.ProductServiceStatus;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,14 +14,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.UUID;
 
 /**
  * Implementation of ProductServiceService.
+ * v1.0.4: BLOB image storage, thumbnail generation in-memory.
  *
  * Traces: USA000036-045, NFRA00039-057, CONSA0015
  */
@@ -41,9 +38,6 @@ class ProductServiceServiceImpl implements ProductServiceService {
     private final ProductServiceRepository repository;
     private final ProductServiceMapper mapper;
 
-    @Value("${app.upload.base-path:./uploads}")
-    private String uploadPath;
-
     ProductServiceServiceImpl(ProductServiceRepository repository, ProductServiceMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
@@ -51,8 +45,8 @@ class ProductServiceServiceImpl implements ProductServiceService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<ProductServiceDTO> list(ProductServiceStatus status, Pageable pageable) {
-        return repository.findWithFilters(status, pageable).map(mapper::toDTO);
+    public Page<ProductServiceDTO> list(Pageable pageable) {
+        return repository.findWithFilters(pageable).map(mapper::toDTO);
     }
 
     @Override
@@ -66,21 +60,22 @@ class ProductServiceServiceImpl implements ProductServiceService {
     @Override
     public ProductServiceDTO create(String title, String description, String ctaUrl,
                                     String ctaText, int displayOrder,
-                                    ProductServiceStatus status, MultipartFile image) {
-        validateImage(image);
+                                    MultipartFile image) {
+        BufferedImage bufferedImage = validateAndReadImage(image);
 
-        String imagePath = saveImage(image, "product");
-        String thumbnailPath = generateThumbnail(imagePath, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
+        byte[] imageData = toBytes(image);
+        byte[] thumbnailData = generateThumbnailBytes(bufferedImage, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
 
         ProductServiceEntity entity = new ProductServiceEntity();
-        entity.setImagePath(imagePath);
-        entity.setThumbnailPath(thumbnailPath);
+        entity.setImageData(imageData);
+        entity.setThumbnailData(thumbnailData);
+        entity.setImagePath(null);
+        entity.setThumbnailPath(null);
         entity.setTitle(title);
         entity.setDescription(description);
         entity.setCtaUrl(ctaUrl);
         entity.setCtaText(ctaText);
         entity.setDisplayOrder(displayOrder);
-        entity.setStatus(status);
         entity.setCreatedBy("EDITOR");
 
         ProductServiceEntity saved = repository.save(entity);
@@ -91,16 +86,16 @@ class ProductServiceServiceImpl implements ProductServiceService {
     @Override
     public ProductServiceDTO update(UUID id, String title, String description, String ctaUrl,
                                     String ctaText, int displayOrder,
-                                    ProductServiceStatus status, MultipartFile image) {
+                                    MultipartFile image) {
         ProductServiceEntity entity = repository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Product/Service not found: " + id));
 
         if (image != null && !image.isEmpty()) {
-            validateImage(image);
-            String imagePath = saveImage(image, "product");
-            String thumbnailPath = generateThumbnail(imagePath, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
-            entity.setImagePath(imagePath);
-            entity.setThumbnailPath(thumbnailPath);
+            BufferedImage bufferedImage = validateAndReadImage(image);
+            entity.setImageData(toBytes(image));
+            entity.setThumbnailData(generateThumbnailBytes(bufferedImage, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT));
+            entity.setImagePath(null);
+            entity.setThumbnailPath(null);
         }
 
         entity.setTitle(title);
@@ -108,7 +103,6 @@ class ProductServiceServiceImpl implements ProductServiceService {
         entity.setCtaUrl(ctaUrl);
         entity.setCtaText(ctaText);
         entity.setDisplayOrder(displayOrder);
-        entity.setStatus(status);
         entity.setUpdatedBy("EDITOR");
 
         ProductServiceEntity saved = repository.save(entity);
@@ -123,12 +117,34 @@ class ProductServiceServiceImpl implements ProductServiceService {
         log.info("Product/Service deleted: {}", id);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public byte[] getImageData(UUID id) {
+        ProductServiceEntity entity = repository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Product/Service not found: " + id));
+        if (entity.getImageData() != null) {
+            return entity.getImageData();
+        }
+        return getPlaceholderImage();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public byte[] getThumbnailData(UUID id) {
+        ProductServiceEntity entity = repository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Product/Service not found: " + id));
+        if (entity.getThumbnailData() != null) {
+            return entity.getThumbnailData();
+        }
+        return getPlaceholderImage();
+    }
+
     /**
-     * Validate image dimensions are exactly 400x400.
+     * Validate image dimensions are exactly 400x400 and return the BufferedImage.
      *
      * Traces: NFRA00039
      */
-    private void validateImage(MultipartFile image) {
+    private BufferedImage validateAndReadImage(MultipartFile image) {
         try {
             BufferedImage bufferedImage = ImageIO.read(image.getInputStream());
             if (bufferedImage == null) {
@@ -140,49 +156,46 @@ class ProductServiceServiceImpl implements ProductServiceService {
                         IMAGE_WIDTH, IMAGE_HEIGHT,
                         bufferedImage.getWidth(), bufferedImage.getHeight()));
             }
+            return bufferedImage;
         } catch (IOException e) {
             throw new IllegalArgumentException("Failed to read image file", e);
         }
     }
 
-    private String saveImage(MultipartFile image, String prefix) {
+    private byte[] toBytes(MultipartFile file) {
         try {
-            String filename = prefix + "-" + UUID.randomUUID() + getExtension(image.getOriginalFilename());
-            Path dir = Paths.get(uploadPath, "product-service").toAbsolutePath();
-            Files.createDirectories(dir);
-            Path filePath = dir.resolve(filename);
-            image.transferTo(filePath.toFile());
-            return "/uploads/product-service/" + filename;
+            return file.getBytes();
         } catch (IOException e) {
-            throw new RuntimeException("Failed to save image", e);
+            throw new RuntimeException("Failed to read image bytes", e);
         }
     }
 
     /**
-     * Generate thumbnail using Scalr center-crop.
+     * Generate thumbnail as byte array using Scalr.
      *
      * Traces: NFRA00057
      */
-    private String generateThumbnail(String originalPath, int width, int height) {
+    private byte[] generateThumbnailBytes(BufferedImage original, int width, int height) {
         try {
-            Path source = Paths.get(uploadPath).toAbsolutePath().resolve(originalPath.replaceFirst("^/uploads/", ""));
-            BufferedImage original = ImageIO.read(source.toFile());
             BufferedImage thumbnail = Scalr.resize(original, Scalr.Method.QUALITY,
                 Scalr.Mode.FIT_EXACT, width, height);
-
-            String thumbFilename = "thumb-" + source.getFileName();
-            Path thumbPath = source.getParent().resolve(thumbFilename);
-            ImageIO.write(thumbnail, "png", thumbPath.toFile());
-
-            return "/uploads/product-service/" + thumbFilename;
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(thumbnail, "png", baos);
+            return baos.toByteArray();
         } catch (IOException e) {
             throw new RuntimeException("Failed to generate thumbnail", e);
         }
     }
 
-    private String getExtension(String filename) {
-        if (filename == null) return ".png";
-        int dot = filename.lastIndexOf('.');
-        return dot >= 0 ? filename.substring(dot) : ".png";
+    private byte[] getPlaceholderImage() {
+        try {
+            var resource = getClass().getClassLoader().getResourceAsStream("static/images/placeholder-400x400.png");
+            if (resource != null) {
+                return resource.readAllBytes();
+            }
+            return new byte[0];
+        } catch (IOException e) {
+            return new byte[0];
+        }
     }
 }

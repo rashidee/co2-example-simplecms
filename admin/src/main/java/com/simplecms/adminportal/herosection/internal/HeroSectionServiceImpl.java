@@ -6,7 +6,6 @@ import com.simplecms.adminportal.herosection.HeroSectionStatus;
 import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,15 +15,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
  * Implementation of HeroSectionService.
+ * v1.0.4: Auto-compute status, BLOB image storage, date validation.
  *
  * Traces: USA000030, USA000033, NFRA00018-036, CONSA0012
  */
@@ -41,9 +40,6 @@ class HeroSectionServiceImpl implements HeroSectionService {
 
     private final HeroSectionRepository repository;
     private final HeroSectionMapper mapper;
-
-    @Value("${app.upload.base-path:./uploads}")
-    private String uploadPath;
 
     HeroSectionServiceImpl(HeroSectionRepository repository, HeroSectionMapper mapper) {
         this.repository = repository;
@@ -75,16 +71,21 @@ class HeroSectionServiceImpl implements HeroSectionService {
     @Override
     public HeroSectionDTO create(String headline, String subheadline, String ctaUrl,
                                  String ctaText, LocalDateTime effectiveDate, LocalDateTime expirationDate,
-                                 HeroSectionStatus status, MultipartFile image) {
+                                 MultipartFile image) {
 
-        validateImage(image);
+        validateDates(effectiveDate, expirationDate);
+        BufferedImage bufferedImage = validateAndReadImage(image);
 
-        String imagePath = saveImage(image, "hero");
-        String thumbnailPath = generateThumbnail(imagePath, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
+        byte[] imageData = toBytes(image);
+        byte[] thumbnailData = generateThumbnailBytes(bufferedImage, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
+
+        HeroSectionStatus status = HeroSectionStatus.computeFromDates(effectiveDate, expirationDate);
 
         HeroSectionEntity entity = new HeroSectionEntity();
-        entity.setImagePath(imagePath);
-        entity.setThumbnailPath(thumbnailPath);
+        entity.setImageData(imageData);
+        entity.setThumbnailData(thumbnailData);
+        entity.setImagePath(null);
+        entity.setThumbnailPath(null);
         entity.setHeadline(headline);
         entity.setSubheadline(subheadline);
         entity.setCtaUrl(ctaUrl);
@@ -102,18 +103,22 @@ class HeroSectionServiceImpl implements HeroSectionService {
     @Override
     public HeroSectionDTO update(UUID id, String headline, String subheadline, String ctaUrl,
                                  String ctaText, LocalDateTime effectiveDate, LocalDateTime expirationDate,
-                                 HeroSectionStatus status, MultipartFile image) {
+                                 MultipartFile image) {
+
+        validateDates(effectiveDate, expirationDate);
 
         HeroSectionEntity entity = repository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Hero section not found: " + id));
 
         if (image != null && !image.isEmpty()) {
-            validateImage(image);
-            String imagePath = saveImage(image, "hero");
-            String thumbnailPath = generateThumbnail(imagePath, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
-            entity.setImagePath(imagePath);
-            entity.setThumbnailPath(thumbnailPath);
+            BufferedImage bufferedImage = validateAndReadImage(image);
+            entity.setImageData(toBytes(image));
+            entity.setThumbnailData(generateThumbnailBytes(bufferedImage, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT));
+            entity.setImagePath(null);
+            entity.setThumbnailPath(null);
         }
+
+        HeroSectionStatus status = HeroSectionStatus.computeFromDates(effectiveDate, expirationDate);
 
         entity.setHeadline(headline);
         entity.setSubheadline(subheadline);
@@ -128,12 +133,42 @@ class HeroSectionServiceImpl implements HeroSectionService {
         return mapper.toDTO(saved);
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public byte[] getImageData(UUID id) {
+        HeroSectionEntity entity = repository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Hero section not found: " + id));
+        if (entity.getImageData() != null) {
+            return entity.getImageData();
+        }
+        return getPlaceholderImage();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public byte[] getThumbnailData(UUID id) {
+        HeroSectionEntity entity = repository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Hero section not found: " + id));
+        if (entity.getThumbnailData() != null) {
+            return entity.getThumbnailData();
+        }
+        return getPlaceholderImage();
+    }
+
     /**
-     * Validate image dimensions are exactly 1600x500.
-     *
-     * Traces: NFRA00021
+     * Validate date constraints.
+     * v1.0.4: Effective date must be before expiration date.
      */
-    private void validateImage(MultipartFile image) {
+    private void validateDates(LocalDateTime effectiveDate, LocalDateTime expirationDate) {
+        if (expirationDate != null && !effectiveDate.isBefore(expirationDate)) {
+            throw new IllegalArgumentException("Effective date must be before expiration date.");
+        }
+    }
+
+    /**
+     * Validate image dimensions are exactly 1600x500 and return the BufferedImage.
+     */
+    private BufferedImage validateAndReadImage(MultipartFile image) {
         try {
             BufferedImage bufferedImage = ImageIO.read(image.getInputStream());
             if (bufferedImage == null) {
@@ -145,49 +180,44 @@ class HeroSectionServiceImpl implements HeroSectionService {
                         IMAGE_WIDTH, IMAGE_HEIGHT,
                         bufferedImage.getWidth(), bufferedImage.getHeight()));
             }
+            return bufferedImage;
         } catch (IOException e) {
             throw new IllegalArgumentException("Failed to read image file", e);
         }
     }
 
-    private String saveImage(MultipartFile image, String prefix) {
+    private byte[] toBytes(MultipartFile file) {
         try {
-            String filename = prefix + "-" + UUID.randomUUID() + getExtension(image.getOriginalFilename());
-            Path dir = Paths.get(uploadPath, "hero-section").toAbsolutePath();
-            Files.createDirectories(dir);
-            Path filePath = dir.resolve(filename);
-            image.transferTo(filePath.toFile());
-            return "/uploads/hero-section/" + filename;
+            return file.getBytes();
         } catch (IOException e) {
-            throw new RuntimeException("Failed to save image", e);
+            throw new RuntimeException("Failed to read image bytes", e);
         }
     }
 
     /**
-     * Generate thumbnail using Scalr center-crop.
-     *
-     * Traces: NFRA00036
+     * Generate thumbnail as byte array using Scalr.
      */
-    private String generateThumbnail(String originalPath, int width, int height) {
+    private byte[] generateThumbnailBytes(BufferedImage original, int width, int height) {
         try {
-            Path source = Paths.get(uploadPath).toAbsolutePath().resolve(originalPath.replaceFirst("^/uploads/", ""));
-            BufferedImage original = ImageIO.read(source.toFile());
             BufferedImage thumbnail = Scalr.resize(original, Scalr.Method.QUALITY,
                 Scalr.Mode.FIT_EXACT, width, height);
-
-            String thumbFilename = "thumb-" + source.getFileName();
-            Path thumbPath = source.getParent().resolve(thumbFilename);
-            ImageIO.write(thumbnail, "png", thumbPath.toFile());
-
-            return "/uploads/hero-section/" + thumbFilename;
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(thumbnail, "png", baos);
+            return baos.toByteArray();
         } catch (IOException e) {
             throw new RuntimeException("Failed to generate thumbnail", e);
         }
     }
 
-    private String getExtension(String filename) {
-        if (filename == null) return ".png";
-        int dot = filename.lastIndexOf('.');
-        return dot >= 0 ? filename.substring(dot) : ".png";
+    private byte[] getPlaceholderImage() {
+        try {
+            var resource = getClass().getClassLoader().getResourceAsStream("static/images/placeholder-1600x500.png");
+            if (resource != null) {
+                return resource.readAllBytes();
+            }
+            return new byte[0];
+        } catch (IOException e) {
+            return new byte[0];
+        }
     }
 }

@@ -93,4 +93,14 @@ public interface BlogService {
      * Traces: USA000099
      */
     void deletePost(UUID id);
+
+    /**
+     * v1.0.4: Retrieve original image data as bytes.
+     */
+    byte[] getPostImageData(UUID id);
+
+    /**
+     * v1.0.4: Retrieve thumbnail image data as bytes.
+     */
+    byte[] getPostThumbnailData(UUID id);
 }

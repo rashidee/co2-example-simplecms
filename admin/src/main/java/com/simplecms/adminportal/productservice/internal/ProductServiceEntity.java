@@ -1,6 +1,5 @@
 package com.simplecms.adminportal.productservice.internal;
 
-import com.simplecms.adminportal.productservice.ProductServiceStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,11 +24,17 @@ public class ProductServiceEntity {
     @Column(name = "id", nullable = false, updatable = false)
     private UUID id;
 
-    @Column(name = "image_path", nullable = false, length = 500)
+    @Column(name = "image_path", length = 500)
     private String imagePath;
 
-    @Column(name = "thumbnail_path", nullable = false, length = 500)
+    @Column(name = "thumbnail_path", length = 500)
     private String thumbnailPath;
+
+    @Column(name = "image_data", columnDefinition = "BYTEA")
+    private byte[] imageData;
+
+    @Column(name = "thumbnail_data", columnDefinition = "BYTEA")
+    private byte[] thumbnailData;
 
     @Column(name = "title", nullable = false, length = 100)
     private String title;
@@ -45,10 +50,6 @@ public class ProductServiceEntity {
 
     @Column(name = "display_order", nullable = false)
     private int displayOrder = 0;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false, length = 20)
-    private ProductServiceStatus status = ProductServiceStatus.DRAFT;
 
     @Version
     @Column(name = "version", nullable = false)

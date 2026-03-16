@@ -81,13 +81,13 @@
                     <div>
                         <label for="effectiveDate" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Effective Date</label>
                         <input type="date" id="effectiveDate" name="effectiveDate" required
-                               value="${view.post().effectiveDate().toString()}"
+                               value="${view.post().effectiveDate().toLocalDate().toString()}"
                                class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
                     </div>
                     <div>
                         <label for="expirationDate" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Expiration Date (optional)</label>
                         <input type="date" id="expirationDate" name="expirationDate"
-                               value="${view.post().expirationDate() != null ? view.post().expirationDate().toString() : ""}"
+                               value="${view.post().expirationDate() != null ? view.post().expirationDate().toLocalDate().toString() : ""}"
                                class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Current Image</label>
-                    <img src="${view.post().imagePath()}" alt="${view.post().title()}" class="w-full max-h-[125px] object-cover rounded-[4px] mb-2">
+                    <img src="${view.post().imageUrl()}" alt="${view.post().title()}" class="w-full max-h-[125px] object-cover rounded-[4px] mb-2">
                 </div>
                 <div>
                     <label for="image" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">New Image (1600x500px, optional)</label>

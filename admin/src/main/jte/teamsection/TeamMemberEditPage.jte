@@ -55,21 +55,8 @@
                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
                 </div>
                 <div>
-                    <label for="status" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Status</label>
-                    <select id="status" name="status" required
-                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
-                        @for(var s : view.statuses())
-                            @if(s.equals(view.teamMember().status()))
-                                <option value="${s.name()}" selected>${s.name()}</option>
-                            @else
-                                <option value="${s.name()}">${s.name()}</option>
-                            @endif
-                        @endfor
-                    </select>
-                </div>
-                <div>
                     <label class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Current Picture</label>
-                    <img src="${view.teamMember().profilePicturePath()}" alt="${view.teamMember().name()}" class="w-24 h-24 object-cover rounded-[4px] mb-2">
+                    <img src="${view.teamMember().imageUrl()}" alt="${view.teamMember().name()}" class="w-24 h-24 object-cover rounded-[4px] mb-2">
                 </div>
                 <div>
                     <label for="profilePicture" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">New Profile Picture (400x400px, optional)</label>

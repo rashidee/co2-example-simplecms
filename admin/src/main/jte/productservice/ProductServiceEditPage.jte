@@ -46,7 +46,7 @@
                 <div>
                     <label class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Current Image</label>
                     <div class="mb-2 border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] overflow-hidden inline-block">
-                        <img src="${view.item().thumbnailPath()}" alt="${view.item().title()}"
+                        <img src="${view.item().thumbnailUrl()}" alt="${view.item().title()}"
                              class="w-[200px] h-[200px] object-cover">
                     </div>
                     <label for="image" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Replace Image</label>
@@ -70,26 +70,11 @@
                         <p class="mt-1 text-xs text-[#646970] dark:text-slate-400">Optional, max 50 characters</p>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label for="displayOrder" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Display Order</label>
-                        <input type="number" id="displayOrder" name="displayOrder" required min="0"
-                               value="${view.item().displayOrder()}"
-                               class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
-                    </div>
-                    <div>
-                        <label for="status" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Status</label>
-                        <select id="status" name="status" required
-                                class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
-                            @for(var s : view.statuses())
-                                @if(s == view.item().status())
-                                    <option value="${s.name()}" selected>${s.name()}</option>
-                                @else
-                                    <option value="${s.name()}">${s.name()}</option>
-                                @endif
-                            @endfor
-                        </select>
-                    </div>
+                <div>
+                    <label for="displayOrder" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Display Order</label>
+                    <input type="number" id="displayOrder" name="displayOrder" required min="0"
+                           value="${view.item().displayOrder()}"
+                           class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
                 </div>
                 <div class="flex gap-3">
                     <button type="submit"

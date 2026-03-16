@@ -7,6 +7,9 @@ import com.simplecms.adminportal.user.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.CacheControl;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("/blog")
@@ -128,5 +132,29 @@ class BlogPostPageController {
             redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
         }
         return "redirect:/blog";
+    }
+
+    /**
+     * v1.0.4: Serve original image from BLOB.
+     */
+    @GetMapping("/{id}/image")
+    ResponseEntity<byte[]> serveImage(@PathVariable("id") UUID id) {
+        byte[] data = blogService.getPostImageData(id);
+        return ResponseEntity.ok()
+            .contentType(MediaType.IMAGE_PNG)
+            .cacheControl(CacheControl.maxAge(1, TimeUnit.HOURS))
+            .body(data);
+    }
+
+    /**
+     * v1.0.4: Serve thumbnail image from BLOB.
+     */
+    @GetMapping("/{id}/thumbnail")
+    ResponseEntity<byte[]> serveThumbnail(@PathVariable("id") UUID id) {
+        byte[] data = blogService.getPostThumbnailData(id);
+        return ResponseEntity.ok()
+            .contentType(MediaType.IMAGE_PNG)
+            .cacheControl(CacheControl.maxAge(1, TimeUnit.HOURS))
+            .body(data);
     }
 }

@@ -14,12 +14,11 @@ import java.util.UUID;
 public interface TeamMemberService {
 
     /**
-     * List team members with optional status filter,
-     * ordered by displayOrder ASC, then createdAt ASC.
+     * List team members ordered by displayOrder ASC, then createdAt ASC.
      *
      * Traces: USA000081, NFRA00093
      */
-    Page<TeamMemberDTO> list(TeamMemberStatus status, Pageable pageable);
+    Page<TeamMemberDTO> list(Pageable pageable);
 
     /**
      * Get a team member by ID.
@@ -33,7 +32,7 @@ public interface TeamMemberService {
      * Traces: USA000072, USA000075, NFRA00081
      */
     TeamMemberDTO create(String name, String role, String linkedinUrl,
-                         int displayOrder, TeamMemberStatus status, MultipartFile profilePicture);
+                         int displayOrder, MultipartFile profilePicture);
 
     /**
      * Update an existing team member. Profile picture is optional on update.
@@ -41,7 +40,7 @@ public interface TeamMemberService {
      * Traces: USA000072, USA000075
      */
     TeamMemberDTO update(UUID id, String name, String role, String linkedinUrl,
-                         int displayOrder, TeamMemberStatus status, MultipartFile profilePicture);
+                         int displayOrder, MultipartFile profilePicture);
 
     /**
      * Delete a team member by ID.
@@ -49,4 +48,9 @@ public interface TeamMemberService {
      * Traces: USA000078
      */
     void delete(UUID id);
+
+    /**
+     * v1.0.4: Retrieve profile picture image data as bytes.
+     */
+    byte[] getImageData(UUID id);
 }

@@ -46,7 +46,7 @@
                 <div>
                     <label class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Current Image</label>
                     <div class="mb-2 border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] overflow-hidden">
-                        <img src="${view.heroSection().thumbnailPath()}" alt="${view.heroSection().headline()}"
+                        <img src="${view.heroSection().thumbnailUrl()}" alt="${view.heroSection().headline()}"
                              class="w-full h-[125px] object-cover">
                     </div>
                     <label for="image" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Replace Image</label>
@@ -73,29 +73,16 @@
                     <div>
                         <label for="effectiveDate" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Effective Date</label>
                         <input type="date" id="effectiveDate" name="effectiveDate" required
-                               value="${view.heroSection().effectiveDate().toString()}"
+                               value="${view.heroSection().effectiveDate().toLocalDate().toString()}"
                                class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
                     </div>
                     <div>
                         <label for="expirationDate" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Expiration Date</label>
                         <input type="date" id="expirationDate" name="expirationDate"
-                               value="${view.heroSection().expirationDate() != null ? view.heroSection().expirationDate().toString() : ""}"
+                               value="${view.heroSection().expirationDate() != null ? view.heroSection().expirationDate().toLocalDate().toString() : ""}"
                                class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
-                        <p class="mt-1 text-xs text-[#646970] dark:text-slate-400">Optional</p>
+                        <p class="mt-1 text-xs text-[#646970] dark:text-slate-400">Optional. Status: ${view.heroSection().status().name()} (auto-determined from dates)</p>
                     </div>
-                </div>
-                <div>
-                    <label for="status" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Status</label>
-                    <select id="status" name="status" required
-                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
-                        @for(var s : view.statuses())
-                            @if(s == view.heroSection().status())
-                                <option value="${s.name()}" selected>${s.name()}</option>
-                            @else
-                                <option value="${s.name()}">${s.name()}</option>
-                            @endif
-                        @endfor
-                    </select>
                 </div>
                 <div class="flex gap-3">
                     <button type="submit"

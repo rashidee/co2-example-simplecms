@@ -8,7 +8,6 @@ import org.owasp.html.HtmlPolicyBuilder;
 import org.owasp.html.PolicyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,10 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.Normalizer;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -64,9 +61,6 @@ class BlogServiceImpl implements BlogService {
     private final BlogPostRepository postRepository;
     private final BlogMapper mapper;
     private final UserService userService;
-
-    @Value("${app.upload.base-path:./uploads}")
-    private String uploadPath;
 
     BlogServiceImpl(BlogCategoryRepository categoryRepository,
                     BlogPostRepository postRepository,
@@ -176,10 +170,10 @@ class BlogServiceImpl implements BlogService {
         // Validate author is EDITOR (CONSA0039)
         validateAuthorIsEditor(authorId);
 
-        // Validate and save image
-        validateImage(image);
-        String imagePath = saveImage(image);
-        String thumbnailPath = generateThumbnail(imagePath);
+        // Validate and store image as BLOB (v1.0.4)
+        BufferedImage bufferedImage = validateAndReadImage(image);
+        byte[] imageData = toBytes(image);
+        byte[] thumbnailData = generateThumbnailBytes(bufferedImage, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
 
         // Generate unique slug (NFRA00126)
         String slug = generateUniqueSlug(title);
@@ -194,8 +188,10 @@ class BlogServiceImpl implements BlogService {
         entity.setSlug(slug);
         entity.setSummary(summary);
         entity.setContent(sanitizedContent);
-        entity.setImagePath(imagePath);
-        entity.setThumbnailPath(thumbnailPath);
+        entity.setImageData(imageData);
+        entity.setThumbnailData(thumbnailData);
+        entity.setImagePath(null);
+        entity.setThumbnailPath(null);
         entity.setEffectiveDate(effectiveDate);
         entity.setExpirationDate(expirationDate);
         entity.setStatus(status);
@@ -219,11 +215,11 @@ class BlogServiceImpl implements BlogService {
         validateAuthorIsEditor(authorId);
 
         if (image != null && !image.isEmpty()) {
-            validateImage(image);
-            String imagePath = saveImage(image);
-            String thumbnailPath = generateThumbnail(imagePath);
-            entity.setImagePath(imagePath);
-            entity.setThumbnailPath(thumbnailPath);
+            BufferedImage bufferedImage = validateAndReadImage(image);
+            entity.setImageData(toBytes(image));
+            entity.setThumbnailData(generateThumbnailBytes(bufferedImage, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT));
+            entity.setImagePath(null);
+            entity.setThumbnailPath(null);
         }
 
         // Re-generate slug if title changed
@@ -276,7 +272,7 @@ class BlogServiceImpl implements BlogService {
 
         return new BlogPostDTO(dto.id(), dto.categoryId(), categoryName,
             dto.authorId(), authorName, dto.title(), dto.slug(), dto.summary(),
-            dto.content(), dto.imagePath(), dto.thumbnailPath(),
+            dto.content(), dto.imagePath(), dto.thumbnailPath(), dto.hasImageData(),
             dto.effectiveDate(), dto.expirationDate(), dto.status(), dto.createdAt());
     }
 
@@ -314,7 +310,32 @@ class BlogServiceImpl implements BlogService {
         return slug;
     }
 
-    private void validateImage(MultipartFile image) {
+    @Override
+    @Transactional(readOnly = true)
+    public byte[] getPostImageData(UUID id) {
+        BlogPostEntity entity = postRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Blog post not found: " + id));
+        if (entity.getImageData() != null) {
+            return entity.getImageData();
+        }
+        return getPlaceholderImage();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public byte[] getPostThumbnailData(UUID id) {
+        BlogPostEntity entity = postRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Blog post not found: " + id));
+        if (entity.getThumbnailData() != null) {
+            return entity.getThumbnailData();
+        }
+        return getPlaceholderImage();
+    }
+
+    /**
+     * Validate image dimensions are exactly 1600x500 and return the BufferedImage.
+     */
+    private BufferedImage validateAndReadImage(MultipartFile image) {
         try {
             BufferedImage bufferedImage = ImageIO.read(image.getInputStream());
             if (bufferedImage == null) {
@@ -326,44 +347,44 @@ class BlogServiceImpl implements BlogService {
                         IMAGE_WIDTH, IMAGE_HEIGHT,
                         bufferedImage.getWidth(), bufferedImage.getHeight()));
             }
+            return bufferedImage;
         } catch (IOException e) {
             throw new IllegalArgumentException("Failed to read image file", e);
         }
     }
 
-    private String saveImage(MultipartFile image) {
+    private byte[] toBytes(MultipartFile file) {
         try {
-            String filename = "blog-" + UUID.randomUUID() + getExtension(image.getOriginalFilename());
-            Path dir = Paths.get(uploadPath, "blog").toAbsolutePath();
-            Files.createDirectories(dir);
-            Path filePath = dir.resolve(filename);
-            image.transferTo(filePath.toFile());
-            return "/uploads/blog/" + filename;
+            return file.getBytes();
         } catch (IOException e) {
-            throw new RuntimeException("Failed to save image", e);
+            throw new RuntimeException("Failed to read image bytes", e);
         }
     }
 
-    private String generateThumbnail(String originalPath) {
+    /**
+     * Generate thumbnail as byte array using Scalr.
+     */
+    private byte[] generateThumbnailBytes(BufferedImage original, int width, int height) {
         try {
-            Path source = Paths.get(uploadPath).toAbsolutePath().resolve(originalPath.replaceFirst("^/uploads/", ""));
-            BufferedImage original = ImageIO.read(source.toFile());
             BufferedImage thumbnail = Scalr.resize(original, Scalr.Method.QUALITY,
-                Scalr.Mode.FIT_EXACT, THUMBNAIL_WIDTH, THUMBNAIL_HEIGHT);
-
-            String thumbFilename = "thumb-" + source.getFileName();
-            Path thumbPath = source.getParent().resolve(thumbFilename);
-            ImageIO.write(thumbnail, "png", thumbPath.toFile());
-
-            return "/uploads/blog/" + thumbFilename;
+                Scalr.Mode.FIT_EXACT, width, height);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(thumbnail, "png", baos);
+            return baos.toByteArray();
         } catch (IOException e) {
             throw new RuntimeException("Failed to generate thumbnail", e);
         }
     }
 
-    private String getExtension(String filename) {
-        if (filename == null) return ".png";
-        int dot = filename.lastIndexOf('.');
-        return dot >= 0 ? filename.substring(dot) : ".png";
+    private byte[] getPlaceholderImage() {
+        try {
+            var resource = getClass().getClassLoader().getResourceAsStream("static/images/placeholder-1600x500.png");
+            if (resource != null) {
+                return resource.readAllBytes();
+            }
+            return new byte[0];
+        } catch (IOException e) {
+            return new byte[0];
+        }
     }
 }

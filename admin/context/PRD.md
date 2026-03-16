@@ -84,6 +84,8 @@
 - [BUG-013] Fixed icon selection in features form by adding CSP font-src directive for Font Awesome and adding Alpine.js icon preview next to dropdown
 - [BUG-014] Fixed team member create 500 error by fixing upload path property name and relative path resolution
 - [BUG-015] Fixed blog posts page 500 error by converting JPQL query to native SQL with CAST for PostgreSQL null parameter handling
+[v1.0.4]
+- [BUG-016] Fixed sidebar active menu highlight using white background on white text by changing active state to use primary color (#2271b1) background
 
 ---
 
@@ -199,6 +201,12 @@
 
 [v1.0.4]
 - Refer to image ![1600x500.png](reference/image/1600x500.png) for default/placeholder hero image with the size of 1600x500 pixels.
+
+### Bug
+[v1.0.3]
+- [BUG-011] Fixed hero section create 500 error by fixing date parsing, upload path property name, relative path resolution, and nullable expiration_date constraint
+[v1.0.4]
+- [BUG-017] Fixed hero section effective and end date not displaying correctly in edit form by using `.toLocalDate().toString()` to output `yyyy-MM-dd` format compatible with HTML date inputs
 
 ---
 

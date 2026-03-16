@@ -200,10 +200,25 @@ mvn test
 |---|--------|-------|-------------|
 | 1 | User | L1 (System) | User management (CRUD for ADMIN role), profile and account settings for all roles |
 | 2 | Authentication and Authorization | L1 (System) | Form-based login/logout, session management, role-based access control |
-| 3 | Hero Section | L2 (Business) | Manage hero banner content — title, description, CTA button, background image |
-| 4 | Product and Service Section | L2 (Business) | Manage product/service listings with photos and descriptions |
-| 5 | Features Section | L2 (Business) | Manage feature highlights with icons and descriptions |
-| 6 | Testimonials Section | L2 (Business) | Manage customer testimonials with photos |
-| 7 | Team Section | L2 (Business) | Manage team member profiles with photos |
+| 3 | Hero Section | L2 (Business) | Manage hero banner content — title, description, CTA button, background image. v1.0.4: Auto-status from dates (DRAFT/ACTIVE/EXPIRED), BLOB image storage, date validation |
+| 4 | Product and Service Section | L2 (Business) | Manage product/service listings with photos and descriptions. v1.0.4: Status removed, BLOB image storage |
+| 5 | Features Section | L2 (Business) | Manage feature highlights with icons and descriptions. v1.0.4: Status removed |
+| 6 | Testimonials Section | L2 (Business) | Manage customer testimonials. v1.0.4: Status removed |
+| 7 | Team Section | L2 (Business) | Manage team member profiles with photos. v1.0.4: Status removed, BLOB image storage |
 | 8 | Contact Section | L2 (Business) | Manage contact form configuration, map settings, and view submitted messages |
-| 9 | Blog | L2 (Business) | Blog post and category management — create, edit, delete, categorize, and publish posts |
+| 9 | Blog | L2 (Business) | Blog post and category management — create, edit, delete, categorize, and publish posts. v1.0.4: BLOB image storage |
+
+## Version History
+
+### v1.0.4 (2026-03-16)
+
+**Bug Fixes:**
+- BUG-016: Fixed sidebar active menu highlight (white-on-white) — changed to primary blue background
+- BUG-017: Fixed hero section dates not displaying in edit form — fixed LocalDateTime to LocalDate formatting
+
+**Feature Changes:**
+- **Hero Section**: Status is now auto-determined from dates (DRAFT before effective, ACTIVE between dates, EXPIRED after expiration). READY status removed. Status dropdown removed from forms.
+- **Product/Service, Features, Testimonials, Team**: Status field completely removed. Content is active as soon as created.
+- **BLOB Image Storage**: All image-bearing modules (Hero, Product/Service, Team, Blog) now store images as binary data (BYTEA) in PostgreSQL instead of the filesystem. Images are served via dedicated endpoints (`/{module}/{id}/image`, `/{module}/{id}/thumbnail`).
+- **Date Validation**: Hero section effective date must be before expiration date.
+- **Database Migration**: V4 migration adds BLOB columns, drops status columns from Product/Service, Features, Testimonials, Team tables, and removes READY status from Hero Section.

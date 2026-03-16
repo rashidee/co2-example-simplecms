@@ -71,17 +71,8 @@
                         <label for="expirationDate" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Expiration Date</label>
                         <input type="date" id="expirationDate" name="expirationDate"
                                class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
-                        <p class="mt-1 text-xs text-[#646970] dark:text-slate-400">Optional</p>
+                        <p class="mt-1 text-xs text-[#646970] dark:text-slate-400">Optional. Status is auto-determined from dates.</p>
                     </div>
-                </div>
-                <div>
-                    <label for="status" class="block text-sm font-medium text-[#1e1e1e] dark:text-slate-100 mb-1">Status</label>
-                    <select id="status" name="status" required
-                            class="w-full px-3 py-2.5 text-sm border border-[#c3c4c7] dark:border-slate-600 rounded-[4px] focus:outline-none focus:ring-2 focus:ring-[#2271b1]">
-                        @for(var s : view.statuses())
-                            <option value="${s.name()}">${s.name()}</option>
-                        @endfor
-                    </select>
                 </div>
                 <div class="flex gap-3">
                     <button type="submit"

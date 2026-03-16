@@ -7,8 +7,8 @@
         <%-- Home — all roles --%>
         <a href="/"
            :class="active === '/' || active === '/users' || active === '/hero-section'
-               ? 'bg-white dark:bg-slate-800/10 text-white border-l-4 border-white font-medium'
-               : 'text-sidebar-text/80 hover:bg-white dark:bg-slate-800/5 hover:text-white'"
+               ? 'bg-primary dark:bg-primary/80 text-white border-l-4 border-white font-medium'
+               : 'text-sidebar-text/80 hover:bg-white/10 hover:text-white'"
            class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
             <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -24,8 +24,8 @@
             </div>
             <a href="/users"
                :class="active.startsWith('/users')
-                   ? 'bg-white dark:bg-slate-800/10 text-white border-l-4 border-white font-medium'
-                   : 'text-sidebar-text/80 hover:bg-white dark:bg-slate-800/5 hover:text-white'"
+                   ? 'bg-primary dark:bg-primary/80 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/10 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -43,8 +43,8 @@
 
             <a href="/hero-section"
                :class="active.startsWith('/hero-section')
-                   ? 'bg-white dark:bg-slate-800/10 text-white border-l-4 border-white font-medium'
-                   : 'text-sidebar-text/80 hover:bg-white dark:bg-slate-800/5 hover:text-white'"
+                   ? 'bg-primary dark:bg-primary/80 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/10 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,8 +55,8 @@
 
             <a href="/product-and-service"
                :class="active.startsWith('/product-and-service')
-                   ? 'bg-white dark:bg-slate-800/10 text-white border-l-4 border-white font-medium'
-                   : 'text-sidebar-text/80 hover:bg-white dark:bg-slate-800/5 hover:text-white'"
+                   ? 'bg-primary dark:bg-primary/80 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/10 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -67,8 +67,8 @@
 
             <a href="/features-section"
                :class="active.startsWith('/features-section')
-                   ? 'bg-white dark:bg-slate-800/10 text-white border-l-4 border-white font-medium'
-                   : 'text-sidebar-text/80 hover:bg-white dark:bg-slate-800/5 hover:text-white'"
+                   ? 'bg-primary dark:bg-primary/80 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/10 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -79,8 +79,8 @@
 
             <a href="/testimonials"
                :class="active.startsWith('/testimonials')
-                   ? 'bg-white dark:bg-slate-800/10 text-white border-l-4 border-white font-medium'
-                   : 'text-sidebar-text/80 hover:bg-white dark:bg-slate-800/5 hover:text-white'"
+                   ? 'bg-primary dark:bg-primary/80 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/10 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -91,8 +91,8 @@
 
             <a href="/team-section"
                :class="active.startsWith('/team-section')
-                   ? 'bg-white dark:bg-slate-800/10 text-white border-l-4 border-white font-medium'
-                   : 'text-sidebar-text/80 hover:bg-white dark:bg-slate-800/5 hover:text-white'"
+                   ? 'bg-primary dark:bg-primary/80 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/10 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -103,8 +103,8 @@
 
             <a href="/contact-section"
                :class="active.startsWith('/contact-section')
-                   ? 'bg-white dark:bg-slate-800/10 text-white border-l-4 border-white font-medium'
-                   : 'text-sidebar-text/80 hover:bg-white dark:bg-slate-800/5 hover:text-white'"
+                   ? 'bg-primary dark:bg-primary/80 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/10 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -120,8 +120,8 @@
 
             <a href="/blog/categories"
                :class="active.startsWith('/blog/categories')
-                   ? 'bg-white dark:bg-slate-800/10 text-white border-l-4 border-white font-medium'
-                   : 'text-sidebar-text/80 hover:bg-white dark:bg-slate-800/5 hover:text-white'"
+                   ? 'bg-primary dark:bg-primary/80 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/10 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -132,8 +132,8 @@
 
             <a href="/blog"
                :class="active.startsWith('/blog') && !active.startsWith('/blog/categories')
-                   ? 'bg-white dark:bg-slate-800/10 text-white border-l-4 border-white font-medium'
-                   : 'text-sidebar-text/80 hover:bg-white dark:bg-slate-800/5 hover:text-white'"
+                   ? 'bg-primary dark:bg-primary/80 text-white border-l-4 border-white font-medium'
+                   : 'text-sidebar-text/80 hover:bg-white/10 hover:text-white'"
                class="flex items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-200 cursor-pointer">
                 <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

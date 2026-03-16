@@ -2,7 +2,6 @@ package com.simplecms.adminportal.feature.internal;
 
 import com.simplecms.adminportal.feature.FeatureDTO;
 import com.simplecms.adminportal.feature.FeatureService;
-import com.simplecms.adminportal.feature.FeatureStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -33,8 +32,8 @@ class FeatureServiceImpl implements FeatureService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<FeatureDTO> list(FeatureStatus status, Pageable pageable) {
-        return repository.findWithFilters(status, pageable).map(mapper::toDTO);
+    public Page<FeatureDTO> list(Pageable pageable) {
+        return repository.findWithFilters(pageable).map(mapper::toDTO);
     }
 
     @Override
@@ -47,13 +46,12 @@ class FeatureServiceImpl implements FeatureService {
 
     @Override
     public FeatureDTO create(String icon, String title, String description,
-                             int displayOrder, FeatureStatus status) {
+                             int displayOrder) {
         FeatureEntity entity = new FeatureEntity();
         entity.setIcon(icon);
         entity.setTitle(title);
         entity.setDescription(description);
         entity.setDisplayOrder(displayOrder);
-        entity.setStatus(status);
         entity.setCreatedBy("EDITOR");
 
         FeatureEntity saved = repository.save(entity);
@@ -63,7 +61,7 @@ class FeatureServiceImpl implements FeatureService {
 
     @Override
     public FeatureDTO update(UUID id, String icon, String title, String description,
-                             int displayOrder, FeatureStatus status) {
+                             int displayOrder) {
         FeatureEntity entity = repository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Feature not found: " + id));
 
@@ -71,7 +69,6 @@ class FeatureServiceImpl implements FeatureService {
         entity.setTitle(title);
         entity.setDescription(description);
         entity.setDisplayOrder(displayOrder);
-        entity.setStatus(status);
         entity.setUpdatedBy("EDITOR");
 
         FeatureEntity saved = repository.save(entity);

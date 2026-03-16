@@ -63,14 +63,14 @@
     <div id="card-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @for(var post : view.posts().getContent())
             <div class="bg-white dark:bg-slate-800 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] overflow-hidden">
-                <img src="${post.thumbnailPath()}" alt="${post.title()}" class="w-full h-[125px] object-cover">
+                <img src="${post.thumbnailUrl()}" alt="${post.title()}" class="w-full h-[125px] object-cover">
                 <div class="p-4">
                     <span class="text-xs text-[#2271b1] font-medium">${post.categoryName()}</span>
                     <h3 class="font-semibold text-[#1e1e1e] dark:text-slate-100 text-sm mt-1 mb-1">${post.title()}</h3>
                     <p class="text-xs text-[#646970] dark:text-slate-400 mb-2 line-clamp-2">${post.summary()}</p>
                     <p class="text-xs text-[#646970] dark:text-slate-400 mb-1">By ${post.authorName()}</p>
                     <div class="flex items-center justify-between text-xs text-[#646970] dark:text-slate-400">
-                        <span>${post.effectiveDate().toString()}${post.expirationDate() != null ? " - " + post.expirationDate().toString() : ""}</span>
+                        <span>${post.effectiveDate().toLocalDate().toString()}${post.expirationDate() != null ? " - " + post.expirationDate().toLocalDate().toString() : ""}</span>
                         <span class="inline-block px-2 py-0.5 font-medium rounded-full
                             ${post.status().name().equals("ACTIVE") ? "bg-[#00a32a]/10 text-[#00a32a]" :
                               post.status().name().equals("DRAFT") ? "bg-[#dba617]/10 text-[#dba617]" :

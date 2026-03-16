@@ -14,16 +14,14 @@ import java.util.UUID;
 public interface ProductServiceService {
 
     /**
-     * List product/service items with optional status filter,
-     * ordered by displayOrder ASC, then createdAt ASC.
+     * List product/service items ordered by displayOrder ASC, then createdAt ASC.
      *
      * Traces: USA000045, NFRA00054
      *
-     * @param status   optional status filter
      * @param pageable pagination parameters
      * @return page of product/service DTOs
      */
-    Page<ProductServiceDTO> list(ProductServiceStatus status, Pageable pageable);
+    Page<ProductServiceDTO> list(Pageable pageable);
 
     /**
      * Get a product/service item by ID.
@@ -44,13 +42,12 @@ public interface ProductServiceService {
      * @param ctaUrl       optional CTA URL
      * @param ctaText      optional CTA text (max 50)
      * @param displayOrder display order integer
-     * @param status       content status
      * @param image        uploaded image file
      * @return created product/service DTO
      */
     ProductServiceDTO create(String title, String description, String ctaUrl,
                              String ctaText, int displayOrder,
-                             ProductServiceStatus status, MultipartFile image);
+                             MultipartFile image);
 
     /**
      * Update an existing product/service item. Image is optional on update.
@@ -63,13 +60,12 @@ public interface ProductServiceService {
      * @param ctaUrl       optional CTA URL
      * @param ctaText      optional CTA text
      * @param displayOrder display order integer
-     * @param status       content status
      * @param image        optional new image file
      * @return updated product/service DTO
      */
     ProductServiceDTO update(UUID id, String title, String description, String ctaUrl,
                              String ctaText, int displayOrder,
-                             ProductServiceStatus status, MultipartFile image);
+                             MultipartFile image);
 
     /**
      * Delete a product/service item by ID.
@@ -79,4 +75,22 @@ public interface ProductServiceService {
      * @param id the item ID
      */
     void delete(UUID id);
+
+    /**
+     * Get the original image data for a product/service item.
+     * v1.0.4: BLOB image storage support.
+     *
+     * @param id the item ID
+     * @return image bytes (PNG)
+     */
+    byte[] getImageData(UUID id);
+
+    /**
+     * Get the thumbnail image data for a product/service item.
+     * v1.0.4: BLOB image storage support.
+     *
+     * @param id the item ID
+     * @return thumbnail bytes (PNG)
+     */
+    byte[] getThumbnailData(UUID id);
 }

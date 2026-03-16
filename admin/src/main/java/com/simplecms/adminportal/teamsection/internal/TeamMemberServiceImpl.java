@@ -2,10 +2,8 @@ package com.simplecms.adminportal.teamsection.internal;
 
 import com.simplecms.adminportal.teamsection.TeamMemberDTO;
 import com.simplecms.adminportal.teamsection.TeamMemberService;
-import com.simplecms.adminportal.teamsection.TeamMemberStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,12 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.UUID;
 
 /**
+ * Implementation of TeamMemberService.
+ * v1.0.4: BLOB image storage, image validation.
+ *
  * Traces: USA000072-081, NFRA00081-093, CONSA0024
  */
 @Service
@@ -33,9 +31,6 @@ class TeamMemberServiceImpl implements TeamMemberService {
     private final TeamMemberRepository repository;
     private final TeamMemberMapper mapper;
 
-    @Value("${app.upload.base-path:./uploads}")
-    private String uploadPath;
-
     TeamMemberServiceImpl(TeamMemberRepository repository, TeamMemberMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
@@ -43,8 +38,8 @@ class TeamMemberServiceImpl implements TeamMemberService {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<TeamMemberDTO> list(TeamMemberStatus status, Pageable pageable) {
-        return repository.findWithFilters(status, pageable).map(mapper::toDTO);
+    public Page<TeamMemberDTO> list(Pageable pageable) {
+        return repository.findWithFilters(pageable).map(mapper::toDTO);
     }
 
     @Override
@@ -57,18 +52,18 @@ class TeamMemberServiceImpl implements TeamMemberService {
 
     @Override
     public TeamMemberDTO create(String name, String role, String linkedinUrl,
-                                int displayOrder, TeamMemberStatus status,
+                                int displayOrder,
                                 MultipartFile profilePicture) {
         validateImage(profilePicture);
-        String picturePath = saveImage(profilePicture);
+        byte[] imageData = toBytes(profilePicture);
 
         TeamMemberEntity entity = new TeamMemberEntity();
-        entity.setProfilePicturePath(picturePath);
+        entity.setProfilePictureData(imageData);
+        entity.setProfilePicturePath(null);
         entity.setName(name);
         entity.setRole(role);
         entity.setLinkedinUrl(linkedinUrl);
         entity.setDisplayOrder(displayOrder);
-        entity.setStatus(status);
         entity.setCreatedBy("EDITOR");
 
         TeamMemberEntity saved = repository.save(entity);
@@ -78,22 +73,21 @@ class TeamMemberServiceImpl implements TeamMemberService {
 
     @Override
     public TeamMemberDTO update(UUID id, String name, String role, String linkedinUrl,
-                                int displayOrder, TeamMemberStatus status,
+                                int displayOrder,
                                 MultipartFile profilePicture) {
         TeamMemberEntity entity = repository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("Team member not found: " + id));
 
         if (profilePicture != null && !profilePicture.isEmpty()) {
             validateImage(profilePicture);
-            String picturePath = saveImage(profilePicture);
-            entity.setProfilePicturePath(picturePath);
+            entity.setProfilePictureData(toBytes(profilePicture));
+            entity.setProfilePicturePath(null);
         }
 
         entity.setName(name);
         entity.setRole(role);
         entity.setLinkedinUrl(linkedinUrl);
         entity.setDisplayOrder(displayOrder);
-        entity.setStatus(status);
         entity.setUpdatedBy("EDITOR");
 
         TeamMemberEntity saved = repository.save(entity);
@@ -106,6 +100,17 @@ class TeamMemberServiceImpl implements TeamMemberService {
             .orElseThrow(() -> new IllegalArgumentException("Team member not found: " + id));
         repository.delete(entity);
         log.info("Team member deleted: {}", id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public byte[] getImageData(UUID id) {
+        TeamMemberEntity entity = repository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Team member not found: " + id));
+        if (entity.getProfilePictureData() != null) {
+            return entity.getProfilePictureData();
+        }
+        return getPlaceholderImage();
     }
 
     /**
@@ -130,22 +135,23 @@ class TeamMemberServiceImpl implements TeamMemberService {
         }
     }
 
-    private String saveImage(MultipartFile image) {
+    private byte[] toBytes(MultipartFile file) {
         try {
-            String filename = "team-" + UUID.randomUUID() + getExtension(image.getOriginalFilename());
-            Path dir = Paths.get(uploadPath, "team-section").toAbsolutePath();
-            Files.createDirectories(dir);
-            Path filePath = dir.resolve(filename);
-            image.transferTo(filePath.toFile());
-            return "/uploads/team-section/" + filename;
+            return file.getBytes();
         } catch (IOException e) {
-            throw new RuntimeException("Failed to save image", e);
+            throw new RuntimeException("Failed to read image bytes", e);
         }
     }
 
-    private String getExtension(String filename) {
-        if (filename == null) return ".png";
-        int dot = filename.lastIndexOf('.');
-        return dot >= 0 ? filename.substring(dot) : ".png";
+    private byte[] getPlaceholderImage() {
+        try {
+            var resource = getClass().getClassLoader().getResourceAsStream("static/images/placeholder-400x400.png");
+            if (resource != null) {
+                return resource.readAllBytes();
+            }
+            return new byte[0];
+        } catch (IOException e) {
+            return new byte[0];
+        }
     }
 }
