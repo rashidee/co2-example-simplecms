@@ -65,7 +65,7 @@
 ## Authentication and Authorization
 
 [v1.0.1]
-- [BUG-001] 403 error after successful login
+- 403 error after successful login
   - Priority: High
   - Steps to reproduce:
     1. Go to login page
@@ -75,7 +75,7 @@
   - Expected result: User should be redirected to the dashboard page after successful login
 
 [v1.0.2]
-- [BUG-007] Logout URL not working and causing 500 error
+- Logout URL not working and causing 500 error
   - Priority: Medium
   - Steps to reproduce:
     1. Login as admin user
