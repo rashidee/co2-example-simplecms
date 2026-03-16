@@ -51,6 +51,15 @@
       3. Observe that all the cards in all the pages have a light background and the text is hard to read against the light background when dark mode is enabled
   - Expected result: All the cards in all the pages should have a dark background with light text when dark mode is enabled for better readability
 
+[v1.0.4]
+- Menu sidebar highlight selected menu using white background on a white text color, which makes it hard to read the selected menu item
+  - Priority: Low
+  - Steps to reproduce:
+      1. Login as admin user
+      2. Click on any menu item in the sidebar to select it
+      3. Observe that the selected menu item is highlighted with a white background and white text color, making it hard to read
+  - Expected result: The selected menu item should be highlighted with a background color that contrasts well with the text color for better readability
+
 # System Module
 
 ## Authentication and Authorization
@@ -112,6 +121,17 @@
     4. Fill in the form with valid data and submit
     5. Observe that there is a 500 error and the hero section content is not created successfully
   - Expected result: The new hero section content should be created successfully without any errors
+
+[v1.0.4]
+- The hero section effective and end date is not saved properly.
+  - Priority: Medium
+  - Steps to reproduce:
+    1. Login as editor user
+    2. Click on Hero Section menu
+    3. Click on Create New Hero Section button
+    4. Fill in the form with valid data and set the effective date and end date to a specific date and submit
+    5. Reopen the created hero section content and observe that the effective date and end date are not saved properly and show incorrect values
+  - Expected result: The effective date and end date should be saved properly and show the correct values when reopening the created hero section content for editing
 
 ---
 

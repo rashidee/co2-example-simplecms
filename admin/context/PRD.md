@@ -61,7 +61,6 @@
 
 [v1.0.0]
 
-
 ### Reference
 
 [v1.0.0]
@@ -147,7 +146,7 @@
     - The URL link for the call to action button
     - The text for the call to action button
     - Effective date and expiration date for the hero section content.
-    - Status of the hero section as per constraint below.
+    - ~~Status of the hero section as per constraint below.~~
 - [USA000033] As Editor, I want to be able to view the list of hero section content, so I can manage the content easily.
   - Filter option for the list of hero section content:
     - Status (DRAFT, READY, ACTIVE, EXPIRED)
@@ -161,6 +160,13 @@
     - The status of the hero section content
     - Link to the edit page for the hero section content
 
+[v1.0.4]
+- Update to [USA000030]
+  - Remove the Status selection in the create/update hero section form, and the status will be automatically determined by the system based on the effective date and expiration date as follows:
+    - If the current date is before the effective date, the status will be DRAFT
+    - If the current date is between the effective date and expiration date, the status will be ACTIVE
+    - If the current date is after the expiration date, the status will be EXPIRED
+
 ### Non Functional Requirement
 
 [v1.0.0]
@@ -172,18 +178,27 @@
 - [NFRA00033] The hero section list will  be ordered by the effective date in descending order.
 - [NFRA00036] A thumbnail version of the hero image will be generated automatically by the system with the size of 400x125 pixels, and it will be used in the list of hero section content in the admin portal.
 
+[v1.0.4]
+- Uploaded original size image and the thumbnail version will be store in the database as binary data (BLOB), and the system will handle the image storage and retrieval from the database accordingly.
+- Validate the effective date and expiration date input to ensure that the effective date must be before the expiration date, and both dates must be in the future when creating or updating the hero section content.
+
 ### Constraint
 
 [v1.0.0]
 - [CONSA0012] Status of hero content:
   - DRAFT (default)
-  - READY
+  - ~~READY~~
   - ACTIVE
   - EXPIRED
 
+[v1.0.4]
+- Update to [CONSA0012]
+  - Remove READY status since the status will be automatically determined by the system based on the effective date and expiration date as described in the update to [USA000030].
+
 ### Reference
 
-[v1.0.0]
+[v1.0.4]
+- Refer to image ![1600x500.png](reference/image/1600x500.png) for default/placeholder hero image with the size of 1600x500 pixels.
 
 ---
 
@@ -199,12 +214,12 @@
     - A description text
     - The URL link for the call to action button (optional)
     - The text for the call to action button (optional)
-    - Status of the product and service section as per constraint below.
+    - ~~Status of the product and service section as per constraint below~~.
 - [USA000039] As Editor, I want to be able to set the order of the product and service section content, so I can control the display order of the content on the website.
 - [USA000042] As Editor, I want to be able to delete the product and service section content, so I can remove any content that is no longer relevant or needed.
 - [USA000045] As Editor, I want to be able to view the list of product and service section content, so I can manage the content easily.
-  - Filter option for the list of product and service:
-    - Status (DRAFT, INACTIVE, ACTIVE)
+  - ~~Filter option for the list of product and service:~~
+    - ~~Status (DRAFT, INACTIVE, ACTIVE)~~
   - The list will be in card format in a grid layout of 4 columns where each card will show:
     - The thumbnail image
     - The title text
@@ -212,6 +227,12 @@
     - The status of the product and service section content
     - Link to the edit page for the product and service section content
     - Link to delete the product and service section content with a prompt to confirm the deletion action
+
+[v1.0.4]
+- Update to [USA000036]
+  - There is no longer any status for the product and service section content, and the content will be shown in the product and service section on the website as long as it is created in the system without any need to set the status to ACTIVE. The order of the content will be determined by the order set by the user as described in [USA000039].
+- Update to [USA000045]
+  - Since there is no longer any status for the product and service section content as described in the update to [USA000036], the filter option for the list of product and service section content will only have order and creation date, and it will be ordered by the order set by the user in ascending order, and if there is any content with the same order, it will be ordered by the creation date in ascending order.
 
 ### Non Functional Requirement
 
@@ -224,13 +245,20 @@
 - [NFRA00054] The product and service section list will be ordered by the order set by the user in ascending order, and if there is any content with the same order, it will be ordered by the creation date in ascending order.
 - [NFRA00057] A thumbnail version of the product and service image will be generated automatically by the system with the size of 200x200 pixels, and it will be used in the list of product and service section content in the admin portal.
 
+[v1.0.4]
+- Uploaded original size image and the thumbnail version will be store in the database as binary data (BLOB), and the system will handle the image storage and retrieval from the database accordingly.
+
 ### Constraint
 
 [v1.0.0]
-- [CONSA0015] Status of product and service content:
-  - DRAFT (default)
-  - INACTIVE
-  - ACTIVE
+- ~~[CONSA0015] Status of product and service content:~~
+  - ~~DRAFT (default)~~
+  - ~~INACTIVE~~
+  - ~~ACTIVE~~
+
+[v1.0.4]
+- Update to [CONSA0015]
+  - Remove the status selection for the product and service content since there is no longer any status for the content as described in the update to [USA000036].
 
 ### Reference
 
@@ -248,12 +276,12 @@
     - Selection of icon from the predefined icon library
     - A title text
     - A description text
-    - Status of the features section as per constraint below.
+    - ~~Status of the features section as per constraint below.~~
 - [USA000051] As Editor, I want to be able to set the order of the features section content, so I can control the display order of the content on the website.
 - [USA000054] As Editor, I want to be able to delete the features section content, so I can remove any content that is no longer relevant or needed.
 - [USA000057] As Editor, I want to be able to view the list of features section content, so I can manage the content easily.
-  - Filter option for the list of features section content:
-    - Status (DRAFT, INACTIVE, ACTIVE)
+  - ~~Filter option for the list of features section content:~~
+    - ~~Status (DRAFT, INACTIVE, ACTIVE)~~
   - The list will be in card format in a grid layout of 4 columns where each card will show:
     - The icon
     - The title text
@@ -261,6 +289,12 @@
     - The status of the features section content
     - Link to the edit page for the features section content
     - Link to delete the features section content with a prompt to confirm the deletion action
+
+[v1.0.4]
+- Update to [USA000048]
+  - There is no longer any status for the features section content, and the content will be shown in the features section on the website as long as it is created in the system without any need to set the status to ACTIVE. The order of the content will be determined by the order set by the user as described in [USA000051].
+- Update to [USA000057]
+  - Since there is no longer any status for the features section content as described in the update to [USA000048], the filter option for the list of features section content will only have order and creation date, and it will be ordered by the order set by the user in ascending order, and if there is any content with the same order, it will be ordered by the creation date in ascending order.
 
 ### Non Functional Requirement
 
@@ -272,10 +306,14 @@
 ### Constraint
 
 [v1.0.0]
-- [CONSA0018] Status of features content:
-  - DRAFT (default)
-  - INACTIVE
-  - ACTIVE
+- ~~[CONSA0018] Status of features content:~~
+  - ~~DRAFT (default)~~
+  - ~~INACTIVE~~
+  - ~~ACTIVE~~
+
+[v1.0.4]
+- Update to [CONSA0018]
+  - Remove the status selection for the features section content since there is no longer any status for the content as described in the update to [USA000048].
 
 ### Reference
 
@@ -293,12 +331,12 @@
     - A customer name
     - A customer review
     - A customer rating (1-5 stars)
-    - Status of the testimonials section as per constraint below.
+    - ~~Status of the testimonials section as per constraint below.~~
 - [USA000063] As Editor, I want to be able to set the order of the testimonials section content, so I can control the display order of the content on the website.
 - [USA000066] As Editor, I want to be able to delete the testimonials section content, so I can remove any content that is no longer relevant or needed.
 - [USA000069] As Editor, I want to be able to view the list of testimonials section content, so I can manage the content easily.
-  - Filter option for the list of testimonials section content:
-    - Status (DRAFT, INACTIVE, ACTIVE)
+  - ~~Filter option for the list of testimonials section content:~~
+    - ~~Status (DRAFT, INACTIVE, ACTIVE)~~
   - The list will be in card format in a grid layout of 4 columns where each card will show:
     - The customer name
     - The customer review
@@ -306,6 +344,12 @@
     - The status of the testimonials section content
     - Link to the edit page for the testimonials section content
     - Link to delete the testimonials section content with a prompt to confirm the deletion action
+
+[v1.0.4]
+- Update to [USA000060]
+  - There is no longer any status for the testimonials section content, and the content will be shown in the testimonials section on the website as long as it is created in the system without any need to set the status to ACTIVE. The order of the content will be determined by the order set by the user as described in [USA000063].
+- Update to [USA000069]
+  - Since there is no longer any status for the testimonials section content as described in the update to [USA000060], the filter option for the list of testimonials section content will only have order and creation date, and it will be ordered by the order set by the user in ascending order, and if there is any content with the same order, it will be ordered by the creation date in ascending order.
 
 ### Non Functional Requirement
 
@@ -315,13 +359,17 @@
 - [NFRA00075] The customer rating must be an integer between 1 and 5, and the system will validate the rating before accepting the input.
 - [NFRA00078] The testimonials section list will be ordered by the order set by the user in ascending order, and if there is any content with the same order, it will be ordered by the creation date in ascending order.
 
+[v1.0.4]
+- Update to [NFRA00078]
+  - Since there is no longer any status for the testimonials section content as described in the update to [USA000060], the filter option for the list of testimonials section content will only have order and creation date, and it will be ordered by the order set by the user in ascending order, and if there is any content with the same order, it will be ordered by the creation date in ascending order.
+
 ### Constraint
 
 [v1.0.0]
-- [CONSA0021] Status of testimonials content:
-  - DRAFT (default)
-  - INACTIVE
-  - ACTIVE
+- ~~[CONSA0021] Status of testimonials content:~~
+  - ~~DRAFT (default)~~
+  - ~~INACTIVE~~
+  - ~~ACTIVE~~
 
 ### Reference
 
@@ -340,12 +388,12 @@
     - A name
     - A role
     - LinkedIn profile link
-    - Status of the team section as per constraint below.
+    - ~~Status of the team section as per constraint below.~~
 - [USA000075] As Editor, I want to be able to set the order of the team section content, so I can control the display order of the content on the website.
 - [USA000078] As Editor, I want to be able to delete the team section content, so I can remove any content that is no longer relevant or needed.
 - [USA000081] As Editor, I want to be able to view the list of team section content, so I can manage the content easily.
-  - Filter option for the list of team section content:
-    - Status (DRAFT, INACTIVE, ACTIVE)
+  - ~~Filter option for the list of team section content:~~
+    - ~~Status (DRAFT, INACTIVE, ACTIVE)~~
   - The list will be in card format in a grid layout of 4 columns where each card will show:
     - The profile picture
     - The name
@@ -354,6 +402,12 @@
     - The status of the team section content
     - Link to the edit page for the team section content
     - Link to delete the team section content with a prompt to confirm the deletion action
+
+[v1.0.4]
+- Update to [USA000072]
+  - There is no longer any status for the team section content, and the content will be shown in the team section on the website as long as it is created in the system without any need to set the status to ACTIVE. The order of the content will be determined by the order set by the user as described in [USA000075].
+- Update to [USA000081]
+  - Since there is no longer any status for the team section content as described in the update to [USA000072], the filter option for the list of team section content will only have order and creation date, and it will be ordered by the order set by the user in ascending order, and if there is any content with the same order, it will be ordered by the creation date in ascending order.
 
 ### Non Functional Requirement
 
@@ -364,17 +418,25 @@
 - [NFRA00090] The LinkedIn profile link must be a valid URL format, and the system will validate the URL format before accepting the input.
 - [NFRA00093] The team section list will be ordered by the order set by the user in ascending order, and if there is any content with the same order, it will be ordered by the creation date in ascending order.
 
+[v1.0.4]
+- Uploaded original size image and the thumbnail version will be store in the database as binary data (BLOB), and the system will handle the image storage and retrieval from the database accordingly.
+
 ### Constraint
 
 [v1.0.0]
-- [CONSA0024] Status of team content:
-  - DRAFT (default)
-  - INACTIVE
-  - ACTIVE
+- ~~[CONSA0024] Status of team content:~~
+  - ~~DRAFT (default)~~
+  - ~~INACTIVE~~
+  - ~~ACTIVE~~
+
+[v1.0.4]
+- Update to [CONSA0024]
+  - Remove the status selection for the team section content since there is no longer any status for the content as described in the update to [USA000072].
 
 ### Reference
 
-[v1.0.0]
+[v1.0.4]
+- Refer to image ![400x400.png](reference/image/400x400.png) for default/placeholder image with the size of 400x400 pixels.
 
 ---
 
@@ -490,6 +552,9 @@
   - The system will validate the content to ensure that it does not contain any malicious code or
 - [NFRA00132] The blog content will be stored in HTML format in the database, and the system will sanitize the content to prevent any XSS attack or malicious code injection.
 
+[v1.0.4]
+- Uploaded original size image and the thumbnail version will be store in the database as binary data (BLOB), and the system will handle the image storage and retrieval from the database accordingly.
+
 ### Constraint
 
 [v1.0.0]
@@ -504,7 +569,8 @@
 
 ### Reference
 
-[v1.0.0]
+[v1.0.4]
+- Refer to image ![1600x500.png](reference/image/1600x500.png) for default/placeholder blog image with the size of 1600x500 pixels.
 
 ---
 
