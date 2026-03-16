@@ -1,0 +1,14 @@
+context/
+vendor/
+node_modules/
+e2e/
+storage/logs/
+storage/framework/cache/
+storage/framework/sessions/
+storage/framework/views/
+.git
+.gitignore
+.env
+.DS_Store
+*.md
+tests/

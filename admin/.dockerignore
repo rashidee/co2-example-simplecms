@@ -1,0 +1,11 @@
+context/
+target/
+e2e/
+uploads/
+frontend/node_modules/
+frontend/node/
+.git
+.gitignore
+.idea
+.DS_Store
+*.md
