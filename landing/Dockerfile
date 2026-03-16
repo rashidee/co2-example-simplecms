@@ -40,19 +40,24 @@ COPY . .
 # Copy built frontend assets from builder stage
 COPY --from=frontend-builder /app/public/build public/build
 
-# Ensure storage directories exist (excluded by .dockerignore)
+# Ensure storage directories exist (excluded by .dockerignore) and set permissions
 RUN mkdir -p storage/framework/{cache,sessions,views} \
     && mkdir -p storage/logs \
-    && mkdir -p bootstrap/cache
+    && mkdir -p bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+# Provide a temporary .env so Laravel can boot during build (.env is excluded by .dockerignore)
+RUN cp .env.example .env
+
+# Set explicit view compiled path to avoid realpath() returning false during build
+ENV VIEW_COMPILED_PATH=/var/www/html/storage/framework/views
 
 # Generate optimized autoloader and run post-install scripts
 RUN composer dump-autoload --optimize \
+    && php artisan key:generate \
     && php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache
-
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Nginx configuration
 COPY <<'NGINX' /etc/nginx/sites-available/default
