@@ -28,7 +28,7 @@
   - Expected Behavior: The carousel should scroll smoothly to the next item without refreshing the entire page.
 
 [v1.0.6]
-- The carousel still keep refreshing every 5 seconds and the carousel rendering everytime I switch item  is not smooth and it looks like the whole page is refreshing instead of just the carousel section. This issue can lead to a poor user experience and can cause increased load times.
+- [BUG-002] The carousel still keep refreshing every 5 seconds and the carousel rendering everytime I switch item  is not smooth and it looks like the whole page is refreshing instead of just the carousel section. This issue can lead to a poor user experience and can cause increased load times.
   - Steps to Reproduce:
     1. Navigate to the landing page.
     2. Observe the carousel section.

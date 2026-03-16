@@ -12,7 +12,7 @@
 ### Non-Functional Requirements
 | ID | Description | Version |
 |----|-------------|---------|
-| NFRL00003 | The carousel will slide every 5 seconds and it will have navigation arrows to allow users to manually slide the carousel. | v1.0.0 |
+| NFRL00003 | ~~The carousel will slide every 5 seconds and~~ The carousel will have navigation arrows and dot indicators to allow users to manually slide the carousel. Slides use absolute positioning with fade transitions for smooth rendering. | v1.0.0, v1.0.6 |
 | NFRL00006 | The image size will be large image with a resolution of at least 1600x500 pixels to ensure that it looks good on all screen sizes. | v1.0.0 |
 
 ### Constraints
@@ -215,41 +215,40 @@ The hero section renders as part of the home page (`resources/views/pages/home.b
         'url' => $s->cta_url,
     ])->values()),
     next() { this.current = (this.current + 1) % this.slides.length },
-    prev() { this.current = (this.current - 1 + this.slides.length) % this.slides.length },
-    autoSlide: null,
-    startAuto() { this.autoSlide = setInterval(() => this.next(), 5000) },
-    stopAuto() { clearInterval(this.autoSlide) }
-}" x-init="startAuto()" class="relative w-full overflow-hidden">
-    {{-- Slides --}}
-    <template x-for="(slide, idx) in slides" :key="idx">
-        <div x-show="current === idx"
-             x-transition:enter="transition ease-out duration-500"
-             x-transition:enter-start="opacity-0"
-             x-transition:enter-end="opacity-100"
-             x-transition:leave="transition ease-in duration-300"
-             x-transition:leave-start="opacity-100"
-             x-transition:leave-end="opacity-0"
-             class="relative w-full" style="min-height:500px;">
-            <img :src="slide.img" :alt="slide.headline" class="w-full h-[500px] object-cover">
-            <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-4">
-                <h1 class="text-white text-3xl md:text-5xl font-bold mb-4" x-text="slide.headline"></h1>
-                <p class="text-white/90 text-lg md:text-xl mb-6 max-w-2xl" x-text="slide.sub"></p>
-                <a :href="slide.url" target="_blank" rel="noopener"
-                   class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-btn transition"
-                   x-text="slide.cta"></a>
+    prev() { this.current = (this.current - 1 + this.slides.length) % this.slides.length }
+}" class="relative w-full overflow-hidden">
+    {{-- Slides container with fixed height --}}
+    <div class="relative w-full h-[500px]">
+        <template x-for="(slide, idx) in slides" :key="idx">
+            <div x-show="current === idx"
+                 x-transition:enter="transition ease-out duration-500"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="transition ease-in duration-300"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 class="absolute inset-0 w-full h-full">
+                <img :src="slide.img" :alt="slide.headline" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-4">
+                    <h1 class="text-white text-3xl md:text-5xl font-bold mb-4" x-text="slide.headline"></h1>
+                    <p class="text-white/90 text-lg md:text-xl mb-6 max-w-2xl" x-text="slide.sub"></p>
+                    <a :href="slide.url" target="_blank" rel="noopener"
+                       class="inline-block bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-btn transition"
+                       x-text="slide.cta"></a>
+                </div>
             </div>
-        </div>
-    </template>
+        </template>
+    </div>
 
     {{-- Navigation arrows --}}
-    <button @click="prev(); stopAuto(); startAuto()"
+    <button @click="prev()"
             class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-text-primary rounded-full p-2 shadow"
             aria-label="Previous slide">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
         </svg>
     </button>
-    <button @click="next(); stopAuto(); startAuto()"
+    <button @click="next()"
             class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-text-primary rounded-full p-2 shadow"
             aria-label="Next slide">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -260,7 +259,7 @@ The hero section renders as part of the home page (`resources/views/pages/home.b
     {{-- Dot indicators --}}
     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
         <template x-for="(slide, idx) in slides" :key="'dot-'+idx">
-            <button @click="current = idx; stopAuto(); startAuto()"
+            <button @click="current = idx"
                     :class="current === idx ? 'bg-white' : 'bg-white/50'"
                     class="w-3 h-3 rounded-full transition"
                     :aria-label="'Go to slide '+(idx+1)"></button>

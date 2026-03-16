@@ -114,6 +114,10 @@
 ### Reference
 [v1.0.0]
 
+### Bug
+[v1.0.6]
+- [BUG-002] Fixed carousel non-smooth rendering caused by slides using relative positioning (stacking vertically during transitions). Changed slides to absolute positioning within a fixed-height container. Removed auto-scroll interval per user request — carousel is now manual navigation only.
+
 ---
 
 ## Product and Service Section
