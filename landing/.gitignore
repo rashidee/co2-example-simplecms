@@ -1,0 +1,51 @@
+# Laravel
+/vendor/
+/node_modules/
+/public/build/
+/public/hot
+/public/storage
+/storage/*.key
+/storage/pail
+.env
+.env.backup
+.env.production
+
+# IDE
+.idea/
+.vscode/
+.fleet/
+.zed/
+.nova/
+*.iml
+*.swp
+*~
+.phpactor.json
+/auth.json
+
+# OS
+.DS_Store
+Thumbs.db
+Homestead.json
+Homestead.yaml
+
+# Testing
+/coverage/
+.phpunit.result.cache
+/.phpunit.cache
+
+# E2E
+e2e/node_modules/
+e2e/test-results/
+e2e/playwright-report/
+e2e/visual-baselines/
+
+# Logs
+*.log
+storage/logs/*
+!storage/logs/.gitkeep
+
+# Playwright MCP
+.playwright-mcp/
+
+# SQLite
+database/database.sqlite
