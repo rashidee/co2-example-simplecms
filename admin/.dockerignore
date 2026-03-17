@@ -8,4 +8,6 @@ frontend/node/
 .gitignore
 .idea
 .DS_Store
+.env
+.env.*
 *.md

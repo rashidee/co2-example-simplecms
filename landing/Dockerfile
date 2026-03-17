@@ -47,8 +47,8 @@ RUN mkdir -p storage/framework/{cache,sessions,views} \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Provide a temporary .env so Laravel can boot during build (.env is excluded by .dockerignore)
-RUN cp .env.example .env
+# Generate a minimal .env for build (actual values provided at runtime via --env-file)
+RUN echo "APP_NAME=Landing\nAPP_ENV=production\nAPP_KEY=\nAPP_DEBUG=false\nDB_CONNECTION=pgsql" > .env
 
 # Set explicit view compiled path to avoid realpath() returning false during build
 ENV VIEW_COMPILED_PATH=/var/www/html/storage/framework/views

@@ -9,6 +9,7 @@ storage/framework/views/
 .git
 .gitignore
 .env
+.env.*
 .DS_Store
 *.md
 tests/
