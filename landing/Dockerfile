@@ -44,6 +44,7 @@ COPY --from=frontend-builder /app/public/build public/build
 RUN mkdir -p storage/framework/{cache,sessions,views} \
     && mkdir -p storage/logs \
     && mkdir -p bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # Provide a temporary .env so Laravel can boot during build (.env is excluded by .dockerignore)

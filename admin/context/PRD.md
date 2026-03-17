@@ -52,6 +52,13 @@
 - [USA000006] As User, I want to be able to change my password in case I forgot my password by entering my email address, receive a secure link and set my new password. So I can regain access to the system if I forget my password.
 - [USA000009] As User, I want to be able to log out from the system, so I can ensure no unauthorize access using my credential
 
+[v1.0.7]
+- Since this is a demo application, show the login for editor account with the password on the login page
+  - Editor account:
+    - Email: editor@simplecms.com
+    - Password: password
+  - Position it below the login form with a clear label "Demo Editor Account" and style it in a way that it is noticeable but does not distract from the main login form, such as using a smaller font size and a different color (e.g., #2271b1) for the text.
+
 ### Non Functional Requirement
 
 [v1.0.0]

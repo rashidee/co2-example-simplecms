@@ -52,7 +52,9 @@
 
 ### User Story
 
-[v1.0.0]
+[v1.0.7]
+- Add a menu to the "Admin" page (open new tab) at the top right corner of the landing page for admin users to access the admin dashboard.
+  - Redirect to: https://admin.{domain}
 
 ### Non Functional Requirement
 
