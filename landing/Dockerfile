@@ -47,18 +47,19 @@ RUN mkdir -p storage/framework/{cache,sessions,views} \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Generate a minimal .env for build (actual values provided at runtime via --env-file)
+# Generate a temporary .env for build only (removed after build steps)
 RUN echo "APP_NAME=Landing\nAPP_ENV=production\nAPP_KEY=\nAPP_DEBUG=false\nDB_CONNECTION=pgsql" > .env
 
 # Set explicit view compiled path to avoid realpath() returning false during build
 ENV VIEW_COMPILED_PATH=/var/www/html/storage/framework/views
 
-# Generate optimized autoloader and run post-install scripts
+# Generate optimized autoloader, cache routes/views, then remove build-time .env and config cache
 RUN composer dump-autoload --optimize \
     && php artisan key:generate \
-    && php artisan config:cache \
     && php artisan route:cache \
-    && php artisan view:cache
+    && php artisan view:cache \
+    && rm -f .env \
+    && rm -f bootstrap/cache/config.php
 
 # Nginx configuration
 COPY <<'NGINX' /etc/nginx/sites-available/default
