@@ -5,7 +5,7 @@
             <a href="/" class="text-xl font-bold text-primary">Simple CMS</a>
 
             <!-- Desktop menu -->
-            <div class="hidden md:flex space-x-6 text-sm font-medium text-text-secondary">
+            <div class="hidden md:flex items-center space-x-6 text-sm font-medium text-text-secondary">
                 <a href="/#hero" class="hover:text-primary transition">Home</a>
                 <a href="/#products" class="hover:text-primary transition">Products & Services</a>
                 <a href="/#features" class="hover:text-primary transition">Features</a>
@@ -13,6 +13,9 @@
                 <a href="/#team" class="hover:text-primary transition">Team</a>
                 <a href="/#contact" class="hover:text-primary transition">Contact</a>
                 <a href="/blog" class="hover:text-primary transition {{ request()->is('blog*') ? 'text-primary font-bold' : '' }}">Blog</a>
+                <span class="border-l border-border h-4"></span>
+                <a href="{{ config('app.admin_url', 'https://admin.' . request()->getHost()) }}" target="_blank" rel="noopener"
+                   class="hover:text-primary transition">Admin</a>
             </div>
 
             <!-- Mobile hamburger -->
@@ -34,6 +37,8 @@
             <a href="/#team" class="block py-2 hover:text-primary" @click="mobileOpen = false">Team</a>
             <a href="/#contact" class="block py-2 hover:text-primary" @click="mobileOpen = false">Contact</a>
             <a href="/blog" class="block py-2 hover:text-primary">Blog</a>
+            <a href="{{ config('app.admin_url', 'https://admin.' . request()->getHost()) }}" target="_blank" rel="noopener"
+               class="block py-2 hover:text-primary">Admin</a>
         </div>
     </div>
 </nav>

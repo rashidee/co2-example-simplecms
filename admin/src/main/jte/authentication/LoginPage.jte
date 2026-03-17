@@ -50,4 +50,10 @@
             </a>
         </div>
     </div>
+
+    <div class="mt-4 p-4 border border-[#c3c4c7] dark:border-slate-600 rounded-[8px] bg-white dark:bg-slate-800">
+        <p class="text-xs font-semibold text-[#2271b1] mb-2">Demo Editor Account</p>
+        <p class="text-xs text-[#646970] dark:text-slate-400">Email: <span class="font-mono text-[#2271b1]">editor@simplecms.com</span></p>
+        <p class="text-xs text-[#646970] dark:text-slate-400">Password: <span class="font-mono text-[#2271b1]">password</span></p>
+    </div>
 `)

@@ -1,7 +1,7 @@
 # Implementation Master - Admin Portal (Simple CMS)
 
 **Started**: 2026-03-15
-**Version**: v1.0.4
+**Version**: v1.0.4, v1.0.7
 **Source Code**: admin/
 **Context**: admin/context
 **Status**: COMPLETED
@@ -41,7 +41,7 @@
 | # | Module | Layer | Status | Started | Completed | Notes |
 |---|--------|-------|--------|---------|-----------|-------|
 | 1 | User | L1 | COMPLETED | 2026-03-15 | 2026-03-15 | No v1.0.4 changes |
-| 2 | Authentication and Authorization | L1 | COMPLETED | 2026-03-15 | 2026-03-15 | No v1.0.4 changes |
+| 2 | Authentication and Authorization | L1 | COMPLETED | 2026-03-15 | 2026-03-17 | v1.0.7: Added demo editor credentials on login page + seeder for editor@simplecms.com |
 | 3 | Hero Section | L2 | COMPLETED | 2026-03-16 | 2026-03-16 | v1.0.4: auto-status, BLOB images, date validation, remove READY. Verified with Playwright. |
 | 4 | Product and Service Section | L2 | COMPLETED | 2026-03-16 | 2026-03-16 | v1.0.4: status removed, BLOB images implemented. |
 | 5 | Features Section | L2 | COMPLETED | 2026-03-16 | 2026-03-16 | v1.0.4: status removed from entity/DTO/service/controller/repository/templates. |

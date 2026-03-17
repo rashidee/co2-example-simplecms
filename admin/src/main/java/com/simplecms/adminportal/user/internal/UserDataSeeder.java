@@ -33,7 +33,7 @@ class UserDataSeeder implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         if (userRepository.count() == 0) {
             UserEntity admin = new UserEntity();
-            admin.setEmail("admin");
+            admin.setEmail("admin@simplecms.com");
             admin.setPassword(passwordEncoder.encode("password"));
             admin.setFirstName("System");
             admin.setLastName("Administrator");
@@ -43,7 +43,23 @@ class UserDataSeeder implements ApplicationRunner {
             admin.setCreatedBy("SYSTEM");
 
             userRepository.save(admin);
-            log.info("Admin user seeded: admin / password (change on first login)");
+            log.info("Admin user seeded: admin@simplecms.com / password (change on first login)");
+        }
+
+        // Seed demo editor account if it does not exist
+        if (userRepository.findByEmail("editor@simplecms.com").isEmpty()) {
+            UserEntity editor = new UserEntity();
+            editor.setEmail("editor@simplecms.com");
+            editor.setPassword(passwordEncoder.encode("password"));
+            editor.setFirstName("Demo");
+            editor.setLastName("Editor");
+            editor.setRole(UserRole.EDITOR);
+            editor.setStatus(UserStatus.ACTIVE);
+            editor.setForcePasswordChange(false);
+            editor.setCreatedBy("SYSTEM");
+
+            userRepository.save(editor);
+            log.info("Demo editor user seeded: editor@simplecms.com / password");
         }
     }
 }
